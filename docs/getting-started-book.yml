@@ -1,0 +1,15 @@
+type: books
+books:
+    - id: main
+    - language: en
+      title: Getting Started
+      description: Getting Started Description
+      keywords: Start
+      author: "IotBzh"
+      website: http:docs.iot.bzh
+      version: master
+      chapters:
+                - name: Download AGL Source Code
+                  url: getting-started/source-code.md
+
+
