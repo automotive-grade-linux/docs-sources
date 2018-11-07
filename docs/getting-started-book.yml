@@ -1,15 +1,76 @@
 type: books
 books:
-    - id: main
+-
+    id: getting_started
+    languages:
     - language: en
       title: Getting Started
       description: Getting Started Description
-      keywords: Start
+      keywords:
       author: "IotBzh"
       website: http:docs.iot.bzh
       version: master
       chapters:
-                - name: Download AGL Source Code
-                  url: getting-started/source-code.md
-
+      - name: Download AGL source Code
+        url: getting-started/source-code.md
+      - name: Customize the AGL build
+        url: getting-started/customize_bitbake_conf.md
+      - name: Build for Intel
+        url: getting-started/machines/intel.md
+      - url: getting-started/machines/qemu.md
+        name: Build for Qemu
+      - url: getting-started/machines/R-Car-Starter-Kit-gen3.md
+        name: Build for R Car Starter Kit gen3 board
+      - url: getting-started/machines/raspberrypi.md
+        name: Build for Raspberry PI 2/3
+    - language: fr
+      title: Pour commencer
+      description: Pour commencer description
+      keywords:
+      author: "IotBzh"
+      website: http:docs.iot.bzh
+      version: master
+      chapters:
+      - name: Télécharger le code source d'AGL
+        url: getting-started/source-code.md
+      - name: Customiser le build AGL
+        url: getting-started/customize_bitbake_conf.md
+      - name: Compiler pour intel
+        url: getting-started/machines/intel.md
+      - url: getting-started/machines/qemu.md
+        name: Compiler pour Qemu
+      - url: getting-started/machines/R-Car-Starter-Kit-gen3.md
+        name: Compiler pour R Car Starter Kit gen3 board
+      - url: getting-started/machines/raspberrypi.md
+        name: Compiler pour Raspberry PI 2/3
+-
+    id: troubleshooting
+    languages:
+    - language: en
+      title: Troubleshooting
+      description: Troubleshooting Description
+      keywords:
+      author: "IotBzh"
+      website: http:docs.iot.bzh
+      version: master
+      chapters:
+      - url: getting-started/troubleshooting.md
+        name: Generic issues
+      - url: getting-started/footers/intel-footer.md
+        name: Intel Boards
+      - url: getting-started/footers/raspberrypi-footer.md
+        name: Raspberry PI
+-
+    id: sdk
+    languages:
+    - language: en
+      title: SDK
+      description: SDK Quick Setup
+      keywords:
+      author: "IotBzh"
+      website: http:docs.iot.bzh
+      version: master
+      chapters:
+      - url: getting-started/setup-sdk-environment.md
+        name: SDK Quick Setup
 
