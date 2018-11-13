@@ -1,186 +1,153 @@
-# Running AGL on Intel MinnowBoard (and most Intel 64 bits HW)
+# Building for Most Intel 64-Bit Hardware Platforms
 
-## Scope
-
-This documentation is aiming at people who want to run Automotive Grade
-Linux (AGL) on Intel Hardware (HW).
-While the reference HW used by AGL project is the Open Source MinnowBoard, this documentation [MinnowBoard wiki](https://minnowboard.org/) can be used to enable most of 64-bit Intel Architecture (IA) platforms using UEFI as boot loader.
-In addition to the MinnowBoard, support for the [upCore & UpSquared boards](http://www.up-board.org/upsquared/) has been added.
-You need to run the 64-bit version of the UEFI bootloader.
+Although the reference hardware used by the AGL Project is the 64-bit Open Source MinnowBoard,
+you can use the information found on the "[MinnowBoard wiki](https://minnowboard.org/)"
+to enable most 64-bit Intel Architecture (IA) platforms that use the 64-bit
+UEFI as the boot loader.
+In addition to the MinnowBoard, support for the
+[upCore & UpSquared boards](http://www.up-board.org/upsquared/) exists.
 MinnowBoard Max and Turbot as well as Joule are both 64-bit capable.
 
-**Note**: This page is more focused on those who want to create bespoke AGL images and BSPs.
+If you are interested in creating ***applications*** to run on hardware booted
+using an image built with the AGL Project, see the following:
 
-If you are interested in creating ***applications*** to run on AGL, please visit the [Developing Apps for AGL](https://wiki.automotivelinux.org/agl-distro/developer_resources_intel_apps) documentation.
+* [Application Development Workflow](../../../app-workflow-intro.html/overview)
+* [Developing Apps for AGL](https://wiki.automotivelinux.org/agl-distro/developer_resources_intel_apps)
 
-UEFI has evolved a lot recently and you likely want to check that your HW firmware is up-to-date, this is mandatory for both the MinnowBoard-Max and the Joule. Not required on Minnowboard-Turbo and Up boards.
+UEFI has significantly evolved and you will likely want to check that your hardware's
+firmware is up-to-date.
+You should make this check for both the MinnowBoard-Max and the Joule platforms.
+You do not need to make this check for the MinnowBoard-Turbo and Up platforms:
 
-[`https://firmware.intel.com/projects/minnowboard-max`](https://firmware.intel.com/projects/minnowboard-max)
-[`https://software.intel.com/en-us/flashing-the-bios-on-joule`](https://software.intel.com/en-us/flashing-the-bios-on-joule)
+* [`https://firmware.intel.com/projects/minnowboard-max`](https://firmware.intel.com/projects/minnowboard-max)
+* [`https://software.intel.com/en-us/flashing-the-bios-on-joule`](https://software.intel.com/en-us/flashing-the-bios-on-joule)
 
-## Where to find an AGL bootable image
+## 1. Making Sure Your Build Environment is Correct
 
-### Download a ready made image
-
-AGL provides ready made images for developers.
-You will find them on [AGL Download web site](https://download.automotivelinux.org/AGL/release)
-image are located in YourPreferedRelease/intel-corei7-64/deploy/images/intel-corei7-64/
-Create a bootable SD card with the script [mkefi-agl.sh](https://gerrit.automotivelinux.org/gerrit/gitweb?p=AGL/meta-agl.git;a=blob_plain;f=scripts/mkefi-agl.sh;hb=HEAD) 
-check the available options with the -v option. mkefi-agl.sh -v
-
-### Building an AGL image from scratch using Yocto
-
-**Note**: an alternative method for building an image is to use the AGL SDK delivered in a Docker container.
-
-There is currently no SDK dedicated to IA but the SDK provided for the Porter Board can build an IA image without changes (just `aglsetup.sh` needs to call for Intel).
-
-See chapter 2 of [Porter QuickStart](http://iot.bzh/download/public/2016/sdk/AGL-Kickstart-on-Renesas-Porter-board.pdf "wikilink").
-
-#### Download AGL source code
-
-Downloading the AGL sources from the various Git repositories is automated with the `repo` tool. Basic steps to download the AGL source code is described below and for more advanced topics involving the `repo` tool, please refer to the [`repo` documentation](https://source.android.com/source/using-repo.html "wikilink").
-
-To install the `repo` tool:
+The
+"[Initializing Your Build Environment](../../../image-workflow-initialize-build-environment.html/Initializing-your-build-environment)"
+section presented generic information for setting up your build environment
+using the `aglsetup.sh` script.
+If you are building for an Intel 64-bit platform, you need to specify some
+specific options when you run the script:
 
 ```bash
-  mkdir -p ~/bin;
-  export PATH=~/bin:$PATH;
-  curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo;
-  chmod a+x ~/bin/repo;
+$ source meta-agl/scripts/aglsetup.sh \
+    -m intel-corei7-64 \
+    agl-devel agl-demo agl-appfw-smack agl-netboot agl-audio-4a-framework
 ```
 
-#### Configuring for the current *(older)* stable (Electric Eel 5.0.x)
+The "-m" option specifies the "intel-corei7-64" machine.
+If you were building for a Joule developer kit, you would use the
+"-m joule" option.
 
-```bash
-  cd AGL-5.0.x;
-  repo init -b eel -m default.xml -u https://gerrit.automotivelinux.org/gerrit/AGL/AGL-repo
+The list of AGL features used with script are appropriate for the AGL demo image suited
+for the Intel 64-bit target.
+The "agl-netboot" option creates the correct Initial RAM Filesystem (initramfs)
+image even if you do not boot from a network.
+
+## 2. Using BitBake
+
+This section shows the `bitbake` command used to build the AGL image.
+Before running BitBake to start your build, it is good to be reminded that AGL
+does provide pre-built images for developers that work with supported hardware.
+You can find these pre-built images on the
+[AGL Download web site](https://download.automotivelinux.org/AGL/release).
+
+For supported Intel images, the filenames have the following form:
+
+```
+<release-name>/<release-number>/intel-core17-64/deploy/images/intel-core17-64/bzImage-intel-corei7-64.bin
 ```
 
-#### Configuring for master (DD)
+Start the build using the `bitbake` command.
+**NOTE:** An initial build can take many hours depending on your
+CPU and and Internet connection speeds.
+The build also takes approximately 100G-bytes of free disk space.
 
-```bash
-  cd AGL-master;
-  repo init -u https://gerrit.automotivelinux.org/gerrit/AGL/AGL-repo;
-```
-
-Once that you repo is initialised either with the stable or WIP, you need to sync the repo to fetch the various git trees.
-
-#### Downloading the configured AGL source code
-
-```bash
-  repo sync;
-```
-
-#### Building the AGL distro
-
-You are now ready to initialise your Yocto build.
-When running the command:
-
-```bash
-  source meta-agl/scripts/aglsetup.sh -h
-```
-
-You will notice the Intel entries
-
-```bash
-  intel-corei7-64
-  joule
-```
-
-Simply select that entry to replace porter in the -m option.
-**Note:** agl-netboot option is required to create the right initramfs even if you do not boot from a network
-
-```bash
-  source meta-agl/scripts/aglsetup.sh \
-  -m intel-corei7-64 \
-  -b build \
-  agl-devel agl-demo agl-appfw-smack agl-netboot agl-audio-4a-framework
-```
-
-**Note:** use the option "-m joule" when building for a Joule developer Kit target.
-
-Start the build **This can take several hours depending of your CPU and
-internet connection and will required several GB on /tmp as well as on your build directory**
+For this example, the target is "agl-demo-platform":
 
 ```bash
   bitbake agl-demo-platform
 ```
 
-**Your newly baked disk image (.wic.xz) will be located at**:
-  `tmp/deploy/images/intel-corei7-64/`
+The build process puts the resulting image in the Build Directory:
 
-##### Alternative: Download a *ready made* image from AGL web site
+```
+<build_directory>/tmp/deploy/images/intel-corei7-64/
+```
 
-The Continuous Integration (CI) process from AGL creates and publish daily and stable builds.
-Pointers to both can be found in [AGL supported HW](https://wiki.automotivelinux.org/agl-distro) (see Reference BSP/Intel).
+**WRITER NOTE:** I am not sure what to do with the following information:
 
-Once you have validated your process you can start to play/work with the snapshot pointer.
+An alternative method for building an image is to use the AGL SDK delivered in a Docker container.
 
-Note that snapshot build may not work.
+There is currently no SDK dedicated to IA but the SDK provided for the Porter Board can build an IA image without changes (just `aglsetup.sh` needs to call for Intel).
 
-Follow the directory:
+See chapter 2 of [Porter QuickStart](http://iot.bzh/download/public/2016/sdk/AGL-Kickstart-on-Renesas-Porter-board.pdf "wikilink").
 
-`intel-corei7-64/deploy/images/intel-corei7-64/`
+## 3. Creating Bootable Media
 
-and download the file:
-
-`agl-demo-platform-intel-corei7-64.hddimg`
-
-## Create a bootable media
-
-Depending your target HW you will use an USB stick, an SD card or a HDD/SDD.
+Depending your target hardware you will use an USB stick, an SD card or a HDD/SDD.
 The creation process remains the same independently of the selected support.
 It does require to have access to a Linux machine with `sudo` or root password.
 
-### Insert you removable media in the corresponding interface
+Create a bootable SD card with the script [mkefi-agl.sh](https://gerrit.automotivelinux.org/gerrit/gitweb?p=AGL/meta-agl.git;a=blob_plain;f=scripts/mkefi-agl.sh;hb=HEAD)
+check the available options with the -v option. mkefi-agl.sh -v
 
-### Check the device name where the media can be accessed with the command
+1. **Insert Media Device:**
+   Insert your removable media into the corresponding interface.
 
-```bash
-  lsblk
-  # Note that you want the name of the raw device not of a partition on the media
-  #(eg. /dev/sdc or /dev/mmcblk0)
-```
+2. **Determine the Name of Your Media Device:**
+   Use the `lsblk` command to make sure you know the name of the device to which you will be writing.
 
-### Download the script `mkefi-agl.sh`
+   ```bash
+     lsblk
+     # You want the name of the raw device and not the name of a partition on the media.
+     #(e.g. /dev/sdc or /dev/mmcblk0)
+   ```
 
-This script is present in the directory meta-agl/scripts from blowfish 2.0.4 : [mkefi-agl.sh](https://gerrit.automotivelinux.org/gerrit/gitweb?p=AGL/meta-agl.git;a=blob_plain;f=scripts/mkefi-agl.sh;hb=HEAD)
+3. **Download the `mkefi-agl.sh` Script:**
+   You can find the script in the "meta-agl/scripts" folder of your AGL source files.
 
-Alternatively you can download it from the following Git repo:
+   Alternatively, you can download the script from the following Git repository:
 
-[https://github.com/dominig/mkefi-agl.sh](https://github.com/dominig/mkefi-agl.sh)
+   [https://github.com/dominig/mkefi-agl.sh](https://github.com/dominig/mkefi-agl.sh)
 
-### check the available options
+4. **Create Your Bootable Media:**
+   Run the following to see `mkefi-agl.sh` usage information:
 
-```bash
-  sh mkefi-agl.sh -v;
-```
+   ```bash
+     ./mkefi-agl.sh -v
+   ```
 
-### create your media with the command adjusted to your configuration
+   Supply the name of your actual image and device name and run the script.
+   The following example assumes a USB device (e.g. `/dev/sdb`) and the image
+   `intel-corei7-64.hdd`:
 
-```bash
-  sudo sh mkefi-agl.sh MyAglImage.hdd /dev/sdX
-  #/dev/sdX is common for USB stick, /dev/mmcblk0 for laptop integrated SD card reader
-```
+   ```bash
+   $ sudo ./mkefi-agl.sh intel-corei7-64.hdd /dev/sdb
+   # /dev/sdX is common for USB stick where "X" is "b".
+   # /dev/mmcblk0 is common for an integrated SD card reader in a notebook computer.
+   ```
 
-## Boot the image on the target device
+## 4. Booting the Image on the Target Device
 
-1. Insert the created media with the AGL image in the target device
+Follow these steps to boot your image on the target device:
 
-1. Power on the device
+1. Insert the bootable media that contains the AGL image into the target device.
 
-1. Select Change one off boot option (generally F12 key during power up)
+2. Power on the device.
 
-1. Select your removable device
+3. As the device boots, access the boot option screen.
+   You generally accomplish this with the F12 key during the power up operation.
 
-1. Let AGL boot
+4. From the boot option screen, select your bootable media device.
 
-**Note:**: depending on the speed of the removable media, the first boot may not complete, in that case simply reboot the device.
+5. Save and exit the screen and let the device boot from your media.
 
-This is quite common with USB2 sticks.
+   **NOTE:**: Depending on the speed of your removable media, the first boot might
+   not complete.
+   If this is the case, reboot the device a second time.
+   It is common with USB sticks that you need to boot a couple of times.
 
-By default the serial console is configured and activated at the rate of 115200 bps.
-
-## How to create your 1st AGL application
-
-[Developing Apps for AGL](https://wiki.automotivelinux.org/agl-distro/developer_resources_intel_apps)
+   For Intel devices, the serial console is configured and activated at the rate of 115200 bps.

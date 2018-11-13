@@ -14,7 +14,7 @@ in the AGL Documentation set.
 Links are provided when a set of steps is required that is documented
 elsewhere.
 
-![Failed at Displaying My Image](images/app-developer-workflow.png)
+<center><img src="images/app-developer-workflow.png"></center>
 
 1. Download or build the image you are going to run on the hardware device.
 
