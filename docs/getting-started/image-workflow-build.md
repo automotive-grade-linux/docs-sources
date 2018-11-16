@@ -8,10 +8,11 @@ It is critical that you specify the correct options and configurations for the
 build before executing the `bitbake` command.
 The previous sections in the "Image Development Workflow" have treated this setup
 in a generic fashion.
-This section, provides links to topics with instructions needed to create images for four
-supported platforms:
+This section, provides links to topics with instructions needed to create images for
+three types of supported platforms and for emulation using Quick EMUlator (QEMU)
+or VirtualBox:
 
-* [Most Intel-based 64-Bit Boards](./machines/intel.html/overview)
-* The Quick EMUlator (QEMU)
+* [Most Intel-based 64-Bit Boards](./machines/intel.html/)
+* [Emulation](./machines/qemu.html/)
 * R Car Starter Kit Gen3 Board
 * Raspberry PI 2 or 3
