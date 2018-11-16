@@ -11,7 +11,7 @@ MinnowBoard Max and Turbot as well as Joule are both 64-bit capable.
 If you are interested in creating ***applications*** to run on hardware booted
 using an image built with the AGL Project, see the following:
 
-* [Application Development Workflow](../../../app-workflow-intro.html/overview)
+* [Application Development Workflow](../app-workflow-intro.html/overview)
 * [Developing Apps for AGL](https://wiki.automotivelinux.org/agl-distro/developer_resources_intel_apps)
 
 UEFI has significantly evolved and you will likely want to check that your hardware's
@@ -25,7 +25,7 @@ You do not need to make this check for the MinnowBoard-Turbo and Up platforms:
 ## 1. Making Sure Your Build Environment is Correct
 
 The
-"[Initializing Your Build Environment](../../../image-workflow-initialize-build-environment.html/Initializing-your-build-environment)"
+"[Initializing Your Build Environment](../image-workflow-initialize-build-environment.html/Initializing-your-build-environment)"
 section presented generic information for setting up your build environment
 using the `aglsetup.sh` script.
 If you are building for an Intel 64-bit platform, you need to specify some
@@ -61,6 +61,7 @@ For supported Intel images, the filenames have the following form:
 ```
 
 Start the build using the `bitbake` command.
+
 **NOTE:** An initial build can take many hours depending on your
 CPU and and Internet connection speeds.
 The build also takes approximately 100G-bytes of free disk space.
@@ -87,7 +88,7 @@ See chapter 2 of [Porter QuickStart](http://iot.bzh/download/public/2016/sdk/AGL
 
 ## 3. Creating Bootable Media
 
-Depending your target hardware you will use an USB stick, an SD card or a HDD/SDD.
+Depending on your target hardware you will use an USB stick, an SD card or a HDD/SDD.
 The creation process remains the same independently of the selected support.
 It does require to have access to a Linux machine with `sudo` or root password.
 
