@@ -1,60 +1,115 @@
-# Building the AGL Demo Platform for QEMU
+# Building for Emulation
 
-To build the QEMU version of the AGL demo platform use machine **qemux86-64** along with features **agl-demo** and **agl-devel**:
+Building an image for emulation allows you to simulate your
+image without actual target hardware.
+
+This section describes the steps you need to take to build the
+AGL demo image for emulation using either Quick EMUlator (QEMU) or
+VirtualBox.
+
+## 1. Making Sure Your Build Environment is Correct
+
+The
+"[Initializing Your Build Environment](../image-workflow-initialize-build-environment.html/Initializing-your-build-environment)"
+section presented generic information for setting up your build environment
+using the `aglsetup.sh` script.
+If you are building the AGL demo image for emulation, you need to specify some
+specific options when you run the script:
 
 ```bash
 source meta-agl/scripts/aglsetup.sh -f -m qemux86-64 agl-demo agl-devel
-bitbake agl-demo-platform
 ```
 
-By default, the build will produce a compressed *vmdk* image in **tmp/deploy/images/qemux86-64/agl-demo-platform-qemux86-64.vmdk.xz**
+The "-m" option specifies the "qemux86-64" machine.
+The list of AGL features used with script are appropriate for development of
+the AGL demo image suited for either QEMU or VirtualBox.
 
-## Deploying the AGL Demo Platform for QEMU
+## 2. Using BitBake
 
-### Prepare an image for boot
+This section shows the `bitbake` command used to build the AGL image.
+Before running BitBake to start your build, it is good to be reminded that AGL
+does provide pre-built images for developers that can be emulated
+using QEMU and VirtualBox.
+You can find these pre-built images on the
+[AGL Download web site](https://download.automotivelinux.org/AGL/release).
 
-Decompress the **agl-demo-platform-qemux86-64.vmdk.xz** image to prepare it for boot.
+For supported images, the filenames have the following forms:
 
-#### Linux
+```
+<release-name>/<release-number>/qemuarm/*
+<release-name>/<release-number>/qemuarm64/*
+<release-name>/<release-number>/qemux86-64/*
+```
+
+Start the build using the `bitbake` command.
+
+**NOTE:** An initial build can take many hours depending on your
+CPU and and Internet connection speeds.
+The build also takes approximately 100G-bytes of free disk space.
+
+For this example, the target is "agl-demo-platform":
+
+```bash
+  bitbake agl-demo-platform
+```
+
+By default, the build process puts the resulting image in the Build Directory:
+
+```
+<build_directory>/tmp/deploy/images/qemux86-64/agl-demo-platform-qemux86-64.vmdk.xz
+```
+
+## 3. Deploying the AGL Demo Image
+
+Deploying the image consists of decompressing the image and then
+booting it using either QEMU or VirtualBox.
+
+### Decompress the image:
+
+For Linux, use the following commands to decompress the image and prepare it for boot:
 
 ```bash
 cd tmp/deploy/images/qemux86-64
 xz -d agl-demo-platform-qemux86-64.vmdk.xz
 ```
 
-#### Windows
+For Windows, download [7-Zip](http://www.7-zip.org/) and then
+select **agl-demo-platform-qemux86-64.vmdk.xz** to decompress
+the image and prepare it for boot.
 
-Download [7-Zip](http://www.7-zip.org/) and select **agl-demo-platform-qemux86-64.vmdk.xz** to be decompressed.
+### Boot the Image:
 
-## Boot an image
+The following steps show you how to boot the image with QEMU or VirtualBox.
 
-### QEMU
+#### QEMU
 
-#### Install QEMU
+Depending on your Linux distribution, use these commands to install QEMU:
 
-**Note**: if an AGL crosssdk has been created, it will contain a qemu binary for the host system. This SDK qemu binary has no graphics support and cannot currently be used to boot an AGL image.
+**NOTE:** if you have created an AGL crosssdk, it will contain a
+QEMU binary for the build host.
+This SDK QEMU binary does not support graphics.
+Consequently,  you cannot use it to boot the AGL image.
 
-*Arch*:
+If your build host is running
+[Arch Linux](https://www.archlinux.org/), use the following commands:
 
 ```bash
 sudo pacman -S qemu
 ```
 
-*Debian/Ubuntu*:
+If your build host is running Debian or Ubuntu, use the following commands:
 
 ```bash
 sudo apt-get install qemu-system-x86
 ```
 
-*Fedora*:
+If you build host is running Fedora, use the following commands:
 
 ```bash
 sudo yum install qemu-kvm
 ```
 
-#### Boot QEMU
-
-Boot the **agl-demo-platform-qemux86-64.vmdk** image in qemu with kvm support:
+Once QEMU is installed, boot the image with KVM support:
 
 ```bash
 qemu-system-x86_64 -enable-kvm -m 2048 \
@@ -68,52 +123,19 @@ qemu-system-x86_64 -enable-kvm -m 2048 \
     -net user,hostfwd=tcp::2222-:22
 ```
 
-### VirtualBox
+#### VirtualBox
 
-#### Install VirtualBox
+Start by downloading and installing [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 5.2.0 or later.
 
-Download and install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 5.2.0 or later.
+Once VirtualBox is installed, follow these steps to boot the image:
 
-#### Boot VirtualBox
-
-Boot the **agl-demo-platform-qemux86-64.vmdk** image in VirtualBox:
-
-* Start VirtualBox
-* Click **New** to create a new machine
-  * Enter **AGL QEMU** as the *Name*
-  * Select **Linux** as the *Type*
-  * Select **Other Linux (64-bit)** as the *Version*
-  * Set *Memory size* to **2 GB**
-  * Click **Use an existing virtual hard disk file** under *Hard disk*
-        * Navigate to and select the **agl-demo-platform-qemux86-64.vmdk** image
-* Ensure that the newly created **AGL QEMU** machine is highlighted and click **Start**
-
-### VMWare Player
-
-#### Install VMWare Player
-
-Download and install [VMWare Player](https://www.vmware.com/products/player/playerpro-evaluation.html)
-
-#### Boot VMWare Player
-
-Boot the **agl-demo-platform-qemux86-64.vmdk** image in VMWare Player:
-
-* Start VMWare Player
-* Select **File** and **Create a New Virtual Machine**
-  * Select **I will install the operating system later** and click **Next**
-  * Select **Linux** as the *Guest Operating System*, **Other Linux 3.x kernel 64-bit** as the *Version*, and click **Next**
-  * Enter **AGL QEMU** as the *Name* and click **Next**
-  * Leave *disk capacity settings* unchanged and click **Next**
-  * Click **Finish**
-* Select/highlight **AGL QEMU** and click **Edit virtual machine settings**
-  * Select/highlight **Memory** and click **2 GB**
-  * Select/highlight **Hard Disk (SCSI)** and click **Remove**
-  * Click **Add**
-    * Select **Hard Disk** and click **Next**
-    * Select **SCSI (Recommended)** and click **Next**
-    * Select **Use an existing virtual disk** and click **Next**
-    * Browse and select the **agl-demo-platform-qemux86-64.vmdk** image
-    * Click **Finish**
-    * Click **Keep Existing Format**
-  * Click **Save**
-* Ensure that the newly created **AGL QEMU** machine is highlighted and click **Power On**
+1. Start VirtualBox
+2. Click **New** to create a new machine
+3. Enter **AGL QEMU** as the *Name*
+4. Select **Linux** as the *Type*
+5. Select **Other Linux (64-bit)** as the *Version*
+6. Set *Memory size* to **2 GB**
+7. Click **Use an existing virtual hard disk file** under *Hard disk*
+8. Navigate to and select the **agl-demo-platform-qemux86-64.vmdk** image
+9. Ensure that the newly created **AGL QEMU** machine is highlighted.
+10. Click **Start**
