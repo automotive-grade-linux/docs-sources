@@ -2,6 +2,7 @@ type: books
 books:
 -
     id: getting_started
+    order: 10
     languages:
     - language: en
       title: Getting Started
@@ -45,6 +46,7 @@ books:
         name: Compiler pour Raspberry PI 2/3
 -
     id: troubleshooting
+    order: 51
     languages:
     - language: en
       title: Troubleshooting
@@ -62,6 +64,7 @@ books:
         name: Raspberry PI
 -
     id: sdk
+    order: 51
     languages:
     - language: en
       title: SDK
