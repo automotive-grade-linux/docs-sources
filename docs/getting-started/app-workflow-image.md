@@ -77,7 +77,7 @@ The following procedure describes how to build your image:
 
 1. **Prepare Your System:**  Your system, known as a "build host" needs to meet some requirements
    in order to build images in the AGL environment.
-   The "[Setting up your operating system](./source-code.html#setting-up-your-operating-system)"
+   The "[Preparing Your Build Host](./image-workflow-prep-host.html)"
    section describes in detail how to make sure your system meets
    these requirements.
 
@@ -96,7 +96,7 @@ The following procedure describes how to build your image:
    * Install required packages on the build host.
      This list of packages depends on the particular Linux Distribution your build host uses.
      See the
-     "[Setting up your operating system](./source-code.html#setting-up-your-operating-system)"
+     "[Preparing Your Build Host](./image-workflow-prep-host.html)"
      section for the packages you need to install for your specific
      distribution.
 
@@ -113,7 +113,7 @@ The following procedure describes how to build your image:
    Otherwise, download the latest stable AGL release.
 
    You can see example steps in the
-   "[Download AGL source code](./source-code.html#download-agl-source-code)"
+   "[Download AGL source code](./image-workflow-download-sw.html)"
    section.
 
 3. **Initialize the build environment:** The build process assumes many environment
@@ -127,10 +127,8 @@ The following procedure describes how to build your image:
    before running the script.
    For information on running the script and on the features you can choose,
    see the
-   "[Set up Build Environment info](./source-code.html#set-up-build-environment-info)"
-   and
-   "[Features supported by aglsetup](./source-code.html#features-supported-by-aglsetup)"
-   sections.
+   "[Initializing Your Build Environment](./image-workflow-initialize-build-environment.html)"
+   section.
 
 4. **Customize your build configuration:** Aside from environment variables
    and parameters, build parameters and variables need to be defined before
@@ -140,7 +138,7 @@ The following procedure describes how to build your image:
    In general, the defaults in that file are good enough.
    However, you can customize aspects by editing the ``local.conf`` file.
    See the
-   "[Customize AGL build](./customize_bitbake_conf.html)"
+   "[Customizing Your Build](./image-workflow-cust-build.html)"
    section for the location of the file and a list of common customizations.
 
    **NOTE:** For detailed explanations of the configurations you can make

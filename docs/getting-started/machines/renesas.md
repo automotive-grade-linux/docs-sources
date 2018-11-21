@@ -201,8 +201,11 @@ Follow these steps to download the drivers you need:
 
 3. **Examine the Script's Log:**
 
-   Read the script's log to be sure no errors occurred during your setup.
-   For example, suppose the graphics drivers were missing or could not be extracted.
+   Running the `aglsetup.sh` script creates the `setup.log` file, which is in
+   the `build/conf` folder.
+   You can examine this log to see the results of the script.
+   For example, suppose the graphics drivers were missing or could not be extracted
+   when you ran the script.
    In case of missing graphics drivers, you could notice an error message
    similar to the following:
 
@@ -230,9 +233,7 @@ Follow these steps to download the drivers you need:
    mentioned, remove the `$AGL_TOP/build` directory, and then re-launch the
    `aglsetup.sh` again.
 
-   You can find out more about any error by examining the `setup.log` file, which is in
-   the `build/conf` folder.
-   Here is an example that indicates the driver files could not be extracted from
+   Here is another example that indicates the driver files could not be extracted from
    the downloads directory:
 
    ```bash
@@ -258,6 +259,26 @@ Follow these steps to download the drivers you need:
    ```
 
 ## 5. Checking Your Configuration
+
+
+4. **Customize your build configuration:** Aside from environment variables
+   and parameters you establish through running the `aglsetup.sh` script,
+   you can ensure your build's configuration is just how you want it by
+   examining the `local.conf` configuration file.
+   In general, the defaults along with the configuration fragments the
+   `aglsetup.sh` script applies in that file are good enough.
+   However, you can customize aspects by editing the ``local.conf`` file.
+   See the
+   "[Customize AGL build](./customize_bitbake_conf.html)"
+   section for the location of the file and a list of common customizations.
+
+   **NOTE:** For detailed explanations of the configurations you can make
+   in the ``local.conf`` file, consult the
+   [Yocto Project Documentation](https://www.yoctoproject.org/docs/).
+
+
+
+
 
 Users may want to check that the board is correctly selected in the environment:
 
@@ -304,7 +325,7 @@ ls -l $AGL_TOP/build/tmp/deploy/images/$MACHINE
 
 In case of failure of the build it is safe to first check that the Linux distribution chosen for your host has been validated for the current version of Yocto used by AGL.
 
-## Booting AGL Image on R-Car Starter Kit Gen3 boards using a microSD card
+## 7. Booting the Image Using a MicroSD Card
 
 To boot the board using a micro-SD card, there are two operations that must be done prior to first initial boot:
 

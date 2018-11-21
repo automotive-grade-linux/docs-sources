@@ -25,7 +25,7 @@ Here are three methods:
    * Use Core Dumps if you have set the `agl-devel` feature.
      Core Dumps are obviously more suited for post-mortem analysis.
      For features, see the
-     "[Features supported by `aglsetup`](../../../../../docs/getting_started/en/dev/reference/source-code.html#features-supported-by-aglsetup)"
+     "[Initializing Your Build Environment](./image-workflow-initialize-build-environment.html#initializing-your-build-environment)"
      section.
 
      **NOTE:** Core Dumps are available only with the "Flunky Flounder" release (i.e. 6.x).
@@ -43,5 +43,5 @@ Here are three methods:
    In order to use third-party debugging tools, you need to include the tools in the target image.
    You gain access to the tools by enabling the `agl-devel` feature when you run the
    `aglsetup.sh` script as described in the
-   "[Setup Build Environment Info](../../../../../docs/getting_started/en/dev/reference/source-code.html#set-up-build-environment-info)"
+   "[Initializing Your Build Environment](./image-workflow-initialize-build-environment.html#initializing-your-build-environment)"
    section.
