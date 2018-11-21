@@ -1,49 +1,37 @@
 type: books
 books:
 -
-    id: getting_started
+    id: image-development-workflow
     order: 10
     languages:
     - language: en
-      title: Getting Started
-      description: Getting Started Description
+      title: Image Development Workflow
+      description:
       keywords:
       author: "IotBzh"
       website: http:docs.iot.bzh
       version: master
       chapters:
-      - name: Download AGL source Code
-        url: getting-started/source-code.md
-      - name: Customize the AGL build
-        url: getting-started/customize_bitbake_conf.md
-      - name: Build for Intel
-        url: getting-started/machines/intel.md
+      - url: getting-started/app-workflow-intro.md
+        name: Overview
+      - url: getting-started/image-workflow-prep-host.md
+        name: Preparing Your Build Host
+      - url: getting-started/image-workflow-download-sw.md
+        name: Downloading AGL Software
+      - url: getting-started/image-workflow-initialize-build-environment.md
+        name: Initializing Your Build Environment
+      - url: getting-started/image-workflow-cust-build.md
+        name: Customizing Your Build
+      - url: getting-started/image-workflow-build.md
+        name: Building the AGL Image
+      - url: getting-started/machines/intel.md
+        name: Building for Most Intel 64-Bit Hardware Platforms
       - url: getting-started/machines/qemu.md
-        name: Build for Qemu
+        name: Building for Emulation
       - url: getting-started/machines/R-Car-Starter-Kit-gen3.md
         name: Build for R Car Starter Kit gen3 board
       - url: getting-started/machines/raspberrypi.md
         name: Build for Raspberry PI 2/3
-    - language: fr
-      title: Pour commencer
-      description: Pour commencer description
-      keywords:
-      author: "IotBzh"
-      website: http:docs.iot.bzh
-      version: master
-      chapters:
-      - name: Télécharger le code source d'AGL
-        url: getting-started/source-code.md
-      - name: Customiser le build AGL
-        url: getting-started/customize_bitbake_conf.md
-      - name: Compiler pour intel
-        url: getting-started/machines/intel.md
-      - url: getting-started/machines/qemu.md
-        name: Compiler pour Qemu
-      - url: getting-started/machines/R-Car-Starter-Kit-gen3.md
-        name: Compiler pour R Car Starter Kit gen3 board
-      - url: getting-started/machines/raspberrypi.md
-        name: Compiler pour Raspberry PI 2/3
 -
     id: troubleshooting
     order: 51
@@ -76,4 +64,34 @@ books:
       chapters:
       - url: getting-started/setup-sdk-environment.md
         name: SDK Quick Setup
+-
+    id: app-development-workflow
+    order: 60
+    languages:
+    - language: en
+      title: Application Development Workflow
+      description:
+      keywords:
+      author: "IotBzh"
+      website: http:docs.iot.bzh
+      version: master
+      chapters:
+      - url: getting-started/image-workflow-intro.md
+        name: Overview
+      - url: getting-started/app-workflow-image.md
+        name: Download or Build Your Image
+      - url: getting-started/app-workflow-sdk.md
+        name: Download or Build Your SDK Installer
+      - url: getting-started/app-workflow-bootables.md
+        name: Create Bootable Media
+      - url: getting-started/app-workflow-boot.md
+        name: Boot the Image on the Board
+      - url: getting-started/app-workflow-prep-app.md
+        name: Get Ready to Create Your Application
+      - url: getting-started/app-workflow-build-app.md
+        name: Create and Build the Application
+      - url: getting-started/app-workflow-deploy-app.md
+        name: Deploy the Application to the Board
+      - url: getting-started/app-workflow-debug-app.md
+        name: Debug the Application
 
