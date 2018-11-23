@@ -18,8 +18,27 @@ image for the following Renesas platforms:
 The information on this page describes setup and build procedures for both these
 Renesas development kits.
 
+You can find more information on building images from these resources:
 
-## 1. Downloading Prioprietory Drivers
+**WRITER NOTE:**
+This following list looks a bit dated.
+Do we want to update these PDFs or are they still useful?
+
+* [AGL-Devkit-Build-your-1st-AGL-Application.pdf](http://docs.automotivelinux.org/docs/devguides/en/dev/reference/iotbzh2016/sdk/AGL-Devkit-Build-your-1st-AGL-Application.pdf)
+ Generic guide on how to build various application types (HTML5, native, Qt, QML, …) for AGL.
+ This is really about building an application and not the AGL image.
+* [AGL-Devkit-HowTo_bake_a_service.pdf](http://docs.automotivelinux.org/docs/devguides/en/dev/reference/iotbzh2016/bsp/AGL_Phase2-Devkit-HowTo_bake_a_service.pdf)
+ Generic guide on how to add a new service in the BSP.
+ Goes back to 2015 and uses Yocto 2.x.
+ Includes stuff on building an image but looks like the focus is really the service.
+* [AGL-Kickstart-on-Renesas-Porter-Board.pdf](http://docs.automotivelinux.org/docs/devguides/en/dev/reference/iotbzh2016/sdk/AGL-Kickstart-on-Renesas-Porter-board.pdf)
+ Guide on how to build an image for the Porter Board using AGL 2.0.
+* [AGL-Devkit-Image-and-SDK-for-Porter.pdf](http://docs.automotivelinux.org/docs/devguides/en/dev/reference/iotbzh2016/sdk/AGL-Devkit-Image-and-SDK-for-porter.pdf)
+ Guide on building an AGL image and SDK for the Porter board.
+ Uses Yocto 2.x.
+
+
+## 1. Downloading Proprietary Drivers
 
 Before setting up the build environment, you need to download proprietary drivers from the
 [R-Car H3/M3 Software library and Technical document](https://www.renesas.com/us/en/solutions/automotive/rcar-download/rcar-demoboard-2.html)
@@ -135,11 +154,11 @@ Follow these steps to download the drivers you need:
 
    * Supported Starter Kit Gen3 board with its 5V power supply.
    * Micro USB-A cable for serial console.
-     This cable is optional if you are using ethernet and an SSH connection.
+     This cable is optional if you are using Ethernet and an SSH connection.
    * USB 2.0 Hub.  The hub is optional but makes it easy to connect multiple USB devices.
    * Ethernet cable.  The cable is optional if you are using a serial console.
    * HDMI type D (Micro connector) cable and an associated display.
-   * 4Gbyte minimum micro-SD Card.  It is recommended that you use a class 10 type.
+   * 4 Gbyte minimum MicroSD Card.  It is recommended that you use a class 10 type.
    * USB touch screen device such as the GeChic 1502i/1503i.  A touch screen device is optional.
 
    **NOTE:** The Salvator-X Board has NDA restrictions.
@@ -260,120 +279,162 @@ Follow these steps to download the drivers you need:
 
 ## 5. Checking Your Configuration
 
+Aside from environment variables and parameters you establish through
+running the `aglsetup.sh` script, you can ensure your build's configuration
+is just how you want it by examining the `local.conf` configuration file.
 
-4. **Customize your build configuration:** Aside from environment variables
-   and parameters you establish through running the `aglsetup.sh` script,
-   you can ensure your build's configuration is just how you want it by
-   examining the `local.conf` configuration file.
-   In general, the defaults along with the configuration fragments the
-   `aglsetup.sh` script applies in that file are good enough.
-   However, you can customize aspects by editing the ``local.conf`` file.
-   See the
-   "[Customize AGL build](./customize_bitbake_conf.html)"
-   section for the location of the file and a list of common customizations.
+You can find this configuration file in the Build Directory (e.g.
+"$TOP_DIR/build/conf/local.conf").
 
-   **NOTE:** For detailed explanations of the configurations you can make
-   in the ``local.conf`` file, consult the
-   [Yocto Project Documentation](https://www.yoctoproject.org/docs/).
+In general, the defaults along with the configuration fragments the
+`aglsetup.sh` script applies in the `local.conf` file are good enough.
+However, you can customize aspects by editing the `local.conf` file.
+See the
+"[Customizing Your Build](../image-workflow-cust-build.html)"
+section for common configurations you might want to consider.
 
+**NOTE:** For detailed explanations of the configurations you can make
+in the ``local.conf`` file, consult the
+[Yocto Project Documentation](https://www.yoctoproject.org/docs/).
 
-
-
-
-Users may want to check that the board is correctly selected in the environment:
+A quick way to see if you have the `$MACHINE` variable set correctly
+is to use the following command:
 
 ```bash
 grep -w -e "^MACHINE =" $AGL_TOP/build/conf/local.conf
+```
+
+Depending on the Renesas board you are using, you should see output
+as follows:
+
+```bash
   MACHINE = "h3ulcb"
+```
 or
+```bash
   MACHINE = "m3ulcb"
+```
 or
+```bash
   MACHINE = "h3-salvator-x"
 ```
 
-Configure for Release or Development:
+If you ran the `aglsetup.sh` script as described in the
+"[Making Sure Your Build Environment is Correct](./renesas.html#4-making-sure-your-build-environment-is-correct)"
+section earlier, the "agl-devel", "agl-demo", "agl-netboot", "agl-appfw-smack", and
+"agl-localdev" AGL features will be in effect.
+These features provide the following:
 
-* development images contain extra tools for developer convenience, in particular:
-  * a debugger (gdb)
-  * some tweaks, including a disabled root password
-  * a SFTP server
-  * the TCF Agent for easier application deployment and remote debugging
-  * some extra system tools (usb, bluetooth ...)
-  * ...
+* A debugger (gdb)
+* Some tweaks, including a disabled root password
+* A SFTP server
+* The TCF Agent for easier application deployment and remote debugging
+* Some extra system tools such as USB and bluetooth
+* Support for the AGL demo platform
+* Network boot support through TFTP and NBD protocols
+* [IoT.bzh](https://iot.bzh/en/) Application Framework plus
+  [SMACK](https://en.wikipedia.org/wiki/Smack_(software)) and
+  [Cynara](https://wiki.tizen.org/Security:Cynara)
+* Support for local development including `localdev.inc` when present
 
-We explicitely activate these debug facilities by specifying the “agl-devel agl-netboot” feature.
+## 6. Using BitBake
 
-## Building the AGL Demo Platform for R-Car Starter Kit Gen3
+This section shows the `bitbake` command used to build the AGL image.
+Before running BitBake to start your build, it is good to be reminded that AGL
+does provide pre-built images for developers that work with supported hardware.
+You can find these pre-built images on the
+[AGL Download web site](https://download.automotivelinux.org/AGL/release).
 
-### Build your image
+For supported Renesas boards, the filenames have the following form:
 
-The process to build an image is simple:
-
-```bash
-bitbake agl-demo-platform
+```
+<release-name>/<release-number>/m3ulcb-nogfx/deploy/images/m3ulcb/Image-m3ulcb.bin
 ```
 
-You may need to install rpcgen to run this command.
+Start the build using the `bitbake` command.
 
-When finished (it may take few hours), you should get the final result:
+**NOTE:** An initial build can take many hours depending on your
+CPU and and Internet connection speeds.
+The build also takes approximately 100G-bytes of free disk space.
+
+For this example, the target is "agl-demo-platform":
 
 ```bash
-ls -l $AGL_TOP/build/tmp/deploy/images/$MACHINE
+  bitbake agl-demo-platform
 ```
 
-**Note**:
+The build process puts the resulting image in the Build Directory:
 
-In case of failure of the build it is safe to first check that the Linux distribution chosen for your host has been validated for the current version of Yocto used by AGL.
+```
+<build_directory>/tmp/deploy/images/$MACHINE
+```
 
 ## 7. Booting the Image Using a MicroSD Card
 
-To boot the board using a micro-SD card, there are two operations that must be done prior to first initial boot:
+To boot your image on the Renesas board, you need to do three things:
 
-* Update all firmware on the device.
-* Set up the board to boot on the SD-card.
+1. Update all firmware on the board.
+2. Prepare the MicroSD card to you can boot from it.
+3. Boot the board.
 
-For each subsequent build you only need to rewrite the SD-card with the new image.
+**NOTE:** For subsequent builds, you only have to re-write the MicroSD
+card with a new image.
 
-### Firmware Update
+### Updating the Board's Firmware
 
-This proceedure is done in two steps. The 'Sample Loader and MiniMonitor update' step only needs to be done once per device. The 'Firmware stack update' step is mandatory only if you use AGl Eel (version 5.0) or later.
+Follow these steps to update the firmware:
 
-#### Sample Loader and MiniMonitor update
+1. **Update the Sample Loader and MiniMonitor:**
 
-Follow the documentation on the [eLinux.org wiki][R-car loader update] to update to at least version 3.02. This is mandatory to run AGL.
+   You only need to make these updates one time per device.
 
-#### Firmware stack update
+   Follow the procedure found on the
+   [eLinux.org wiki][R-car loader update] to update to at least version 3.02,
+   which is mandatory to run the AGL image.
 
-As an AArch64 platform, both **h3ulcb** and **m3ulcb** have a firmware stack divided in : **ARM Trusted Firmware**, **OP-Tee** and **U-Boot**.
+2. **Update the Firmware Stack:**
 
-If you use AGl Eel (version 5.0) or later, you must update the firmware using the following links to eLinux.org wiki: **[h3ulcb][R-car h3ulcb firmware update]** or **[m3ulcb][R-car m3ulcb firmware update]**.
+   You only need to update the firmware stack if you are
+   using the Eel or later (5.0) version of AGL software.
 
-The files listed in the eLinux.org wiki table will be found in the directory:
+   M3 and H3 Renesas board are AArch64 platforms.
+   As such, they have a firmware stack that is divided across: **ARM Trusted Firmware**, **OP-Tee** and **U-Boot**.
+
+   If you are using the Eel (5.0) version or later of the AGL software, you must update
+   the firmware using the **[h3ulcb][R-car h3ulcb firmware update]**
+   or **[m3ulcb][R-car m3ulcb firmware update]** links from the
+   [Embedded Linux Wiki](https://www.elinux.org/Main_Page) (i.e. `elinux.org`).
+
+   The table in the wiki lists the files you need to flash the firmware.
+   You can find these files in the following directory:
+
+   ```bash
+   $AGL_TOP/build/tmp/deploy/images/$MACHINE
+   ```
+
+   **NOTE:** The Salvator-X firmware update process is not documented on eLinux.
+
+### Preparing the MicroSD Card
+
+Plug the MicroSD card into your Build Host.
+After plugging in the device, use the `dmesg` command as follows to
+discover the device name:
 
 ```bash
-*\$AGL_TOP/build/tmp/deploy/images/$MACHINE*
+$ dmesg | tail -4
+[ 1971.462160] sd 6:0:0:0: [sdc] Mode Sense: 03 00 00 00
+[ 1971.462277] sd 6:0:0:0: [sdc] No Caching mode page found
+[ 1971.462278] sd 6:0:0:0: [sdc] Assuming drive cache: write through
+[ 1971.463870]  sdc: sdc1 sdc2
 ```
 
-The Salvator-X firmware update process is not documented on eLinux.
+In the previous example, the MicroSD card is attached to the device `/dev/sdc`.
 
-### Prepare the SD-card on the host
-
-Plug the microSD card and get its associated device by either running *`dmesg | tail -15`* or *`lsblk`*, for example:
-
-```bash
-dmesg | tail -15
-
-  [ 1971.462160] sd 6:0:0:0: [sdc] Mode Sense: 03 00 00 00
-  [ 1971.462277] sd 6:0:0:0: [sdc] No Caching mode page found
-  [ 1971.462278] sd 6:0:0:0: [sdc] Assuming drive cache: write through
-  [ 1971.463870]  sdc: sdc1 sdc2
-```
-
-Here, the SD-card is attached to the device /dev/sdc.
+You can also use the `lsblk` command to show all your devices.
+Here is an example that shows the MicroSD card as `/dev/sdc`:
 
 ```bash
-lsblk
-
+$ lsblk
   NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
   sda      8:0    0 167,7G  0 disk
   ├─sda1   8:1    0   512M  0 part /boot/efi
@@ -386,30 +447,37 @@ lsblk
   └─sdc2   8:34   1   788M  0 part
 ```
 
-**IMPORTANT NOTE**: This is a critical operation, each computer is different and removable devices can change from time to time:
-so you should repeat this operation each time you insert the microSD card to confirm the device name.
+**IMPORTANT NOTE:** Before re-writing any device on your Build Host, you need to
+be sure you are actually writing to the removable MicroSD card and not some other
+device.
+Each computer is different and removable devices can change from time to time.
+Consequently, you should repeat the previous operation with the MicroSD card to
+confirm the device name every time you write to the card.
 
-In the example above, we see:
+To summarize this example so far, we have the following:
 
-* the first SATA drive as 'sda'.
-* 'sdc' corresponds to the microSD card, and is also marked as removable device by *lsblk* which is a good confirmation.
-* Your desktop system probably offers a choice to mount the SD-card automatically in some directory.
-* In the next sample code, we'll suppose that the SD-card mount directory is stored in the variable $SDCARD.
-* For example, if the microSD card is associated with device *sdc*:
+* The first SATA drive is `/dev/sda`.
+* `/dev/sdc` corresponds to the MicroSD card, and is also marked as a removable device.
+  You can see this in the output of the `lsblk` command where "1" appears in the "RM" column
+  for that device.
 
-Go to your build directory:
+Now that you have identified the device you are going to be writing the image on,
+you can use the `bmaptool` to copy the image to the MicroSD card.
+
+Your desktop system might offer a choice to mount the MicroSD automatically
+in some directory.
+For this example, assume that the MicroSD card mount directory is stored in the
+`$SDCARD` variable.
+
+Following are example commands that write the image to the MicroSD card:
 
 ```bash
 cd $AGL_TOP/build/tmp/deploy/images/$MACHINE
-```
-
-You can use bmaptool to copy the **.wic.xz** file to the storage device, discovered in the previous step:
-
-```bash
 bmaptool copy ./agl-demo-platform-$MACHINE.wic.xz $SDCARD
 ```
 
-Or you can be uncompressed and written to the device:
+Alternatively, you can leave the image in an uncompressed state and write it
+to the MicroSD card:
 
 ```bash
   sudo umount /dev/sdc
@@ -417,33 +485,60 @@ Or you can be uncompressed and written to the device:
   sync
 ```
 
-### Booting the board
+### Booting the Board
 
-* Turn the board off using the power switch.
-* Insert the microSD-card.
-* Verify that you have plugged in, at least :
-  * An external monitor on HDMI port
-  * An input device (keyboard, mouse, touchscreen...) on USB port.
+Follow these steps to boot the board:
 
-* Turn the board on using the power switch.
- After a few seconds, you'll see the AGL splash screen on the display and you'll be able to log in on the console terminal or in the graphic screen.
+1. Use the board's power switch to turn off the board.
 
-## Serial Console Setup
+2. Insert the MicroSD card into the board.
 
-### Install a serial client on your computer
+3. Verify that you have plugged in the following:
 
-This can be “screen”, “picocom”, “minicom”.
-The lighter of the 3 is “picocom” (it has less dependencies).
+   * An external monitor into the board's HDMI port
 
-### Plug a USB cable from your computer to the serial CP2102 USB port (micro USB-A)
+   * An input device (e.g. keyboard, mouse, touchscreen, and so forth) into the board's USB ports.
 
-With “dmesg” you can check the device created for the serial link.
-Usually, it's /dev/ttyUSB0 but the number may vary depending on other USB serial ports connected to the host.
-To get it, you must switch the board on.
-For example:
+4. Use the board's power switch to turn on the board.
+
+After a few seconds, you will see the AGL splash screen on the display and you
+will be able to log in at the console's terminal or using the graphic screen.
+
+## 8. Setting Up the Serial Console
+
+Setting up the Serial Console involves the following:
+
+* Installing a serial client on your build host
+* Connecting your build host to your Renesas board's serial port
+* Powering on the board to get a shell at the console
+* Configuring U-Boot parameters
+* Logging into the console
+* Determining the board's IP address
+
+### Installing a Serial Client on Your Build Host
+
+You need to install a serial client on your build host.
+Some examples are
+[GNU Screen](https://en.wikipedia.org/wiki/GNU_Screen),
+[picocom](https://linux.die.net/man/8/picocom),
+and
+[Minicom](https://en.wikipedia.org/wiki/Minicom).
+
+Of these three, "picocom" has less dependencies and is therefore
+considered the "lightest" solution.
+
+### Connecting Your Build Host to Your Renesas Board's Serial Port
+
+You need to physically connect your build host to the Renesas board using
+a USB cable from the host to the serial CP2102 USP port (i.e. Micro USB-A port)
+on the Renesas board.
+
+Once you connect the board, determine the device created for the serial link.
+Use the ``dmesg`` command on your build host.
+Here is an example:
 
 ```bash
-dmesg | tail
+dmesg | tail 9
 [2097783.287091] usb 2-1.5.3: new full-speed USB device number 24 using ehci-pci
 [2097783.385857] usb 2-1.5.3: New USB device found, idVendor=0403, idProduct=6001
 [2097783.385862] usb 2-1.5.3: New USB device strings: Mfr=1, Product=2, SerialNumber=3
@@ -455,29 +550,41 @@ dmesg | tail
 [2097783.388658] usb 2-1.5.3: FTDI USB Serial Device converter now attached to ttyUSB0
 ```
 
-The link is attached to the device /dev/ttyUSB0.
-It is time to launch your serial client.
-Example:
+The device created is usually "/dev/ttyUSB0".
+However, the number might vary depending on other USB serial ports connected to the host.
+
+To use the link, you need to launch the client.
+Here are three commands, which vary based on the serial client, that show
+how to launch the client:
+
 
 ```bash
-picocom -b 115200 /dev/ttyUSB0
+$ picocom -b 115200 /dev/ttyUSB0
 ```
 
 or
 
 ```bash
-minicom -b 115200 -D /dev/ttyUSB0
+$ minicom -b 115200 -D /dev/ttyUSB0
 ```
 
 or
 
 ```bash
-screen /dev/ttyUSB0 115200
+$ screen /dev/ttyUSB0 115200
 ```
 
-### Power on the board to see a shell on the console
+### Powering on the Board to Get a Shell at the Console
 
-* For machine h3ulcb:
+Both the Pro and Premier kits (e.g.
+[m3ulcb](https://elinux.org/R-Car/Boards/M3SK) and
+[h3ulcb](https://elinux.org/R-Car/Boards/H3SK#Hardware)) have nine
+switches (SW1 through SW9).
+To power on the board, "short-press" SW8, which is the power switch.
+
+Following, is console output for the power on process for each kit:
+
+**h3ulcb:**
 
 ```bash
 NOTICE:  BL2: R-Car Gen3 Initial Program Loader(CA57) Rev.1.0.7
@@ -517,7 +624,7 @@ Hit any key to stop autoboot:  0
 =>
 ```
 
-* For machine m3ulcb:
+**m3ulcb:**
 
 ```
 NOTICE:  BL2: R-Car Gen3 Initial Program Loader(CA57) Rev.1.0.14
@@ -558,55 +665,60 @@ Hit any key to stop autoboot:  0
 =>
 ```
 
-### Configure U-boot parameters
+### Configuring U-Boot Parameters
 
-Follow the steps below to configure the boot from microSD card and to set screen resolution:
+Follow these steps to configure the board to use the MicroSD card as the
+boot device and also to set the screen resolution:
 
-* Turn the board on using the power switch.
-* Hit any key to stop autoboot (warning you have only few seconds).
-* Type **printenv** to check if you have correct parameters for booting your board:
-  * Example for a h3ulcb:
+1. As the board is powering up, press any key to stop the autoboot process.
+   You need to press a key quickly as you have just a few seconds in which to
+   press a key.
 
-    ```
-    => printenv
-    baudrate=115200
-    bootargs=console=ttySC0,115200 root=/dev/mmcblk1p1 rootwait ro rootfstype=ext4
-    bootcmd=run load_ker; run load_dtb; booti 0x48080000 - 0x48000000
-    bootdelay=3
-    fdt_high=0xffffffffffffffff
-    initrd_high=0xffffffffffffffff
-    load_dtb=ext4load mmc 0:1 0x48000000 /boot/Image-r8a7795-h3ulcb.dtb
-    load_ker=ext4load mmc 0:1 0x48080000 /boot/Image
-    stderr=serial
-    stdin=serial
-    stdout=serial
-    ver=U-Boot 2015.04 (Jun 09 2016 - 19:21:52)
+2. Once the autoboot process is interrupted, use the board's serial console to
+   enter **printenv** to check if you have correct parameters for booting your board:
+   Here is an example using the **h3ulcb** board:
 
-    Environment size: 648/131068 bytes
-    ```
+   ```
+   => printenv
+   baudrate=115200
+   bootargs=console=ttySC0,115200 root=/dev/mmcblk1p1 rootwait ro rootfstype=ext4
+   bootcmd=run load_ker; run load_dtb; booti 0x48080000 - 0x48000000
+   bootdelay=3
+   fdt_high=0xffffffffffffffff
+   initrd_high=0xffffffffffffffff
+   load_dtb=ext4load mmc 0:1 0x48000000 /boot/Image-r8a7795-h3ulcb.dtb
+   load_ker=ext4load mmc 0:1 0x48080000 /boot/Image
+   stderr=serial
+   stdin=serial
+   stdout=serial
+   ver=U-Boot 2015.04 (Jun 09 2016 - 19:21:52)
 
-  * Example for a m3ulcb:
+   Environment size: 648/131068 bytes
+   ```
 
-    ```
-    => printenv
-    baudrate=115200
-    bootargs=console=ttySC0,115200 root=/dev/mmcblk1p1 rootwait ro rootfstype=ext4
-    bootcmd=run load_ker; run load_dtb; booti 0x48080000 - 0x48000000
-    bootdelay=3
-    fdt_high=0xffffffffffffffff
-    filesize=cdeb
-    initrd_high=0xffffffffffffffff
-    load_dtb=ext4load mmc 0:1 0x48000000 /boot/Image-r8a7796-m3ulcb.dtb
-    load_ker=ext4load mmc 0:1 0x48080000 /boot/Image
-    stderr=serial
-    stdin=serial
-    stdout=serial
-    ver=U-Boot 2015.04 (Nov 30 2016 - 18:25:18)
+   Here is a second example using the **m3ulcb** board:
 
-    Environment size: 557/131068 bytes
-    ```
+   ```
+   => printenv
+   baudrate=115200
+   bootargs=console=ttySC0,115200 root=/dev/mmcblk1p1 rootwait ro rootfstype=ext4
+   bootcmd=run load_ker; run load_dtb; booti 0x48080000 - 0x48000000
+   bootdelay=3
+   fdt_high=0xffffffffffffffff
+   filesize=cdeb
+   initrd_high=0xffffffffffffffff
+   load_dtb=ext4load mmc 0:1 0x48000000 /boot/Image-r8a7796-m3ulcb.dtb
+   load_ker=ext4load mmc 0:1 0x48080000 /boot/Image
+   stderr=serial
+   stdin=serial
+   stdout=serial
+   ver=U-Boot 2015.04 (Nov 30 2016 - 18:25:18)
 
-    * To boot on a sd card, it is recommended to set your environment using these commands :
+   Environment size: 557/131068 bytes
+   ```
+
+3. To boot your board using the MicroSD card, be sure your environment is set up
+   as follows:
 
     ```
     setenv bootargs console=ttySC0,115200 ignore_loglevel vmalloc=384M video=HDMI-A-1:1920x1080-32@60 root=/dev/mmcblk1p1 rw rootfstype=ext4 rootwait rootdelay=2
@@ -614,53 +726,59 @@ Follow the steps below to configure the boot from microSD card and to set screen
     setenv load_ker ext4load mmc 0:1 0x48080000 /boot/Image
     ```
 
-    * For machine h3ulcb (BSP >= 2.19):
+4. Depending on the board type, the BSP version, and the existence of
+   a Kingfisher board, make sure your ``load_dtb`` is set as follows:
+
+   **h3ulcb with BSP version greater than or equal to 2.19**:
 
     ```
     setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/Image-r8a7795-es1-h3ulcb.dtb
     ```
 
-    * For machine h3ulcb (BSP < 2.19):
+    **h3ulcb with BSP version less than 2.19**:
 
     ```
     setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/Image-r8a7795-h3ulcb.dtb
     ```
 
-    * For machine m3ulcb:
+    **m3ulcb**:
 
     ```bash
     setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/Image-r8a7796-m3ulcb.dtb
     ```
 
-    * For machine m3ulcb with a kingfisher board:
+    **m3ulcb with a Kingfisher board**:
 
     ```bash
     setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/Image-r8a7796-m3ulcb-kf.dtb
     ```
 
-    * For machine h3ulcb with a kingfisher board:
+    **h3ulcb with a Kingfisher board**:
 
     ```bash
     setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/Image-r8a7795-es1-h3ulcb-kf.dtb
     ```
 
-    * Finally save boot environment:
+5. Save the boot environment:
 
     ```bash
     saveenv
     ```
 
-* Now you can boot:
+6. Boot the board:
 
 ```
 run bootcmd
 ```
 
-### Console boot
+### Logging Into the Console
 
-After booting, you should see the wayland display on the external monitor and a login prompt on the console, such as:
+Once the board boots, you should see the
+[Wayland display](https://en.wikipedia.org/wiki/Wayland_(display_server_protocol))
+on the external monitor.
+A login prompt should appear as follows depending on your board:
 
-* For machine h3ulcb:
+**h3ulcb**:
 
 ```bash
 Automotive Grade Linux ${AGL_VERSION} h3ulcb ttySC0
@@ -668,7 +786,7 @@ Automotive Grade Linux ${AGL_VERSION} h3ulcb ttySC0
 h3ulcb login: root
 ```
 
-* For machine m3ulcb:
+**m3ulcb**:
 
 ```bash
 Automotive Grade Linux ${AGL_VERSION} m3ulcb ttySC0
@@ -676,15 +794,16 @@ Automotive Grade Linux ${AGL_VERSION} m3ulcb ttySC0
 m3ulcb login: root
 ```
 
-Logging in on the console is easy:
+At the prompt, login by using `root` as the login.
+The password is "empty" so you should not be prompted for the password.
 
-* login is 'root'
-* password is empty (not asked)
+### Determining the Board's IP Address
 
-### Network access
+If your board is connected to a local network using Ethernet and
+if a DHCP server is able to distribute IP addresses,
+you can determine the board's IP address and log in using `ssh`.
 
-If the board is connected to a local network using ethernet and if a DHCP server is able to distribute IP addresses,
-you can then determine the Gen3 board IP address and log in using ssh:
+Here is an example for the **m3ulcb** board:
 
 ```bash
 m3ulcb login: root
@@ -699,7 +818,10 @@ root@m3ulcb:~# ip -4 a
 root@m3ulcb:~#
 ```
 
-Here, IP address is 10.0.0.27. Logging in using SSH is easy:
+In the previous example, IP address is 10.0.0.27.
+Once you know the address, you can use `ssh` to login.
+Following is an example that shows logging into SSH and then
+displaying the contents of the `/etc/os-release` file:
 
 ```bash
 $ ssh root@10.0.0.27
@@ -711,31 +833,3 @@ VERSION="3.0.0+snapshot-20161202 (chinook)"
 VERSION_ID="3.0.0-snapshot-20161202"
 PRETTY_NAME="Automotive Grade Linux 3.0.0+snapshot-20161202 (chinook)"
 ```
-
-## More Documentation
-
-Detailed guides on how to build AGL for Renesas boards and using AGL SDK inside a ready-to-use Docker container:
-
-* [AGL-Devkit-Build-your-1st-AGL-Application.pdf][Iot.bzh AGL-Devkit-Build-your-1st-AGL-Application]
- Generic guide on how to build various application types (HTML5, native, Qt, QML, …) for AGL.
-* [AGL-Devkit-HowTo_bake_a_service.pdf][Iot.bzh AGL_Phase2-Devkit-HowTo_bake_a_service]
- Generic guide on how to add a new service in the BSP.
-* [AGL-Kickstart-on-Renesas-Porter-Board.pdf][Iot.bzh AGL-Kickstart-on-Renesas-Porter-Board]
-* [AGL-Devkit-Image-and-SDK-for-Porter.pdf][Iot.bzh AGL-Devkit-Image-and-SDK-for-Porter]
-* [AGL Developer Website](http://docs.automotivelinux.org)
-
-[R-car m3ulcb]: http://elinux.org/R-Car/Boards/M3SK
-[R-car m3ulcb firmware update]: https://elinux.org/R-Car/Boards/M3SK#Flashing_firmware
-[R-car h3ulcb]: http://elinux.org/R-Car/Boards/H3SK
-[R-car h3ulcb firmware update]: https://elinux.org/R-Car/Boards/H3SK#Flashing_firmware
-[R-car salvator-x]: https://elinux.org/R-Car/Boards/Salvator-X
-[R-car loader update]: http://elinux.org/R-Car/Boards/Kingfisher#How_to_update_of_Sample_Loader_and_MiniMonitor
-[R-car Kingfisher]: https://elinux.org/R-Car/Boards/Kingfisher
-[R-car yocto]: http://elinux.org/R-Car/Boards/Yocto-Gen3
-[rcar Linux Drivers]: https://www.renesas.com/solutions/automotive/rcar-download/rcar-demoboard.html
-[rcar Linux Drivers 2]: https://www.renesas.com/en-us/solutions/automotive/rcar-download/rcar-demoboard-2.html
-[Iot.bzh AGL-Kickstart-on-Renesas-Porter-Board]: http://docs.automotivelinux.org/docs/devguides/en/dev/reference/iotbzh2016/sdk/AGL-Kickstart-on-Renesas-Porter-board.pdf
-[Iot.bzh AGL-Devkit-Image-and-SDK-for-Porter]: http://docs.automotivelinux.org/docs/devguides/en/dev/reference/iotbzh2016/sdk/AGL-Devkit-Image-and-SDK-for-porter.pdf
-[Iot.bzh AGL-Devkit-Build-your-1st-AGL-Application]: http://docs.automotivelinux.org/docs/devguides/en/dev/reference/iotbzh2016/sdk/AGL-Devkit-Build-your-1st-AGL-Application.pdf
-[Iot.bzh AGL_Phase2-Devkit-HowTo_bake_a_service]: http://docs.automotivelinux.org/docs/devguides/en/dev/reference/iotbzh2016/bsp/AGL_Phase2-Devkit-HowTo_bake_a_service.pdf
-
