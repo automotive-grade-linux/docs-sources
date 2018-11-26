@@ -457,6 +457,7 @@ confirm the device name every time you write to the card.
 To summarize this example so far, we have the following:
 
 * The first SATA drive is `/dev/sda`.
+
 * `/dev/sdc` corresponds to the MicroSD card, and is also marked as a removable device.
   You can see this in the output of the `lsblk` command where "1" appears in the "RM" column
   for that device.
