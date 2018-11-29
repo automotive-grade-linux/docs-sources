@@ -117,3 +117,20 @@ For the AGL build you can set the download directory by adding the following to 
 ```bash
 DL_DIR = "${HOME}/workspace_agl/downloads"
 ```
+
+## Using a Shared State (sstate) Mirror
+
+The underlying Yocto Project build system uses Shared State Mirrors to cache
+artifacts from previous builds.
+You can significantly speed up builds and guard against fetcher failures by
+using mirrors.
+To use mirrors, add this line to your `local.conf` file in the Build directory:
+
+```
+SSTATE_MIRRORS_append = " file://.* https://download.automotivelinux.org/sstate-mirror/master/${DEFAULTTUNE}/PATH \n "
+```
+
+You can learn more about shared state and how it is used in the
+"[Shared State Cache](https://yoctoproject.org/docs/2.4.4/ref-manual/ref-manual.html#shared-state-cache)"
+section of the Yocto Project Reference Manual.
+
