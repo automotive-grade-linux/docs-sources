@@ -1,0 +1,68 @@
+type: books
+books:
+-
+    id:
+    order:  #optional
+    title:
+    title_fr: #optionnal
+    title_jp: #optionnal
+    description:
+    keywords:
+    author:
+    version:
+    chapters:
+    - name:
+      name_fr: #optional
+      name_jp: #optional
+      url: "%lang%/"
+    - name:
+      name_fr: #optional
+      name_jp: #optional
+      children: #optional
+        - name:
+          name_fr: #optional
+          name_jp: #optional
+          url: "%lang/"
+        - name:
+          name_fr: #optional
+          name_jp: #optional
+          children: #optional
+            - name:
+              name_fr: #optional
+              name_jp: #optional
+    - name:
+      name_fr: #optional
+      url: "%lang%/"
+-
+    id:
+    order:  #optional
+    title:
+    title_fr: #optionnal
+    title_jp: #optionnal
+    description:
+    keywords:
+    author:
+    version:
+    chapters:
+    - name:
+      name_fr: #optional
+      name_jp: #optional
+      url: "%lang%/"
+    - name:
+      name_fr: #optional
+      name_jp: #optional
+      children: #optional
+        - name:
+          name_fr: #optional
+          name_jp: #optional
+          url: "%lang/"
+        - name:
+          name_fr: #optional
+          name_jp: #optional
+          children:
+            - name:
+              name_fr: #optional
+              name_jp: #optional
+    - name:
+      name_fr: #optional
+      url: "%lang%/"
