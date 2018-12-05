@@ -43,11 +43,15 @@ and then use XDS to install the SDK:
    "[Installing AGL SDKs](../../../../../docs/devguides/en/dev/reference/xds/part-1/3_install-sdks.html)"
    section for information on using both.
 
-## Installing a stand-alone SDK ##
+## Installing a Stand-Alone SDK ##
 
-   * **Using only the SDK:** If you do not want to use XDS, you can install the SDK by itself.
-   For information, see the
-     "[App development SDK for Intel Minnowboard](https://wiki.automotivelinux.org/agl-distro/developer_resources_intel_apps)"
-     Wiki article and the
-     "[AGL SDK Quick Setup](../../../../../docs/getting_started/en/dev/reference/setup-sdk-environment.html)"
-     section for steps on how to work with a stand-alone SDK.
+If you do not want to use XDS, you can install the SDK by itself.
+For information, see the
+"[App development SDK for Intel Minnowboard](https://wiki.automotivelinux.org/agl-distro/developer_resources_intel_apps)"
+Wiki article.
+You can also visit the
+[Yocto Project Application Development and the Extensible Software Development Kit (eSDK)](https://yoctoproject.org/docs/2.4.4/sdk-manual/sdk-manual.html)
+Manual.
+
+**NOTE:** The AGL Project is not compatible with the eSDK.
+You must use the Standard SDK.
