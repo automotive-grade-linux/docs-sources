@@ -36,7 +36,7 @@ section for more information on the ready-made images.
    and so forth) as would a properly prepared build host running a supported
    Linux distribution.
    For information on how to install and set up this Docker container, see the
-   "[AGL SDK Quick Setup](./setup-sdk-environment.html#step-1-install-docker)"
+   "[Setting Up a Docker Container](./setup-sdk-environment.html)"
    section.
 
 2. **Be Sure Your Build Host Has Enough Free Disk Space:**
