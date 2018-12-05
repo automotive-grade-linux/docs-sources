@@ -4,8 +4,8 @@ books:
     id:
     order:  #optional
     title:
-    title_fr: #optionnal
-    title_jp: #optionnal
+    title_fr: #optional
+    title_jp: #optional
     description:
     keywords:
     author:
@@ -37,8 +37,8 @@ books:
     id:
     order:  #optional
     title:
-    title_fr: #optionnal
-    title_jp: #optionnal
+    title_fr: #optional
+    title_jp: #optional
     description:
     keywords:
     author:
