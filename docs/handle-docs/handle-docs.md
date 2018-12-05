@@ -5,7 +5,21 @@ A tool available in [docs-tools](https://github.com/automotive-grade-linux/docs-
 care of collecting and templating all markdown files according fetched_files.yml located in
 [docs-webtemplate](https://github.com/automotive-grade-linux/docs-webtemplate).
 
-<!-- TODO add SCHEMA + description of fetched_files.yml and book.yml logic -->
+See below a scheme of the workflow of agl documentation website generation.
+
+![alt text](pictures/workflow.png)
+
+As you can see, the section_``version``.yml contains the links to all the book yaml files, it is proceed to fetch all book yaml files from remote repositories to the docs-webtemplate. The book yaml files contains all the url to your markdown files from the remote repository.
+
+As soon as all the markdown files are fetched, the tools process to generate the AGL doc website.
+
+---
+
+**Note:**
+
+The images described in markdown files are automatically fetched. For that, the necessary condition is that in markdown files, the relative path has to match with the location of images.
+
+---
 
 ## How to add a new documentation section into AGL documentation
 
@@ -30,7 +44,29 @@ among others :
 - subchapters list and consequently subchapters hierarchy
 - multi-language description
 
-<!-- TODO: Add more explanation of multi-language support (eg. suffix xxx_en, xxx_jp ) -->
+---
+
+**Note:**
+
+Multi-language is handled by key suffixes. That is to say, there are some keys that can be suffixed by a language: ``<key>_<lang>``
+For the url to the markdown files, the prefix ```%lang%``` will match with suffixes. So, you have to create a subdirectory named ```%lang%``` where the markdown files are put.
+
+A example for the french:
+
+```
+name: "My section in english"
+name_fr: "Ma section en français"
+url: "%lang/section.md"
+```
+
+```
+$ ls -lR mydir
+book.yml
+section.md
+fr/section.md
+```
+
+---
 
 There are several types of book:
 
