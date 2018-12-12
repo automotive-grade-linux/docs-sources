@@ -31,12 +31,13 @@ section for more information on the ready-made images.
    CentOS, or Debian.
 
    If you must use a build host that is not a native Linux machine, you can
-   install and use a Docker container.
+   install and use Docker to create a container that allows you to work as
+   if you are using a Linux-based host.
    The container contains the same development environment (i.e. distros, packages,
    and so forth) as would a properly prepared build host running a supported
    Linux distribution.
    For information on how to install and set up this Docker container, see the
-   "[Setting Up a Docker Container](./setup-sdk-environment.html)"
+   "[Setting Up a Docker Container](./docker-container-setup.html)"
    section.
 
 2. **Be Sure Your Build Host Has Enough Free Disk Space:**
