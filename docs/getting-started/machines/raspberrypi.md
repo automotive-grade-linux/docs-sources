@@ -176,7 +176,7 @@ the image on the Raspberry PI 2 or 3 board:
 
 4. Plug your MicroSD card into the Raspberry PI board and boot the device.
 
-## 5. Raspberry PI Touch Display
+## 5. Using the Raspberry PI Touch Display
 
 If you have connected the official
 [Raspberry PI Touch Display](https://www.raspberrypi.org/products/raspberry-pi-touch-display/),
@@ -221,3 +221,50 @@ path=/usr/bin/weston-flower
 name=DSI-1
 transform=270
 ```
+
+## 6. Debugging
+
+When things go wrong, you can take steps to debug your Raspberry PI.
+For debugging, you need a 3.3 Volt USB Serial cable to fascilitate
+communication between your Raspberry PI board and your build host.
+A good cable to use is the 3.3V USB-to-Serial cable
+[Olimex USB-Serial-Cable-F](https://www.olimex.com/Products/Components/Cables/USB-Serial-Cable/USB-Serial-Cable-F/).
+
+**NOTE:** If you are using a USB console cable from Adafruit, see
+"[Adafruit's Raspberry Pi Lesson 5](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-5-using-a-console-cable/connect-the-lead)"
+for connection information.
+
+Use the following steps, which assume you are using the previously mentioned
+Olimex cable.
+You can reference the following diagram for information on the following steps:
+
+<p align="center">
+  <img src="./images/RaspberryPi2-ModelB-debug-serial-cable.png">
+</p>
+
+1. Connect the Olimex cable to the Universal Asynchronous Receiver-Transmitter
+   (UART) connection on your Raspberry PI board.
+   Do not connect the USB side of the cable to your build host at this time.
+
+   **CAUTION:** No warranty is provided using the following procedure.
+   Pay particular attention to the collors of your cable as they could
+   vary depending on the vendor.
+
+2. Connect the cable's BLUE wire to pin 6 (i.e. Ground) of the UART.
+
+3. Connect the cable's GREEN RX line to pin 8 (i.e. the TXD line) of
+   the UART.
+
+4. Connect the cable's RED TX line to pin 10 (i.e. the RXD line) of
+   the UART.
+
+5. Plug the USB connector of the cable into your build host's USB port.
+
+6. Use your favorite tool for serial communication between your build host
+   and your Raspberry PI.
+   For example, if your build host is a native Linux machine (e.g. Ubuntu)
+   you could use `screen` as follows from a terminal on the build host:
+
+   ```bash
+   $ sudo screen /dev/ttyUSB0 115200
+   ```
