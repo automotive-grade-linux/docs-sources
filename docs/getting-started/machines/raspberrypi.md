@@ -39,9 +39,36 @@ $ source meta-agl/scripts/aglsetup.sh -m raspberrypi2 agl-demo agl-netboot agl-a
 $ source meta-agl/scripts/aglsetup.sh -m raspberrypi3 agl-demo agl-netboot agl-appfw-smack
 ```
 
-## 2. Using BitBake
+## 2. Configuring the Build to Include Packages Under a Commercial License
+
+Before launching the build, it is good to be sure your build
+configuration is set up correctly (`/build/conf/local.conf` file).
+The
+"[Customizing Your Build](./image-workflow-cust-build.html)"
+section highlights some common configurations that are useful when
+building any AGL image.
+
+For the Raspberry PI platforms, you need to take an additional
+configuration step if you want to include any packages under a
+commercial license.
+
+For example, suppose you want to include an implementation of the
+[OpenMAX](https://www.khronos.org/openmax/) Intagration Library
+(`libomxil`) under a commercial license as part of your AGL image.
+If so, you must include the following two lines in your
+`/build/conf/local.conf` file:
+
+```bash
+# For libomxil
+LICENSE_FLAGS_WHITELIST = "commercial"
+
+IMAGE_INSTALL_append = " libomxil"
+```
+
+## 3. Using BitBake
 
 This section shows the `bitbake` command used to build the AGL image.
+
 Before running BitBake to start your build, it is good to be reminded that AGL
 does provide a pre-built image for developers that want to use the Raspberry PI 3
 board.
@@ -53,6 +80,7 @@ For the supported image, the filename has the following form:
 ```
 <release-name>/<release-number>/raspberrypi3/deploy/images/raspberrypi3/*
 ```
+
 
 Start the build using the `bitbake` command.
 
@@ -75,7 +103,7 @@ Here is example for the Raspberry PI 3 board:
 
 If you build for the Raspberry PI 2 board, the location uses "raspberrypi2" in the path.
 
-## 2. Deploying the AGL Demo Image
+## 4. Deploying the AGL Demo Image
 
 Deploying the AGL demo image consists of copying the image on a MicroSD card,
 plugging the card into the Raspberry PI board, and then booting the board.
@@ -147,3 +175,49 @@ the image on the Raspberry PI 2 or 3 board:
    ```
 
 4. Plug your MicroSD card into the Raspberry PI board and boot the device.
+
+## 5. Raspberry PI Touch Display
+
+If you have connected the official
+[Raspberry PI Touch Display](https://www.raspberrypi.org/products/raspberry-pi-touch-display/),
+you can configure the display by editing the `weston.ini` file.
+
+Plenty of information exists on how to configure and use this touchscreen.
+See the following references for more information:
+
+* For information on where the `weston.ini` file is located, see
+  [location](https://jlk.fjfi.cvut.cz/arch/manpages/man/weston.ini.5#DESCRIPTION).
+
+* For information on the `weston.ini` file in general, see the
+  [manpage](https://jlk.fjfi.cvut.cz/arch/manpages/man/weston.ini.5).
+
+* For information on Weston, which is the reference implementation of Wayland, see
+  [Wayland](https://wiki.archlinux.org/index.php/wayland).
+
+As an example on how to configure and manipulate the touchscreen, consider
+the following edits to the `weston.ini` file used to rotate the
+display:
+
+```bash
+root@raspberrypi3:/etc/xdg/weston# cat weston.ini
+[core]
+backend=drm-backend.so
+shell=desktop-shell.so
+
+[shell]
+locking=true
+# Uncomment below to hide panel
+#panel-location=none
+
+[launcher]
+icon=/usr/share/weston/terminal.png
+path=/usr/bin/weston-terminal
+
+[launcher]
+icon=/usr/share/weston/icon_flower.png
+path=/usr/bin/weston-flower
+
+[output]
+name=DSI-1
+transform=270
+```
