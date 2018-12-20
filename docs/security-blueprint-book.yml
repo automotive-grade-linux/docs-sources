@@ -1,0 +1,116 @@
+type: books
+books:
+-
+    id: security_blueprint
+    title: Security Blueprint
+    description: Identify areas that need to be addressed from a security perspective as part of Automotive Grade Linux (AGL)
+    keywords: Security
+    author: "IotBzh"
+    version: master
+    src_prefix: security-blueprint/
+    chapters:
+    - name: Introduction
+      url: "README.md"
+
+    - name: Part-1 Hardware
+      children:
+        - name: Introduction
+          url: "part-1/0_Abstract.md"
+
+    - name: Part-2 Secure Boot
+      children:
+        - name: Introduction
+          url: "part-2/0_Abstract.md"
+        - name: Image
+          url: "part-2/1-Image.md"
+        - name: Communication modes
+          url: "part-2/2-Communication-modes.md"
+        - name: Consoles
+          url: "part-2/3-Consoles.md"
+
+    - name: Part-3 Hypervisor
+      children:
+        - name: Introduction
+          url: "part-3/0_Abstract.md"
+
+    - name: Part-4 Kernel
+      children:
+        - name: Introduction
+          url: "part-4/0_Abstract.md"
+        - name: General
+          url: "part-4/1-General.md"
+        - name: Memory
+          url: "part-4/2-Memory.md"
+        - name: Consoles
+          url: "part-4/3-Consoles.md"
+        - name: Debug
+          url: "part-4/4-Debug.md"
+        - name: File Systems
+          url: "part-4/5-FileSystems.md"
+
+    - name: Part-5 Platform
+      children:
+        - name: Introduction
+          url: "part-5/0_Abstract.md"
+        - name: Mandatory Access Control
+          url: "part-5/1-MAC.md"
+        - name: SystemD
+          url: "part-5/2-SystemD.md"
+        - name: SystemBus
+          url: "part-5/3-SystemBus.md"
+        - name: System services and daemons
+          url: "part-5/4-Services.md"
+        - name: Application Framework
+          url: "part-5/5-AppFw.md"
+        - name: Utilities
+          url: "part-5/6-Utilities.md"
+        - name: Users
+          url: "part-5/7-Users.md"
+
+    - name: Part-6 Application
+      children:
+        - name: Introduction
+          url: "part-6/0_Abstract.md"
+        - name: Installation
+          url: "part-6/1-Installation.md"
+        - name: Privilege management
+          url: "part-6/2-PrivilegeManagement.md"
+        - name: Signature
+          url: "part-6/3-Signature.md"
+        - name: Services
+          url: "part-6/4-Services.md"
+
+    - name: Part-7 Connectivity
+      children:
+        - name: Introduction
+          url: "part-7/0_Abstract.md"
+        - name: Bus and connectors
+          url: "part-7/1-BusAndConnectors.md"
+        - name: Wireless
+          url: "part-7/2-Wireless.md"
+        - name: Cloud
+          url: "part-7/3-Cloud.md"
+
+    - name: Part-8 Update
+      children:
+        - name: Introduction
+          url: "part-8/0_Abstract.md"
+        - name: FOTA
+          url: "part-8/1-FOTA.md"
+        - name: SOTA
+          url: "part-8/2-SOTA.md"
+
+    - name: Part-9 Secure development
+      children:
+        - name: Introduction
+          url: "part-9/0_Abstract.md"
+
+    - name: Annexes
+      children:
+        - name: Annexes
+          url: "annexes/0_Abstract.md"
+        - name: Config notes
+          url: "annexes/ConfigNotes.md"
+        - name: Todo notes
+          url: "annexes/todoNotes.md"
+
