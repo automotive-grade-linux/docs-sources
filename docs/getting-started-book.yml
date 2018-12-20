@@ -7,30 +7,29 @@ books:
     title_fr: Processus de génération d'une image
     description:
     keywords:
-    author: "IotBzh"
-    website: http:docs.iot.bzh
+    author:
     version: master
     chapters:
-    - url: "%lang%/getting-started/image-workflow-intro.md"
+    - url: "getting-started/image-workflow-intro.md"
       name: Overview
       name_fr: Vue d'ensemble
-    - url: "%lang%/getting-started/image-workflow-prep-host.md"
+    - url: "getting-started/image-workflow-prep-host.md"
       name: Preparing Your Build Host
-    - url: "%lang%/getting-started/image-workflow-download-sw.md"
+    - url: "getting-started/image-workflow-download-sw.md"
       name: Downloading AGL Software
-    - url: "%lang%/getting-started/image-workflow-initialize-build-environment.md"
+    - url: "getting-started/image-workflow-initialize-build-environment.md"
       name: Initializing Your Build Environment
-    - url: "%lang%/getting-started/image-workflow-cust-build.md"
+    - url: "getting-started/image-workflow-cust-build.md"
       name: Customizing Your Build
-    - url: "%lang%/getting-started/image-workflow-build.md"
+    - url: "getting-started/image-workflow-build.md"
       name: Building the AGL Image
-    - url: "%lang%/getting-started/machines/intel.md"
+    - url: "getting-started/machines/intel.md"
       name: Building for Most Intel 64-Bit Hardware Platforms
-    - url: "%lang%/getting-started/machines/qemu.md"
+    - url: "getting-started/machines/qemu.md"
       name: Building for Emulation
-    - url: "%lang%/getting-started/machines/R-Car-Starter-Kit-gen3.md"
+    - url: "getting-started/machines/R-Car-Starter-Kit-gen3.md"
       name: Build for R Car Starter Kit gen3 board
-    - url: "%lang%/getting-started/machines/raspberrypi.md"
+    - url: "getting-started/machines/raspberrypi.md"
       name: Build for Raspberry PI 2/3
 -
     id: troubleshooting
@@ -42,11 +41,11 @@ books:
     website: http:docs.iot.bzh
     version: master
     chapters:
-    - url: "%lang%/getting-started/troubleshooting.md"
+    - url: "getting-started/troubleshooting.md"
       name: Generic issues
-    - url: "%lang%/getting-started/footers/intel-footer.md"
+    - url: "getting-started/footers/intel-footer.md"
       name: Intel Boards
-    - url: "%lang%/getting-started/footers/raspberrypi-footer.md"
+    - url: "getting-started/footers/raspberrypi-footer.md"
       name: Raspberry PI
 -
     id: sdk
@@ -58,7 +57,7 @@ books:
     website: http:docs.iot.bzh
     version: master
     chapters:
-    - url: "%lang%/getting-started/setup-sdk-environment.md"
+    - url: "getting-started/setup-sdk-environment.md"
       name: SDK Quick Setup
 -
     id: app-development-workflow
@@ -70,22 +69,22 @@ books:
     website: http:docs.iot.bzh
     version: master
     chapters:
-    - url: "%lang%/getting-started/app-workflow-intro.md"
+    - url: "getting-started/app-workflow-intro.md"
       name: Overview
-    - url: "%lang%/getting-started/app-workflow-image.md"
+    - url: "getting-started/app-workflow-image.md"
       name: Download or Build Your Image
-    - url: "%lang%/getting-started/app-workflow-sdk.md"
+    - url: "getting-started/app-workflow-sdk.md"
       name: Download or Build Your SDK Installer
-    - url: "%lang%/getting-started/app-workflow-bootables.md"
+    - url: "getting-started/app-workflow-bootables.md"
       name: Create Bootable Media
-    - url: "%lang%/getting-started/app-workflow-boot.md"
+    - url: "getting-started/app-workflow-boot.md"
       name: Boot the Image on the Board
-    - url: "%lang%/getting-started/app-workflow-prep-app.md"
+    - url: "getting-started/app-workflow-prep-app.md"
       name: Get Ready to Create Your Application
-    - url: "%lang%/getting-started/app-workflow-build-app.md"
+    - url: "getting-started/app-workflow-build-app.md"
       name: Create and Build the Application
-    - url: "%lang%/getting-started/app-workflow-deploy-app.md"
+    - url: "getting-started/app-workflow-deploy-app.md"
       name: Deploy the Application to the Board
-    - url: "%lang%/getting-started/app-workflow-debug-app.md"
+    - url: "getting-started/app-workflow-debug-app.md"
       name: Debug the Application
 
