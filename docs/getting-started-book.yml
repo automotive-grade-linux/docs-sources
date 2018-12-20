@@ -27,7 +27,7 @@ books:
       name: Building for Most Intel 64-Bit Hardware Platforms
     - url: "getting-started/machines/qemu.md"
       name: Building for Emulation
-    - url: "getting-started/machines/R-Car-Starter-Kit-gen3.md"
+    - url: "getting-started/machines/renesas.md"
       name: Build for R Car Starter Kit gen3 board
     - url: "getting-started/machines/raspberrypi.md"
       name: Build for Raspberry PI 2/3
@@ -37,8 +37,7 @@ books:
     title: Troubleshooting
     description: Troubleshooting Description
     keywords:
-    author: "IotBzh"
-    website: http:docs.iot.bzh
+    author:
     version: master
     chapters:
     - url: "getting-started/troubleshooting.md"
@@ -53,7 +52,7 @@ books:
     title: SDK
     description: SDK Quick Setup
     keywords:
-    author: "IotBzh"
+    author:
     website: http:docs.iot.bzh
     version: master
     chapters:
@@ -65,8 +64,7 @@ books:
     title: Application Development Workflow
     description:
     keywords:
-    author: "IotBzh"
-    website: http:docs.iot.bzh
+    author:
     version: master
     chapters:
     - url: "getting-started/app-workflow-intro.md"
