@@ -1,0 +1,14 @@
+type: books
+books:
+-
+    id: audio-docs-sources
+    title: Audio Docs Sources
+    description: Audio Docs Sources documentation
+    keywords:
+    author: "IotBzh"
+    version: master
+    chapters:
+    - url: audio/4a-framework.md
+      name: 4a-framework
+    - url: audio/bluez-alsa.md
+      name: bluez-alsa
