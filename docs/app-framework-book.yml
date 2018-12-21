@@ -1,0 +1,12 @@
+type: books
+books:
+-
+    id: app-framework-docs-sources
+    title: App Framework
+    description: App Framework documentation
+    keywords:
+    author: "IotBzh"
+    version: master
+    chapters:
+    - url: app-framework/index.md
+      name: Resources
