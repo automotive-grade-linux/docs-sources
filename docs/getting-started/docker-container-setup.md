@@ -1,4 +1,4 @@
-# Setting up a Docker Container
+# Overview
 
 This section explains how to quickly setup a Docker container environment
 suitable for using the Yocto Project build system.
