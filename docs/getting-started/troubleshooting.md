@@ -8,34 +8,55 @@
   into their respective build topics in the section describing how to
   build an AGL image.
 
-## Extended attributes MUST be copied
+## Including Extended Attributes
 
-**IMPORTANT, The extended attribute set during image construction MUST be copied to the SD card.**
+The
+[Extended Attributes Set (`xattrs`)](https://linux-audit.com/using-xattrs-extended-attributes-on-linux/)
+associated with the image during its construction must be copied to
+the bootable media.
+The `xattrs` supports
+[Smack](https://en.wikipedia.org/wiki/Smack_(software)), which is a
+Simplified Mandatory Access Control kernel.
 
-When using tar to create the SDcard, it is a common error to not copy the extended attributes. Find below instruction for using tar.
+**NOTE:** See
+  [https://www.kernel.org/doc/Documentation/security/Smack.txt](https://www.kernel.org/doc/Documentation/security/Smack.txt).
+  for detailed information on Smack.
 
-Verify that **tar** version is 1.28 or newer:
+Many methods exist that allow you to create bootable media (e.g. `dd`, `bmaptools`,
+`tar`, and AGL-provided scripts such as `mkabl-agl.sh` and `mkefi-agl.sh`).
+It is recommended that you do not use `tar` to create bootable media.
+However, if you do, you must take these steps to copy `xattrs` to the media:
 
-```bash
-tar --version
-tar (GNU tar) 1.28
-[snip]
-```
+1. Verify your `tar` version is 1.28 or newer:
 
-If it is not the case, a native up-to-date version of tar is also generated while building AGL distribution:
+   ```bash
+   $ tar --version
+   tar (GNU tar) 1.28
+   [snip]
+   ```
 
-```bash
-tmp/sysroots/x86_64-linux/usr/bin/tar-native/tar --version
-tar (GNU tar) 1.28
-[snip]
-```
+2. Optionally update `tar` if required.
+   Most systems come with `tar` installed.
+   If you need to install it, see the
+   "[Installing tar](https://www.howtoforge.com/tutorial/linux-tar-command/#installing-tar)"
+   section for instructions.
 
-To copy Automotive Grade Linux (AGL) files AND EXTENDED ATRIBUTES onto the SDcard using tar the command is:
+   When you build an AGL distribution, a native up-to-date version of
+   `tar` is created.
+   Use the following command to see that version:
 
-```bash
-tar --extract --xz --numeric-owner --preserve-permissions --preserve-order --totals \
-           --xattrs-include='*' --directory=DESTINATION_DIRECTORY --file=agl-demo-platform.....tar.xz
-```
+   ```bash
+   $ tmp/sysroots/x86_64-linux/usr/bin/tar-native/tar --version
+   tar (GNU tar) 1.28
+   [snip]
+   ```
+
+3. Copy the AGL files and Extended Attributes Set to your bootable media:
+
+   ```bash
+   $ tar --extract --xz --numeric-owner --preserve-permissions --preserve-order --totals \
+              --xattrs-include='*' --directory=DESTINATION_DIRECTORY --file=agl-demo-platform.....tar.xz
+   ```
 
 <!--
 ## meta-rust
