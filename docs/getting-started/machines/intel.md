@@ -105,9 +105,28 @@ eMMC provides card longevity at a low cost and is used in automotive infotainmen
 systems, avionics displays, and industrial automation/HMI control applications
 to name a few.
 
+When creating bootable media,
+[Extended Attributes (`xattrs`)](https://linux-audit.com/using-xattrs-extended-attributes-on-linux/)
+are required for use with
+[Smack](https://en.wikipedia.org/wiki/Smack_(software)).
+This section describes using the `mkabl-agl.sh` or `mkefi-agl.sh` scripts
+to create bootable media.
+Use of either of these scripts include all required `xattrs`.
+
+**NOTE:** You can find detailed information on Smack at
+  [https://www.kernel.org/doc/Documentation/security/Smack.txt](https://www.kernel.org/doc/Documentation/security/Smack.txt).
+
+While the `mkabl-agl.sh` or `mkefi-agl.sh` scripts are recommended for creating
+your bootable media for Intel devices, other methods exist.
+If you use an alternative method (e.g. `tar`), be sure you take steps to copy
+`xattrs` as part of the image.
+See the
+"[Including Extended Attributes](../troubleshooting.html#including-extended-attributes)"
+section for more information.
+
 ### USB Stick, SD Card, and HDD/SDD
 
-Depending on your target hardware, use a USB stick, an SD card or an HDD/SDD.
+Depending on your target hardware, use a USB stick, an SD card, or an HDD/SDD.
 The creation process remains the same independently of the selected support.
 It does require to have access to a Linux machine with `sudo` or root password.
 
@@ -115,9 +134,11 @@ Create a bootable SD card with the script [`mkefi-agl.sh`](https://gerrit.automo
 Use the "-v" option to check the available options.
 
 **NOTE:** If you are using an Intel Module Reference Board (MRB), you need to
-use the
-[`mkabl-agl.sh`](https://gerrit.automotivelinux.org/gerrit/gitweb?p=AGL/meta-agl.git;a=blob_plain;f=scripts/mkefi-agl.sh;hb=HEAD)
-script instead of the `mkefi-agl.sh` script.
+  use the
+  [`mkabl-agl.sh`](https://gerrit.automotivelinux.org/gerrit/gitweb?p=AGL/meta-agl.git;a=blob_plain;f=scripts/mkefi-agl.sh;hb=HEAD)
+  script instead of the `mkefi-agl.sh` script.
+
+Follow these steps to create your bootable media:
 
 1. **Insert Media Device:**
    Insert your removable media into the corresponding interface.
