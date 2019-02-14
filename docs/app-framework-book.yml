@@ -2,7 +2,7 @@ type: books
 books:
 -
     id: app-framework-docs-sources
-    title: App Framework
+    title: Resources
     description: App Framework documentation
     keywords:
     author: "IotBzh"
