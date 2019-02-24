@@ -1,0 +1,13 @@
+type: books
+books:
+-
+    id: handle-docs
+    title: "Add your documentation to AGL"
+    description:
+    keywords:
+    author:
+    version: master
+    chapters:
+    - url: "handle-docs/handle-docs.md"
+      name: Handle documentation
+
