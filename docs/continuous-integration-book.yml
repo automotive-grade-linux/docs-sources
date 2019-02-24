@@ -1,0 +1,9 @@
+type: books
+books:
+-
+    id: continuous-integration-docs-source
+    title:  Continuous Integration - Automated Testing (CIAT)
+    description:  Continuous Integration - Automated Testing (CIAT)
+    keywords:
+    author: "Ciat"
+    version: master
