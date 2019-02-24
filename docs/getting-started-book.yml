@@ -1,9 +1,20 @@
 type: books
 books:
 -
+    id: welcome-overview
+    order: 10
+    title: "Welcome !"
+    description:
+    keywords:
+    author:
+    version: master
+    chapters:
+    - url: "getting-started/getting-started-welcome.md"
+      name: Overview
+-
     id: image-development-workflow
     order: 10
-    title: Image Development Workflow
+    title: Developing an AGL Image
     title_fr: Processus de génération d'une image
     description:
     keywords:
@@ -42,26 +53,21 @@ books:
     chapters:
     - url: "getting-started/troubleshooting.md"
       name: Generic issues
-    - url: "getting-started/footers/intel-footer.md"
-      name: Intel Boards
-    - url: "getting-started/footers/raspberrypi-footer.md"
-      name: Raspberry PI
 -
-    id: sdk
+    id: docker-container-setup
     order: 51
-    title: SDK
-    description: SDK Quick Setup
+    title: Setting Up a Docker Container
+    description: setup docker container Description
     keywords:
     author:
-    website: http:docs.iot.bzh
     version: master
     chapters:
-    - url: "getting-started/setup-sdk-environment.md"
-      name: SDK Quick Setup
+    - url: "getting-started/docker-container-setup.md"
+      name: Overview
 -
     id: app-development-workflow
     order: 60
-    title: Application Development Workflow
+    title: Developing an Application
     description:
     keywords:
     author:
