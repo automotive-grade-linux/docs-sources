@@ -16,7 +16,7 @@ AGL demo image for both the Raspberry PI 2 and 3 boards.
 ## 1. Making Sure Your Build Environment is Correct
 
 The
-"[Initializing Your Build Environment](../image-workflow-initialize-build-environment.html/Initializing-your-build-environment)"
+"[Initializing Your Build Environment](../image-workflow-initialize-build-environment.html)"
 section presented generic information for setting up your build environment
 using the `aglsetup.sh` script.
 If you are building the AGL demo image for a Raspberry PI board, you need to specify some
@@ -44,7 +44,7 @@ $ source meta-agl/scripts/aglsetup.sh -m raspberrypi3 agl-demo agl-netboot agl-a
 Before launching the build, it is good to be sure your build
 configuration is set up correctly (`/build/conf/local.conf` file).
 The
-"[Customizing Your Build](./image-workflow-cust-build.html)"
+"[Customizing Your Build](../image-workflow-cust-build.html)"
 section highlights some common configurations that are useful when
 building any AGL image.
 
