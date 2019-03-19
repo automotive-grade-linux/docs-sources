@@ -137,7 +137,8 @@ Follow these steps to download the drivers you need:
 
      | AGL Version| Renesas version |
      |:-:|:-:|
-     | AGL master  | 3.9.0 |
+     | AGL master  | 3.15.0 |
+     | AGL 7.0.0  | 3.9.0 |
      | AGL 6.0.0 | 3.7.0 |
      | AGL 5.0.x, 5.1.0| 2.23.1 |
      | AGL 4.0.x |2.19.0 |
