@@ -5,13 +5,13 @@ you can use the information found on the "[MinnowBoard wiki](https://minnowboard
 to enable most 64-bit Intel Architecture (IA) platforms that use the 64-bit
 UEFI as the boot loader.
 In addition to the MinnowBoard, support for the
-[upCore & UpSquared boards](http://www.up-board.org/upsquared/) exists.
+[upCore & UpSquared boards](http://up-board.org/upsquared/specifications/) exists.
 MinnowBoard Max and Turbot are both 64-bit capable.
 
 If you are interested in creating ***applications*** to run on hardware booted
 using an image built with the AGL Project, see the following:
 
-* [Application Development Workflow](../app-workflow-intro.html/overview)
+* [Application Development Workflow](../app-workflow-intro.html)
 * [Developing Apps for AGL](https://wiki.automotivelinux.org/agl-distro/developer_resources_intel_apps)
 
 UEFI has significantly evolved and you should check that your hardware's
@@ -35,7 +35,7 @@ platforms:
 ## 1. Making Sure Your Build Environment is Correct
 
 The
-"[Initializing Your Build Environment](../image-workflow-initialize-build-environment.html/Initializing-your-build-environment)"
+"[Initializing Your Build Environment](../image-workflow-initialize-build-environment.html)"
 section presented generic information for setting up your build environment
 using the `aglsetup.sh` script.
 If you are building for an Intel 64-bit platform, you need to specify some
@@ -200,7 +200,7 @@ To do so, requires the following steps:
 2. **Rebuild Your Image**
 
    Rebuild the AGL image by following the instructions in the
-   "[Using BitBake](./machines/intel.html#using-bitbake)"
+   "[Using BitBake](../machines/intel.html#2-using-bitbake)"
    step of this page.
 
 3. **Install the Rebuilt Image Onto a Removable Device**

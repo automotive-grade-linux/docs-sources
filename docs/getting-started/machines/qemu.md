@@ -10,7 +10,7 @@ VirtualBox.
 ## 1. Making Sure Your Build Environment is Correct
 
 The
-"[Initializing Your Build Environment](../image-workflow-initialize-build-environment.html/Initializing-your-build-environment)"
+"[Initializing Your Build Environment](../image-workflow-initialize-build-environment.html)"
 section presented generic information for setting up your build environment
 using the `aglsetup.sh` script.
 If you are building the AGL demo image for emulation, you need to specify some
