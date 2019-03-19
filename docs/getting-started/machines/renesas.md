@@ -61,7 +61,7 @@ Follow these steps to download the drivers you need:
      4:ZIP_2="R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-weston2-20170904.zip"
      ```
 
-     The script's output identifies the files you need to download from the page.
+     The script's output identifies the files you need to download from the page and the example above correspond to the Electric Eel AGL revision (v5.0.0). Note that since Flounder AGL revision (v6.0.0), both zip have been renamed.
 
 2. **Find the Download Links:**
 
@@ -139,7 +139,8 @@ Follow these steps to download the drivers you need:
      |:-:|:-:|
      | AGL master  | 3.15.0 |
      | AGL 7.0.0  | 3.9.0 |
-     | AGL 6.0.0 | 3.7.0 |
+     | AGL 6.0.3, 6.0.4  | 3.9.0 |
+     | AGL 6.0.0, 6.0.1, 6.0.2 | 3.7.0 |
      | AGL 5.0.x, 5.1.0| 2.23.1 |
      | AGL 4.0.x |2.19.0 |
 
@@ -390,8 +391,8 @@ Follow these steps to update the firmware:
    You only need to make these updates one time per device.
 
    Follow the procedure found on the
-   [eLinux.org wiki][R-car loader update] to update to at least version 3.02,
-   which is mandatory to run the AGL image.
+   eLinux.org wiki to update to at least version 3.02,
+   which is mandatory to run the AGL image ([R-car loader update](https://elinux.org/R-Car/Boards/Kingfisher#How_to_update_of_Sample_Loader_and_MiniMonitor)).
 
 2. **Update the Firmware Stack:**
 
@@ -402,8 +403,8 @@ Follow these steps to update the firmware:
    As such, they have a firmware stack that is divided across: **ARM Trusted Firmware**, **OP-Tee** and **U-Boot**.
 
    If you are using the Eel (5.0) version or later of the AGL software, you must update
-   the firmware using the **[h3ulcb][R-car h3ulcb firmware update]**
-   or **[m3ulcb][R-car m3ulcb firmware update]** links from the
+   the firmware using the **[h3ulcb][R-car h3ulcb firmware update](http://elinux.org/R-Car/Boards/H3SK#Flashing_firmware)**
+   or **[m3ulcb][R-car m3ulcb firmware update](https://elinux.org/R-Car/Boards/M3SK#Flashing_firmware)** links from the
    [Embedded Linux Wiki](https://www.elinux.org/Main_Page) (i.e. `elinux.org`).
 
    The table in the wiki lists the files you need to flash the firmware.
