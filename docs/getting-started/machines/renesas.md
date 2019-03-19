@@ -24,16 +24,16 @@ You can find more information on building images from these resources:
 This following list looks a bit dated.
 Do we want to update these PDFs or are they still useful?
 
-* [AGL-Devkit-Build-your-1st-AGL-Application.pdf](http://docs.automotivelinux.org/docs/devguides/en/dev/reference/iotbzh2016/sdk/AGL-Devkit-Build-your-1st-AGL-Application.pdf)
+* [AGL-Devkit-Build-your-1st-AGL-Application.pdf](https://iot.bzh/download/public/2016/sdk/AGL-Devkit-Build-your-1st-AGL-Application.pdf)
  Generic guide on how to build various application types (HTML5, native, Qt, QML, …) for AGL.
  This is really about building an application and not the AGL image.
-* [AGL-Devkit-HowTo_bake_a_service.pdf](http://docs.automotivelinux.org/docs/devguides/en/dev/reference/iotbzh2016/bsp/AGL_Phase2-Devkit-HowTo_bake_a_service.pdf)
+* [AGL-Devkit-HowTo_bake_a_service.pdf](https://iot.bzh/download/public/2016/bsp/AGL_Phase2-Devkit-HowTo_bake_a_service.pdf)
  Generic guide on how to add a new service in the BSP.
  Goes back to 2015 and uses Yocto 2.x.
  Includes stuff on building an image but looks like the focus is really the service.
-* [AGL-Kickstart-on-Renesas-Porter-Board.pdf](http://docs.automotivelinux.org/docs/devguides/en/dev/reference/iotbzh2016/sdk/AGL-Kickstart-on-Renesas-Porter-board.pdf)
+* [AGL-Kickstart-on-Renesas-Porter-Board.pdf](https://iot.bzh/download/public/2016/sdk/AGL-Kickstart-on-Renesas-Porter-board.pdf)
  Guide on how to build an image for the Porter Board using AGL 2.0.
-* [AGL-Devkit-Image-and-SDK-for-Porter.pdf](http://docs.automotivelinux.org/docs/devguides/en/dev/reference/iotbzh2016/sdk/AGL-Devkit-Image-and-SDK-for-porter.pdf)
+* [AGL-Devkit-Image-and-SDK-for-Porter.pdf](https://iot.bzh/download/public/2016/sdk/AGL-Devkit-Image-and-SDK-for-porter.pdf)
  Guide on building an AGL image and SDK for the Porter board.
  Uses Yocto 2.x.
 
