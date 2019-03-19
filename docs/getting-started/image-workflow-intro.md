@@ -16,9 +16,9 @@ in the AGL Documentation set.
 Links are provided when a set of steps is required that is documented
 elsewhere.
 
-<center><img src="images/image-developer-workflow.png"></center>
+![](images/image-developer-workflow.png){:: style="margin:auto; display:flex"}
 
-1. Prepare your build host to use use the tools needed to build your image.
+1. Prepare your build host to be able to use the tools needed to build your image.
 
 2. Download the AGL software into a local Git repository on your build host.
 

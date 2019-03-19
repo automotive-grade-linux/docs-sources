@@ -12,7 +12,7 @@ This section, provides links to topics with instructions needed to create images
 three types of supported platforms and for emulation using Quick EMUlator (QEMU)
 or VirtualBox:
 
-* [Most Intel-based 64-Bit Boards](./machines/intel.html/)
-* [Emulation](./machines/qemu.html/)
-* [R Car Starter Kit Gen3 Board](./machines/renesas.html/)
-* [Raspberry PI 2 or 3](./machines/raspberrypi.html/)
+* [Most Intel-based 64-Bit Boards](./machines/intel.html)
+* [Emulation](./machines/qemu.html)
+* [R Car Starter Kit Gen3 Board](./machines/renesas.html)
+* [Raspberry PI 2 or 3](./machines/raspberrypi.html)
