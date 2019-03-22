@@ -667,7 +667,7 @@ Net:   ravb
 Hit any key to stop autoboot:  0
 =>
 ```
-
+## 9. Setting-up U-boot
 ### Configuring U-Boot Parameters
 
 Follow these steps to configure the board to use the MicroSD card as the
@@ -773,7 +773,7 @@ boot device and also to set the screen resolution:
 ```
 run bootcmd
 ```
-
+## 10. Troubleshooting
 ### Logging Into the Console
 
 Once the board boots, you should see the
@@ -836,3 +836,5 @@ VERSION="3.0.0+snapshot-20161202 (chinook)"
 VERSION_ID="3.0.0-snapshot-20161202"
 PRETTY_NAME="Automotive Grade Linux 3.0.0+snapshot-20161202 (chinook)"
 ```
+
+**NOTE:** More generics troubleshooting can be found here : [Generic issues](../troubleshooting.html)
