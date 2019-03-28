@@ -1,12 +1,6 @@
 # Troubleshooting
 
-**WRITER'S NOTE:** This content needs a new home.
-  Most likely it will be in some "how-to" area as most of the information
-  fits that category.
-  For now, I am leaving it here.
-  The other two board-specific troubleshooting sections have been merged
-  into their respective build topics in the section describing how to
-  build an AGL image.
+This topic describes various areas that could cause you problems. 
 
 ## Including Extended Attributes
 
@@ -57,26 +51,6 @@ However, if you do, you must take these steps to copy `xattrs` to the media:
    $ tar --extract --xz --numeric-owner --preserve-permissions --preserve-order --totals \
               --xattrs-include='*' --directory=DESTINATION_DIRECTORY --file=agl-demo-platform.....tar.xz
    ```
-
-<!--
-## meta-rust
-
-**WRITER NOTE:** This bug no longer applies.  The people that maintain meta-rust have fixed it.
-See https://github.com/meta-rust/meta-rust/commit/39fd00119cf9267bc6b381d0b7abeebda31faf4e and
-https://github.com/meta-rust/meta-rust/pull/93.
-
-Due to a known bug in the upstream of meta-rust the Yocto/OE recipe for rust-cross may fail while building RVI SOTA Client or another application written in the Rust programming language.
-Until the complete resolution of the issue the workaround is to disable all use of the CXX11 ABI by applying the following lines to **conf/local.conf**:
-
-```bash
-LD_CXXFLAGS_append = " -D_GLIBCXX_USE_CXX11_ABI=0"
-TARGET_CXXFLAGS_append = " -D_GLIBCXX_USE_CXX11_ABI=0"
-CXXFLAGS_append = " -D_GLIBCXX_USE_CXX11_ABI=0"
-
-BUILD_CXXFLAGS_remove_pn-gcc-runtime = "-D_GLIBCXX_USE_CXX11_ABI=0"
-TARGET_CXXFLAGS_remove_pn-gcc-runtime = "-D_GLIBCXX_USE_CXX11_ABI=0" CXXFLAGS_remove_pn-gcc-runtime = "-D_GLIBCXX_USE_CXX11_ABI=0"
-```
--->
 
 ## Screen orientation for Splash and in Weston
 

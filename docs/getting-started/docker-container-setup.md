@@ -192,8 +192,6 @@ based on the AGL Worker image:
 **NOTE:**
 The password for the ID "devel" inside the docker image is "devel".
 
-**WRITER NOTE:** I need to do this and see what this output really looks like.
-
 ```bash
 $ git clone https://git.automotivelinux.org/AGL/docker-worker-generator
 $ cd docker-worker-generator

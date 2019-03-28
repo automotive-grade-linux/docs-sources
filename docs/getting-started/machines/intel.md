@@ -88,8 +88,6 @@ The build process puts the resulting image in the Build Directory:
 <build_directory>/tmp/deploy/images/intel-corei7-64/
 ```
 
-**WRITER NOTE:** I am not sure what to do with the following information:
-
 An alternative method for building an image is to use the AGL SDK delivered in a Docker container.
 
 There is currently no SDK dedicated to IA but the SDK provided for the Porter Board can build an IA image without changes (just `aglsetup.sh` needs to call for Intel).

@@ -20,10 +20,6 @@ Renesas development kits.
 
 You can find more information on building images from these resources:
 
-**WRITER NOTE:**
-This following list looks a bit dated.
-Do we want to update these PDFs or are they still useful?
-
 * [AGL-Devkit-Build-your-1st-AGL-Application.pdf](https://iot.bzh/download/public/2016/sdk/AGL-Devkit-Build-your-1st-AGL-Application.pdf)
  Generic guide on how to build various application types (HTML5, native, Qt, QML, …) for AGL.
  This is really about building an application and not the AGL image.
