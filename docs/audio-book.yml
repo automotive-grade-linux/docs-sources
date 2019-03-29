@@ -1,0 +1,12 @@
+type: books
+books:
+-
+    id: audio-docs-sources
+    title: Audio Framework
+    description: Audio Docs Sources documentation
+    keywords:
+    author: "IotBzh"
+    version: master
+    chapters:
+    - url: audio/bluez-alsa.md
+      name: bluez-alsa

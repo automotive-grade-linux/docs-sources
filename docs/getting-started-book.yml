@@ -1,0 +1,94 @@
+type: books
+books:
+-
+    id: welcome-overview
+    order: 10
+    title: "Welcome !"
+    description:
+    keywords:
+    author:
+    version: master
+    chapters:
+    - url: "getting-started/getting-started-welcome.md"
+      name: Overview
+-
+    id: image-development-workflow
+    order: 10
+    title: Developing an AGL Image
+    title_fr: Processus de génération d'une image
+    description:
+    keywords:
+    author:
+    version: master
+    chapters:
+    - url: "getting-started/image-workflow-intro.md"
+      name: Overview
+      name_fr: Vue d'ensemble
+    - url: "getting-started/image-workflow-prep-host.md"
+      name: Preparing Your Build Host
+    - url: "getting-started/image-workflow-download-sw.md"
+      name: Downloading AGL Software
+    - url: "getting-started/image-workflow-initialize-build-environment.md"
+      name: Initializing Your Build Environment
+    - url: "getting-started/image-workflow-cust-build.md"
+      name: Customizing Your Build
+    - url: "getting-started/image-workflow-build.md"
+      name: Building the AGL Image
+    - url: "getting-started/machines/intel.md"
+      name: Building for Most Intel 64-Bit Hardware Platforms
+    - url: "getting-started/machines/qemu.md"
+      name: Building for Emulation
+    - url: "getting-started/machines/renesas.md"
+      name: Build for R Car Starter Kit gen3 board
+    - url: "getting-started/machines/raspberrypi.md"
+      name: Build for Raspberry PI 2/3
+-
+    id: troubleshooting
+    order: 51
+    title: Troubleshooting
+    description: Troubleshooting Description
+    keywords:
+    author:
+    version: master
+    chapters:
+    - url: "getting-started/troubleshooting.md"
+      name: Generic issues
+-
+    id: docker-container-setup
+    order: 51
+    title: Setting Up a Docker Container
+    description: setup docker container Description
+    keywords:
+    author:
+    version: master
+    chapters:
+    - url: "getting-started/docker-container-setup.md"
+      name: Overview
+-
+    id: app-development-workflow
+    order: 60
+    title: Developing an Application
+    description:
+    keywords:
+    author:
+    version: master
+    chapters:
+    - url: "getting-started/app-workflow-intro.md"
+      name: Overview
+    - url: "getting-started/app-workflow-image.md"
+      name: Download or Build Your Image
+    - url: "getting-started/app-workflow-sdk.md"
+      name: Download or Build Your SDK Installer
+    - url: "getting-started/app-workflow-bootables.md"
+      name: Create Bootable Media
+    - url: "getting-started/app-workflow-boot.md"
+      name: Boot the Image on the Board
+    - url: "getting-started/app-workflow-prep-app.md"
+      name: Get Ready to Create Your Application
+    - url: "getting-started/app-workflow-build-app.md"
+      name: Create and Build the Application
+    - url: "getting-started/app-workflow-deploy-app.md"
+      name: Deploy the Application to the Board
+    - url: "getting-started/app-workflow-debug-app.md"
+      name: Debug the Application
+

@@ -1,0 +1,9 @@
+type: books
+books:
+-
+    id: hmiframework-docs-source
+    title: HMI Framework
+    description: HMI Framework Description
+    keywords:
+    author: "IotBzh"
+    version: master

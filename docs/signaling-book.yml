@@ -1,0 +1,12 @@
+type: books
+books:
+-
+    id: signaling-docs-source
+    title: Message Signaling
+    description: Message Signaling Description
+    keywords:
+    author: "IotBzh"
+    version: master
+    chapters:
+      - name: Message Signaling
+        url: signaling/architecture.md
