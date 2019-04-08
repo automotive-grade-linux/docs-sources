@@ -1,0 +1,14 @@
+type: books
+books:
+-
+    id: api-reference
+    order: 10
+    title: "API Reference"
+    description:
+    keywords:
+    author:
+    version: guppy
+    chapters:
+    - url: "api-reference/0-api-introduction.md"
+      name: API Reference
+
