@@ -167,7 +167,7 @@ Follow these steps to download the drivers you need:
 ## 4. Making Sure Your Build Environment is Correct
 
    The
-   "[Initializing Your Build Environment](../image-workflow-initialize-build-environment.html/Initializing-your-build-environment)"
+   "[Initializing Your Build Environment](../image-workflow-initialize-build-environment.html#Initializing-your-build-environment)"
    section presented generic information for setting up your build environment
    using the `aglsetup.sh` script.
    If you are building an image for a supported Renesas board,
