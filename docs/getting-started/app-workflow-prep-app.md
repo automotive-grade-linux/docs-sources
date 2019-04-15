@@ -40,7 +40,7 @@ and then use XDS to install the SDK:
 3. **Install the SDK:** Once you have XDS up, you need to install the
    SDK using either the command line or the Dashboard.
    See the
-   "[Installing AGL SDKs](../../../reference/xds/part-1/3_install-sdks.html)"
+   "[Installing AGL SDKs](../../../devguides/reference/xds/part-1/3_install-sdks.html)"
    section for information on using both.
 
 ## Installing a Stand-Alone SDK ##
