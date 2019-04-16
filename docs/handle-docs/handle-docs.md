@@ -1,27 +1,4 @@
-# Abstract
-
-AGL doc website is based on a collection of markdown files fetched from various repositories.
-A tool available in [docs-tools](https://github.com/automotive-grade-linux/docs-tools) takes
-care of collecting and templating all markdown files according fetched_files.yml located in
-[docs-webtemplate](https://github.com/automotive-grade-linux/docs-webtemplate).
-
-See below a scheme of the workflow of agl documentation website generation.
-
-![alt text](pictures/workflow.png)
-
-As you can see, the section_``version``.yml contains the links to all the book yaml files, it is proceed to fetch all book yaml files from remote repositories to the docs-webtemplate. The book yaml files contains all the url to your markdown files from the remote repository.
-
-As soon as all the markdown files are fetched, the tools process to generate the AGL doc website.
-
----
-
-**Note:**
-
-The images described in markdown files are automatically fetched. For that, the necessary condition is that in markdown files, the relative path has to match with the location of images.
-
----
-
-## How to add a new documentation section into AGL documentation
+# How to add a new documentation section into AGL documentation
 
 They are two steps to add new markdown files to AGL documentation:
 
@@ -34,7 +11,7 @@ They are two steps to add new markdown files to AGL documentation:
 
 ---
 
-### Add a book yaml file into a repository
+## Add a book yaml file into a repository
 
 The book file is needed to describe how your documentation is structured and must be used to describe
 among others :
@@ -73,7 +50,7 @@ There are several types of book:
 - book
 - api
 
-#### Book Type
+### Book Type
 
 `book` type describes documentation structure and chapters.
 Below the generic way to include a book file:
@@ -125,11 +102,11 @@ Here a sample yaml file, you can start from :
 wget https://raw.githubusercontent.com/automotive-grade-linux/docs-sources/master-next/docs/getting-started-book.yml -O my-new-book.yml
 ```
 
-#### Api Type
+### Api Type
 
 In progress
 
-### Add an entry in section file
+## Add an entry in section file
 
 There are 4 sections in docs: getting_started, architecture_guides, developer_guides, apis_services.
 
