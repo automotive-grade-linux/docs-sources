@@ -23,7 +23,7 @@ Several general methods exist:
   * Use remote commands from a host over a network, such as `scp` (i.e. secure copy).
 
   * You can set up your build environment to leverage a procedure's
-    [application template](../../../devguides/reference/sdk-devkit/docs/part-2/2_4-Use-app-templates.html)
+    [application template](../../../devguides/reference/2_4-Use-app-templates/README.html)
     (app-template).
     An app-template is an application framework that contains
     [CMake](https://cmake.org/) macros that abstract deploying the application.
