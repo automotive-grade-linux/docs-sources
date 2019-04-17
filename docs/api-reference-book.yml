@@ -7,7 +7,7 @@ books:
     description:
     keywords:
     author:
-    version: master
+    version: flounder
     chapters:
     - url: "api-reference/0-api-introduction.md"
       name: API Reference
