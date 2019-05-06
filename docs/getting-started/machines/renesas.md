@@ -664,6 +664,7 @@ Hit any key to stop autoboot:  0
 =>
 ```
 ## 9. Setting-up U-boot
+
 ### Configuring U-Boot Parameters
 
 Follow these steps to configure the board to use the MicroSD card as the
@@ -685,7 +686,7 @@ boot device and also to set the screen resolution:
    bootdelay=3
    fdt_high=0xffffffffffffffff
    initrd_high=0xffffffffffffffff
-   load_dtb=ext4load mmc 0:1 0x48000000 /boot/Image-r8a7795-h3ulcb.dtb
+   load_dtb=ext4load mmc 0:1 0x48000000 /boot/r8a7795-h3ulcb.dtb
    load_ker=ext4load mmc 0:1 0x48080000 /boot/Image
    stderr=serial
    stdin=serial
@@ -706,7 +707,7 @@ boot device and also to set the screen resolution:
    fdt_high=0xffffffffffffffff
    filesize=cdeb
    initrd_high=0xffffffffffffffff
-   load_dtb=ext4load mmc 0:1 0x48000000 /boot/Image-r8a7796-m3ulcb.dtb
+   load_dtb=ext4load mmc 0:1 0x48000000 /boot/r8a7796-m3ulcb.dtb
    load_ker=ext4load mmc 0:1 0x48080000 /boot/Image
    stderr=serial
    stdin=serial
@@ -731,31 +732,31 @@ boot device and also to set the screen resolution:
    **h3ulcb with BSP version greater than or equal to 2.19**:
 
     ```
-    setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/Image-r8a7795-es1-h3ulcb.dtb
+    setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/r8a7795-es1-h3ulcb.dtb
     ```
 
     **h3ulcb with BSP version less than 2.19**:
 
     ```
-    setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/Image-r8a7795-h3ulcb.dtb
+    setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/r8a7795-h3ulcb.dtb
     ```
 
     **m3ulcb**:
 
     ```bash
-    setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/Image-r8a7796-m3ulcb.dtb
+    setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/r8a7796-m3ulcb.dtb
     ```
 
     **m3ulcb with a Kingfisher board**:
 
     ```bash
-    setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/Image-r8a7796-m3ulcb-kf.dtb
+    setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/r8a7796-m3ulcb-kf.dtb
     ```
 
     **h3ulcb with a Kingfisher board**:
 
     ```bash
-    setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/Image-r8a7795-es1-h3ulcb-kf.dtb
+    setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/r8a7795-es1-h3ulcb-kf.dtb
     ```
 
 5. Save the boot environment:
@@ -770,6 +771,7 @@ boot device and also to set the screen resolution:
 run bootcmd
 ```
 ## 10. Troubleshooting
+
 ### Logging Into the Console
 
 Once the board boots, you should see the
