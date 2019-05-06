@@ -11,7 +11,7 @@ Or, is it better for you to use a remote user interface that is part of
 an Integrated Development Environment (IDE) such as Eclipse?
 
 For general information on debugging an application, see the
-"[Debug your first AGL application](../../../devguides/reference/xds/part-1/5_debug-first-app.html)"
+"[Debug Your First AGL Application](../../../devguides/reference/xds/part-1/debug-overview.html)"
 section.
 
 Here are three methods:
@@ -33,11 +33,11 @@ Here are three methods:
    * Use XDS remotely, which is based on `gdb` and
      [`gdbserver`](https://en.wikipedia.org/wiki/Gdbserver).
      See the
-     "[XDS remote debugging mode](../../../devguides/reference/xds/part-1/5-2_debug-first-app-cmd.html#xds-remote-debugging-mode)"
+     "[XDS remote debugging mode](../../../devguides/reference/xds/part-1/debug-cmd-line.html#xds-remote-debugging-mode)"
      section for more information.
 
      For information on how to remotely debug the application using XDS from within an IDE, see the
-     "[Debug using `xds-gdb` within an IDE](../../../devguides/reference/xds/part-1/5-3_debug-first-app-ide.html)"
+     "[Debug using `xds-gdb` within an IDE](../../../devguides/reference/xds/part-1/debug-ide.html)"
      section.
 
    In order to use third-party debugging tools, you need to include the tools in the target image.
