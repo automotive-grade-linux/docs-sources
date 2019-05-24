@@ -59,6 +59,17 @@ Follow these steps to download the drivers you need:
 
      The script's output identifies the files you need to download from the page and the example above correspond to the Electric Eel AGL revision (v5.0.0). Note that since Flounder AGL revision (v6.0.0), both zip have been renamed.
 
+     ***2019/05/24 : Rcar Graphics HOTFIX for BSP v3.15***
+
+     On the agl master branch, since the Rcar BSP v3.15 driver update, some graphics issues appeared. They have been fixed within the new v3.19 Renesas GFX binaries. To built correctly and use them on your AGL image, you have to add the following zip file into your download area : `R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston5-20190516.zip`.
+
+     This graphic package will be used by the `setup_mm_packages.sh` and it is available to download on the
+   [R-Car H3/M3 Software library and Technical document](https://www.renesas.com/us/en/solutions/automotive/rcar-download/rcar-demoboard-2.html)
+   website.
+
+      **NOTE:**
+      Be aware that **this package is added to the ones you need** (detected at step 1 just above) and only if you are using the 3.15 BSP of renesas.
+
 2. **Find the Download Links:**
 
    Find the appropriate download links on the
