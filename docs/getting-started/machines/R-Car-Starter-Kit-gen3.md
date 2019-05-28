@@ -41,9 +41,10 @@ The following documents may also be helpful:
 
 ## BSP Version of R-Car Starter Kit Gen3
 
+<!-- SPEC-2253 (gfx drivers copied from 3.19 on top of 3.15) - FIXME -->
 | AGL Version| Renesas version |
 |:-:|:-:|
-| AGL master  | 3.15.0 |
+| AGL master  | 3.15.0 (+ Gfx libs from 3.19.0) |
 | AGL 7.0.0  | 3.9.0 |
 | AGL 6.0.0 | 3.7.0 |
 | AGL 5.0.x, 5.1.0| 2.23.1 |
@@ -80,12 +81,16 @@ chmod a+r $XDG_DOWNLOAD_DIR/*.zip
 ```bash
 ls -1 $XDG_DOWNLOAD_DIR
 [master]
--rw-r--r--. 1 1664 agl-sdk 5.0M Jun 28 15:23 R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-20180627.zip
--rw-r--r--. 1 1664 agl-sdk 3,1M Jun 28 15:24 R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-20180627.zip
+-rw-r--r--. 1 1664 agl-sdk 5.0M Jun 28 15:23 R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-20190212.zip
+-rw-r--r--. 1 1664 agl-sdk 3,1M Jun 28 15:24 R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-20190212.zip
+
+[Guppy]
+-rw-r--r--. 1 1664 agl-sdk 4.9M Apr 24 15:23 R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-20180627.zip
+-rw-r--r--. 1 1664 agl-sdk 3,0M Apr 24 15:24 R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-20180627.zip
 
 [Flounder]
--rw-r--r--. 1 1664 agl-sdk 4.9M Apr 24 15:23 R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-20180423.zip
--rw-r--r--. 1 1664 agl-sdk 3,0M Apr 24 15:24 R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-20180423.zip
+-rw-r--r--. 1 1664 agl-sdk 4.9M Apr 24 15:23 R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-20180627.zip
+-rw-r--r--. 1 1664 agl-sdk 3,0M Apr 24 15:24 R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-20180627.zip
 
 [Eel]
 -rw-r--r--. 1 1664 agl-sdk 4.5M Dec  8 15:23 R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston2-20170904.zip
@@ -134,8 +139,8 @@ the R-Car Gen3 board can be downloaded from:
  https://www.renesas.com/en-us/solutions/automotive/rcar-demoboard-2.html
 
 These 2 files from there should be store in your'/home/devel/Downloads' directory.
-  R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston2-20170904.zip
-  R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-weston2-20170904.zip
+  R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston2-20190212.zip
+  R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-weston2-20190212.zip
 /home/working/workspace_agl_master/build_gen3
 --- fragment /home/working/workspace_agl_master/meta-agl/templates/base/99_setup_EULAconf.sh
 --- end of setup script
@@ -157,16 +162,16 @@ In any case, you can find out more information for the reason of the error in th
 --- fragment /home/thierry/workspace_agl/meta-agl/templates/base/01_setup_EULAfunc.sh
 --- fragment /home/thierry/workspace_agl/meta-agl/templates/machine/m3ulcb/50_setup.sh
 ~/workspace_agl ~/workspace_agl/build
-ERROR: FILES "+/home/thierry/Downloads/R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-20180423.zip+" NOT EXTRACTING CORRECTLY
-ERROR: FILES "+/home/thierry/Downloads/R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-20180423.zip+" NOT EXTRACTING CORRECTLY
+ERROR: FILES "+/home/thierry/Downloads/R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-20190212.zip+" NOT EXTRACTING CORRECTLY
+ERROR: FILES "+/home/thierry/Downloads/R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-20190212.zip+" NOT EXTRACTING CORRECTLY
 The graphics and multimedia acceleration packages for
 the R-Car Gen3 board BSP can be downloaded from:
 <https://www.renesas.com/us/en/solutions/automotive/rcar-download/rcar-demoboard-2.html>
 
 These 2 files from there should be stored in your
 '/home/thierry/Downloads' directory.
-  R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-20180423.zip
-  R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-20180423.zip
+  R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-20190212.zip
+  R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-20190212.zip
 ERROR: Script /home/thierry/workspace_agl/build/conf/setup.sh failed
 [snip]
 ```
@@ -229,7 +234,7 @@ For each subsequent build you only need to rewrite the SD-card with the new imag
 
 ### Firmware Update
 
-This proceedure is done in two steps. The 'Sample Loader and MiniMonitor update' step only needs to be done once per device. The 'Firmware stack update' step is mandatory only if you use AGl Eel (version 5.0) or later.
+This procedure is done in two steps. The 'Sample Loader and MiniMonitor update' step only needs to be done once per device. The 'Firmware stack update' step is mandatory only if you use AGl Eel (version 5.0) or later.
 
 #### Sample Loader and MiniMonitor update
 
@@ -604,18 +609,6 @@ VERSION="3.0.0+snapshot-20161202 (chinook)"
 VERSION_ID="3.0.0-snapshot-20161202"
 PRETTY_NAME="Automotive Grade Linux 3.0.0+snapshot-20161202 (chinook)"
 ```
-
-## More Documentation
-
-Detailed guides on how to build AGL for Renesas boards and using AGL SDK inside a ready-to-use Docker container:
-
-* [AGL-Devkit-Build-your-1st-AGL-Application.pdf][Iot.bzh AGL-Devkit-Build-your-1st-AGL-Application]
- Generic guide on how to build various application types (HTML5, native, Qt, QML, …) for AGL.
-* [AGL-Devkit-HowTo_bake_a_service.pdf][Iot.bzh AGL_Phase2-Devkit-HowTo_bake_a_service]
- Generic guide on how to add a new service in the BSP.
-* [AGL-Kickstart-on-Renesas-Porter-Board.pdf][Iot.bzh AGL-Kickstart-on-Renesas-Porter-Board]
-* [AGL-Devkit-Image-and-SDK-for-Porter.pdf][Iot.bzh AGL-Devkit-Image-and-SDK-for-Porter]
-* [AGL Developer Website](http://docs.automotivelinux.org)
 
 [R-car m3ulcb]: http://elinux.org/R-Car/Boards/M3SK
 [R-car m3ulcb firmware update]: https://elinux.org/R-Car/Boards/M3SK#Flashing_firmware
