@@ -11,33 +11,41 @@ Or, is it better for you to use a remote user interface that is part of
 an Integrated Development Environment (IDE) such as Eclipse?
 
 For general information on debugging an application, see the
-"[Debug your first AGL application](../../../devguides/reference/xds/part-1/5_debug-first-app.html)"
-section.
+"[Overview](../../../devguides/reference/xds/part-1/debug-overview.html)"
+topic under "Debugging Your First AGL Application".
 
-Here are three methods:
+Three methods exist:
 
    * Use `gdb` on the target.
 
-     **NOTE:** How to use `gdb` and other debugging tools such as `valgrind`, `strace`,
+     <!--section-note-->
+     **NOTE:**
+
+     How to use `gdb` and other debugging tools such as `valgrind`, `strace`,
      and so forth is beyond the scope of the AGL Documentation.
      See the appropriate documentation for third-party debugging tools.
+     <!--end-section-note-->
 
    * Use Core Dumps if you have set the `agl-devel` feature.
      Core Dumps are obviously more suited for post-mortem analysis.
      For features, see the
      "[Initializing Your Build Environment](./image-workflow-initialize-build-environment.html#initializing-your-build-environment)"
-     section.
+     topic.
 
-     **NOTE:** Core Dumps are available only with the "Flunky Flounder" release (i.e. 6.x).
+     <!--section-note-->
+     **NOTE:**
+
+     Core Dumps are available only with the "Flunky Flounder" release (i.e. 6.x).
+     <!--end-section-note-->
 
    * Use XDS remotely, which is based on `gdb` and
      [`gdbserver`](https://en.wikipedia.org/wiki/Gdbserver).
      See the
-     "[XDS remote debugging mode](../../../devguides/reference/xds/part-1/5-2_debug-first-app-cmd.html#xds-remote-debugging-mode)"
-     section for more information.
+     "[Using the XDS Command Line](../../../devguides/reference/xds/part-1/debug-cmd-line.html#xds-remote-debugging-mode)"
+     topic for more information.
 
      For information on how to remotely debug the application using XDS from within an IDE, see the
-     "[Debug using `xds-gdb` within an IDE](../../../devguides/reference/xds/part-1/5-3_debug-first-app-ide.html)"
+     "[Using an IDE](../../../devguides/reference/xds/part-1/debug-ide.html)"
      section.
 
    In order to use third-party debugging tools, you need to include the tools in the target image.
