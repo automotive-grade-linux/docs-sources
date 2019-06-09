@@ -41,7 +41,7 @@ Three methods exist:
    * Use XDS remotely, which is based on `gdb` and
      [`gdbserver`](https://en.wikipedia.org/wiki/Gdbserver).
      See the
-     "[Using the Command Line](../../../devguides/reference/xds/part-1/debug-cmd-line.html#xds-remote-debugging-mode)"
+     "[Using the XDS Command Line](../../../devguides/reference/xds/part-1/debug-cmd-line.html#xds-remote-debugging-mode)"
      topic for more information.
 
      For information on how to remotely debug the application using XDS from within an IDE, see the
