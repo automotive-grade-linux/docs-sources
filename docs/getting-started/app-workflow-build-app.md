@@ -9,7 +9,7 @@ A simple application you can experiment with is the standard
 "hello world" application.
 For information on how to get set up and then clone the Git repository
 for the "Hello World" application, see the
-"[Setup](../../../devguides/reference/xds/part-1/4-1_build-first-app-setup.html)"
+"[Get the Source Files](../../../devguides/reference/xds/part-1/create-app-get-source-files.html)"
 section.
 
 Key to developing an application suited for your target hardware is the
@@ -30,12 +30,12 @@ The following list describes several:
   * Use the XDS command line tool.
     For information on how to build the "Hello World" application using the XDS
     command line, see the
-    "[Build using command line tool](../../../devguides/reference/xds/part-1/4-2_build-first-app-cmd.html)"
+    "[Build Using the Command Line](../../../devguides/reference/xds/part-1/create-app-build-cmd-line.html)"
     section.
 
   * Use the XDS Dashboard.
     For information on how to build the application using the XDS Dashboard, see the
-    "[Build using XDS Dashboard](../../../devguides/reference/xds/part-1/4-3_build-first-app-dashboard.html)"
+    "[Build Using the XDS Dashboard](../../../devguides/reference/xds/part-1/create-app-build-dashboard.html)"
     section.
 
 * **Build the Application Using a Stand-Alone SDK:**
