@@ -508,7 +508,11 @@ Follow the steps below to configure the boot from microSD card and to set screen
 
     ```
     setenv bootargs console=ttySC0,115200 ignore_loglevel vmalloc=384M video=HDMI-A-1:1920x1080-32@60 root=/dev/mmcblk1p1 rw rootfstype=ext4 rootwait rootdelay=2
+    ```
+    ```
     setenv bootcmd run load_ker\; run load_dtb\; booti 0x48080000 - 0x48000000
+    ```
+    ```
     setenv load_ker ext4load mmc 0:1 0x48080000 /boot/Image
     ```
 
