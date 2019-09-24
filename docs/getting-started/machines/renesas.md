@@ -53,23 +53,11 @@ Follow these steps to download the drivers you need:
 
      ```bash
      grep -rn ZIP_.= $AGL_TOP/meta-agl/meta-agl-bsp/meta-rcar-gen3/scripts/setup_mm_packages.sh
-     3:ZIP_1="R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston5-20190212.zip"
-     4:ZIP_2="R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-weston5-20190212.zip"
+     3:ZIP_1="R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston5-20190802.zip"
+     4:ZIP_2="R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-weston5-20190802.zip"
      ```
 
-     The script's output identifies the files you need to download from the page and the example above correspond to the Happy Hallibut AGL revision (v8.0.0). 
-
-<!-- SPEC-2253 (gfx drivers copied from 3.19 on top of 3.15) - FIXME -->
-     ***2019/05/24 : Rcar Graphics HOTFIX for BSP v3.15***
-
-     On the agl master branch, since the Rcar BSP v3.15 driver update, some graphics issues appeared. They have been fixed within the new v3.19 Renesas GFX binaries. To built correctly and use them on your AGL image, you have to add the following zip file into your download area : `R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston5-20190516.zip`.
-
-     This graphic package will be used by the `setup_mm_packages.sh` and it is available to download on the
-   [R-Car H3/M3 Software library and Technical document](https://www.renesas.com/us/en/solutions/automotive/rcar-download/rcar-demoboard-2.html)
-   website.
-
-      **NOTE:**
-      Be aware that **this package is added to the ones you need** (detected at step 1 just above) and only if you are using the 3.15 BSP of renesas.
+     The script's output identifies the files you need to download from the page and the example above correspond to the Happy Hallibut AGL revision (v8.0.2). 
 
 2. **Find the Download Links:**
 
@@ -123,8 +111,8 @@ Follow these steps to download the drivers you need:
 
    ```bash
    $ ls -l $XDG_DOWNLOAD_DIR/*.zip
-   -rw-r--r-- 1 iot bzh 5492251  5 avril 14:37 R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston5-20190212.zip
-   -rw-r--r-- 1 iot bzh 3440842  5 avril 14:37 R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-weston5-20190212.zip
+   -rw-r--r-- 1 iot bzh 5431245 sept. 16 21:07 R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston5-20190802.zip
+   -rw-r--r-- 1 iot bzh 3442158 sept. 16 21:07 R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-weston5-20190802.zip
    ```
 
 ## 2. Getting More Software
@@ -247,8 +235,8 @@ Follow these steps to download the drivers you need:
     https://www.renesas.com/en-us/solutions/automotive/rcar-demoboard-2.html
 
    These 2 files from there should be store in your'/home/devel/Downloads' directory.
-     R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston5-20190212.zip
-     R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-weston5-20190212.zip
+     R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston5-20190802.zip
+     R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-weston5-20190802.zip
    /home/working/workspace_agl_master/build_gen3
    --- fragment /home/working/workspace_agl_master/meta-agl/templates/base/99_setup_EULAconf.sh
    --- end of setup script
@@ -273,16 +261,16 @@ Follow these steps to download the drivers you need:
    --- fragment /home/iotbzh/workspace_agl/meta-agl/templates/base/01_setup_EULAfunc.sh
    --- fragment /home/iotbzh/workspace_agl/meta-agl/templates/machine/m3ulcb/50_setup.sh
    ~/workspace_agl ~/workspace_agl/build
-   ERROR: FILES "+/home/iotbzh/Downloads/R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston5-20190212.zip+" NOT EXTRACTING CORRECTLY
-   ERROR: FILES "+/home/iotbzh/Downloads/R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-weston5-20190212.zip+" NOT EXTRACTING CORRECTLY
+   ERROR: FILES "+/home/iotbzh/Downloads/R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston5-20190802.zip+" NOT EXTRACTING CORRECTLY
+   ERROR: FILES "+/home/iotbzh/Downloads/R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-weston5-20190802.zip+" NOT EXTRACTING CORRECTLY
    The graphics and multimedia acceleration packages for
    the R-Car Gen3 board BSP can be downloaded from:
    <https://www.renesas.com/us/en/solutions/automotive/rcar-download/rcar-demoboard-2.html>
 
    These 2 files from there should be stored in your
    '/home/iotbzh/Downloads' directory.
-     R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston5-20190212.zip
-     R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-weston5-20190212.zip
+     R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston5-20190802.zip
+     R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-weston5-20190802.zip
    ERROR: Script /home/iotbzh/workspace_agl/build/conf/setup.sh failed
    [snip]
    ```
