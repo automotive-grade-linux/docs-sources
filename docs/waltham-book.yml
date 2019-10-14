@@ -1,0 +1,17 @@
+type: books
+books:
+-
+    id: waltham
+    order: 10
+    title: "Waltham"
+    description:
+    keywords:
+    author:
+    version: master
+    chapters:
+    - url: "waltham/0-waltham-overview.md"
+      name: Waltham Overview
+    - url: "waltham/1-waltham-client-and-receiver.md"
+      name: Waltham Client and Receiver
+    - url: "waltham/2-waltham-how-to-build.md"
+      name: Waltham How to Build
