@@ -133,8 +133,8 @@ Following are brief descriptions of the AGL features you can specify on the
   [Ptest](https://yoctoproject.org/docs/2.4.4/dev-manual/dev-manual.html#testing-packages-with-ptest)
   as part of the build.
 
-* **agl-sota**: Enables State of the Art (SOTA) components and dependencies.
-  Includes meta-sota, meta-file systems, meta-ruby, and meta-rust.
+* **agl-sota**: Enables Software Over-the-Air (SOTA) components and dependencies.
+  Includes meta-updater, meta-updater-qemux86-64, meta-filesystems, and meta-python.
 
 * **agl-demo**: Enables the layers meta-agl-demo and meta-qt5.
   You need agl-demo if you are going to build the agl-demo-platform.
