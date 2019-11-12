@@ -63,7 +63,7 @@ Go to the [AGL Download Website](https://download.automotivelinux.org/AGL/releas
 site and follow these links:
 
 ```
-flounder -> 6.0.0 -> qemuarm64 -> deploy -> images -> qemuarm64
+halibut -> 8.0.0 -> qemuarm64 -> deploy -> images -> qemuarm64
 ```
 
 From the list, you could download the ``Image-qemuarm64.bin`` image file.
