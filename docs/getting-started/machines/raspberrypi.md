@@ -1,17 +1,17 @@
-# Building for Raspberry PI 2 or 3
+# Building for Raspberry PI 3 or 4
 
 The
 [Raspberry PI](https://www.raspberrypi.org/help/what-%20is-a-raspberry-pi/) is a small
 computer that is ideal for learning computing and computer languages.
 The AGL Project supports building images for the
-[Raspberry PI 2](https://www.raspberrypi.org/products/raspberry-pi-2-model-b/) and the
-[Raspberry PI 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-a-plus/) boards.
+[Raspberry PI 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-a-plus/) and the
+[Raspberry PI 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/) boards.
 Each of these boards comes in a variety of models.
 See the
 [Raspberry PI Product Page](https://www.raspberrypi.org/products/) for more information.
 
 This section describes the steps you need to take to build the
-AGL demo image for both the Raspberry PI 2 and 3 boards.
+AGL demo image for both the Raspberry PI 3 and 4 boards.
 
 ## 1. Making Sure Your Build Environment is Correct
 
@@ -25,18 +25,18 @@ specific options when you run the script.
 Use the following commands to initialize your build environment.
 In each case, the "-m" option specifies the machine and the
 list of AGL features used with script are appropriate for development of
-the AGL demo image suited for either Raspberry PI 2 or 3:
-
-**Raspberry PI 2**:
-
-```bash
-$ source meta-agl/scripts/aglsetup.sh -m raspberrypi2 agl-demo agl-netboot agl-appfw-smack
-```
+the AGL demo image suited for either Raspberry PI 3 or 4:
 
 **Raspberry PI 3**:
 
 ```bash
 $ source meta-agl/scripts/aglsetup.sh -m raspberrypi3 agl-demo agl-netboot agl-appfw-smack
+```
+
+**Raspberry PI 4**:
+
+```bash
+$ source meta-agl/scripts/aglsetup.sh -m raspberrypi4 agl-demo agl-netboot agl-appfw-smack
 ```
 
 ## 2. Configuring the Build to Include Packages Under a Commercial License
@@ -95,13 +95,13 @@ $ bitbake agl-demo-platform
 ```
 
 By default, the build process puts the resulting image in the Build Directory.
-Here is example for the Raspberry PI 3 board:
+Here is example for the Raspberry PI 4 board:
 
 ```
-<build_directory>/tmp/deploy/images/raspberrypi3/agl-demo-platform-raspberrypi3.wic.xz
+<build_directory>/tmp/deploy/images/raspberrypi4/agl-demo-platform-raspberrypi4.wic.xz
 ```
 
-If you build for the Raspberry PI 2 board, the location uses "raspberrypi2" in the path.
+If you build for the Raspberry PI 3 board, the location uses "raspberrypi3" in the path.
 
 ## 4. Deploying the AGL Demo Image
 
@@ -109,7 +109,7 @@ Deploying the AGL demo image consists of copying the image on a MicroSD card,
 plugging the card into the Raspberry PI board, and then booting the board.
 
 Follow these steps to copy the image to a MicroSD card and boot
-the image on the Raspberry PI 2 or 3 board:
+the image on the Raspberry PI 3 or 4 board:
 
 1. Plug your MicroSD card into your Build Host (i.e. the system that has your build output).
 
@@ -162,8 +162,8 @@ the image on the Raspberry PI 2 or 3 board:
 3. Now that you know the device name, unmount the device and use the
    `xzcat` command to copy the image to the MicroSD card.
 
-   **NOTE:** For Raspberry PI 2, the image is at `build/tmp/deploy/images/raspberrypi2/agl-demo-platform-raspberrypi2.wic.xz`.
-   For Raspberry PI 3, the image is at `build/tmp/deploy/images/raspberrypi3/agl-demo-platform-raspberrypi3.wic.xz`.
+   **NOTE:** For Raspberry PI 3, the image is at `build/tmp/deploy/images/raspberrypi3/agl-demo-platform-raspberrypi3.wic.xz`.
+   For Raspberry PI 4, the image is at `build/tmp/deploy/images/raspberrypi4/agl-demo-platform-raspberrypi4.wic.xz`.
 
    Be sure you are root, provide the actual device name for *sdcard_device_name*, and the actual
    image name for *image_name*:
