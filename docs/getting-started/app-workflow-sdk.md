@@ -18,11 +18,11 @@ For a look at the SDK installers for supported boards, go to the
 From there, you can explore to find the SDK installer you want to download.
 As an example, consider using a pre-built SDK to develop applications suited for a 64-bit
 ARM-based board that you want to emulate using QEMU.
-Furthermore, you are using the 6.0.0 "Flounder" release of the AGL software.
+Furthermore, you are using the 8.0.0 "Halibut" release of the AGL software.
 Follow these links:
 
 ```
-flounder -> 6.0.0 -> qemuarm64 -> deploy -> sdk
+halibut -> 8.0.0 -> qemuarm64 -> deploy -> sdk
 ```
 
 From the list, you download the ``*.sh`` file, which is an installation script for the SDK.
@@ -31,7 +31,7 @@ Running the SDK installer script installs the SDK onto your build host.
 SDK installation scripts have long names that reflect the platform specifics.
 For example, the following file installs the SDK given the specifics earlier:
 
-``poky-agl-glibc-x86_64-agl-demo-platform-crosssdk-armv7vehf-neon-vfpv4-toolchain-6.0.0.sh``
+``poky-agl-glibc-x86_64-agl-demo-platform-crosssdk-aarch64-toolchain-8.0.0.sh``
 
 **NOTE:** If you want to know more about SDK installer file naming, which is a result of
 BitBake and the Yocto Project, see the
@@ -60,5 +60,5 @@ Assuming your top-level workspace is ``~/workspace_agl``, here is an example loc
 and SDK installer file:
 
 ```
-~/workspace_agl/build/tmp/deploy/sdk/poky-agl-glibc-x86_64-core-image-minimal-cortexa15hf-neon-toolchain-3.0.0+snapshot.sh
+~/workspace_agl/build/tmp/deploy/sdk/poky-agl-glibc-x86_64-agl-demo-platform-crosssdk-aarch64-toolchain-8.0.0.sh
 ```

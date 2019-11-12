@@ -45,12 +45,12 @@ The remainder of this section provides steps on how to download the AGL source f
      Using the latest stable release gives you a solid snapshot of the
      latest know release.
      The release is static, tested, and known to work.
-     To download the latest stable release branch (i.e. Flounder 6.0), use
+     To download the latest stable release branch (i.e. Halibut 8.0), use
      the following commands:
 
      ```bash
      $ cd $AGL_TOP
-     $ repo init -b flounder -u https://gerrit.automotivelinux.org/gerrit/AGL/AGL-repo
+     $ repo init -b halibut -u https://gerrit.automotivelinux.org/gerrit/AGL/AGL-repo
      $ repo sync
      ```
 

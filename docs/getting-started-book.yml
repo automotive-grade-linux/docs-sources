@@ -41,7 +41,7 @@ books:
     - url: "getting-started/machines/renesas.md"
       name: Build for R Car Starter Kit gen3 board
     - url: "getting-started/machines/raspberrypi.md"
-      name: Build for Raspberry PI 2/3
+      name: Build for Raspberry PI 3/4
 -
     id: troubleshooting
     order: 51
