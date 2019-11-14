@@ -44,7 +44,7 @@ specific options when you run the script:
 ```bash
 $ source meta-agl/scripts/aglsetup.sh \
     -m intel-corei7-64 \
-    agl-devel agl-demo agl-appfw-smack agl-netboot agl-audio-4a-framework
+    agl-devel agl-demo agl-appfw-smack agl-netboot agl-pipewire
 ```
 
 The "-m" option specifies the "intel-corei7-64" machine.
