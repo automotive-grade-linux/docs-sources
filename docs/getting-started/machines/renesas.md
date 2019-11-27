@@ -100,7 +100,7 @@ Follow these steps to download the drivers you need:
    You can use the following command:
 
    ```bash
-   chmod a+4 $XDG_DOWNLOAD_DIR/*.zip
+   chmod a+r $XDG_DOWNLOAD_DIR/*.zip
    ```
 
 6. **Check to be Sure the Files are Downloaded and Have the Correct Rights:**
