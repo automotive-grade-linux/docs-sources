@@ -417,7 +417,7 @@ Hit any key to stop autoboot:  0
 
 * For machine m3ulcb:
 
-```
+```bash
 NOTICE:  BL2: R-Car Gen3 Initial Program Loader(CA57) Rev.1.0.14
 NOTICE:  BL2: PRR is R-Car M3 Ver1.0
 NOTICE:  BL2: Board is Starter Kit Rev1.0
@@ -465,7 +465,7 @@ Follow the steps below to configure the boot from microSD card and to set screen
 * Type **printenv** to check if you have correct parameters for booting your board:
   * Example for a h3ulcb:
 
-    ```
+    ```bash
     => printenv
     baudrate=115200
     bootargs=console=ttySC0,115200 root=/dev/mmcblk1p1 rootwait ro rootfstype=ext4
@@ -485,7 +485,7 @@ Follow the steps below to configure the boot from microSD card and to set screen
 
   * Example for a m3ulcb:
 
-    ```
+    ```bash
     => printenv
     baudrate=115200
     bootargs=console=ttySC0,115200 root=/dev/mmcblk1p1 rootwait ro rootfstype=ext4
@@ -506,25 +506,27 @@ Follow the steps below to configure the boot from microSD card and to set screen
 
     * To boot on a sd card, it is recommended to set your environment using these commands :
 
-    ```
+    ```bash
     setenv bootargs console=ttySC0,115200 ignore_loglevel vmalloc=384M video=HDMI-A-1:1920x1080-32@60 root=/dev/mmcblk1p1 rw rootfstype=ext4 rootwait rootdelay=2
     ```
-    ```
+
+    ```bash
     setenv bootcmd run load_ker\; run load_dtb\; booti 0x48080000 - 0x48000000
     ```
-    ```
+
+    ```bash
     setenv load_ker ext4load mmc 0:1 0x48080000 /boot/Image
     ```
 
     * For machine h3ulcb (BSP >= 2.19):
 
-    ```
+    ```bash
     setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/Image-r8a7795-es1-h3ulcb.dtb
     ```
 
     * For machine h3ulcb (BSP < 2.19):
 
-    ```
+    ```bash
     setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/Image-r8a7795-h3ulcb.dtb
     ```
 
@@ -554,7 +556,7 @@ Follow the steps below to configure the boot from microSD card and to set screen
 
 * Now you can boot:
 
-```
+```bash
 run bootcmd
 ```
 
@@ -628,4 +630,3 @@ PRETTY_NAME="Automotive Grade Linux 3.0.0+snapshot-20161202 (chinook)"
 [Iot.bzh AGL-Devkit-Image-and-SDK-for-Porter]: http://docs.automotivelinux.org/docs/devguides/en/dev/reference/iotbzh2016/sdk/AGL-Devkit-Image-and-SDK-for-porter.pdf
 [Iot.bzh AGL-Devkit-Build-your-1st-AGL-Application]: http://docs.automotivelinux.org/docs/devguides/en/dev/reference/iotbzh2016/sdk/AGL-Devkit-Build-your-1st-AGL-Application.pdf
 [Iot.bzh AGL_Phase2-Devkit-HowTo_bake_a_service]: http://docs.automotivelinux.org/docs/devguides/en/dev/reference/iotbzh2016/bsp/AGL_Phase2-Devkit-HowTo_bake_a_service.pdf
-

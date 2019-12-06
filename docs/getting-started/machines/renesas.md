@@ -33,7 +33,6 @@ You can find more information on building images from these resources:
  Guide on building an AGL image and SDK for the Porter board.
  Uses Yocto 2.x.
 
-
 ## 1. Downloading Proprietary Drivers
 
 Before setting up the build environment, you need to download proprietary drivers from the
@@ -57,7 +56,7 @@ Follow these steps to download the drivers you need:
      4:ZIP_2="R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-weston5-20190802.zip"
      ```
 
-     The script's output identifies the files you need to download from the page and the example above correspond to the Happy Hallibut AGL revision (v8.0.2). 
+     The script's output identifies the files you need to download from the page and the example above correspond to the Happy Hallibut AGL revision (v8.0.2).
 
 2. **Find the Download Links:**
 
@@ -91,7 +90,7 @@ Follow these steps to download the drivers you need:
    Here is an example:
 
    ```bash
-   $ export XDG_DOWNLOAD_DIR=$HOME/Downloads
+   export XDG_DOWNLOAD_DIR=$HOME/Downloads
    ```
 
 5. **Be Sure the Files Have Rights:**
@@ -133,12 +132,16 @@ Follow these steps to download the drivers you need:
 
      | AGL Version| Renesas version |
      |:-:|:-:|
-     | AGL master  | 3.15.0 |
-     | AGL 7.0.0  | 3.9.0 |
-     | AGL 6.0.3, 6.0.4  | 3.9.0 |
-     | AGL 6.0.0, 6.0.1, 6.0.2 | 3.7.0 |
-     | AGL 5.0.x, 5.1.0| 2.23.1 |
-     | AGL 4.0.x |2.19.0 |
+     | AGL master  | 3.21.0 |
+     | AGL halibut 8.0.2 8.0.3 | 3.21.0 |
+     | AGL halibut 8.0.1 | 3.19.0 |
+     | AGL halibut 8.0.0 | 3.15.0 |
+     | AGL guppy 7.0.3  | 3.19.0 |
+     | AGL guppy 7.0.0 7.0.1 7.0.2  | 3.15.0 |
+     | AGL flounder 6.0.3, 6.0.4  | 3.9.0 |
+     | AGL flounder 6.0.0, 6.0.1, 6.0.2 | 3.7.0 |
+     | AGL eel 5.0.x, 5.1.0| 2.23.1 |
+     | AGL dab 4.0.x |2.19.0 |
 
    **NOTE:**
    I don't know how the user uses this information.
@@ -150,19 +153,20 @@ Follow these steps to download the drivers you need:
    Having these items ahead of time saves you from having to try and
    collect hardware during development:
 
-   * Supported Starter Kit Gen3 board with its 5V power supply.
-   * Micro USB-A cable for serial console.
-     This cable is optional if you are using Ethernet and an SSH connection.
-   * USB 2.0 Hub.  The hub is optional but makes it easy to connect multiple USB devices.
-   * Ethernet cable.  The cable is optional if you are using a serial console.
-   * HDMI type D (Micro connector) cable and an associated display.
-   * 4 Gbyte minimum MicroSD Card.  It is recommended that you use a class 10 type.
-   * USB touch screen device such as the GeChic 1502i/1503i.  A touch screen device is optional.
+Supported Starter
+
+* Kit Gen3 board with its 5V power supply.
+* Micro USB-A cable for serial console.
+    This cable is optional if you are using Ethernet and an SSH connection.
+* USB 2.0 Hub.  The hub is optional but makes it easy to connect multiple USB devices.
+* Ethernet cable.  The cable is optional if you are using a serial console.
+* HDMI type D (Micro connector) cable and an associated display.
+* 4 Gbyte minimum MicroSD Card.  It is recommended that you use a class 10 type.
+* USB touch screen device such as the GeChic 1502i/1503i.  A touch screen device is optional.
 
    **NOTE:** The Salvator-X Board has NDA restrictions.
    Consequently, less documentation is available for this board both here and across the
    Internet.
-
 
 ## 4. Making Sure Your Build Environment is Correct
 
@@ -187,7 +191,7 @@ Follow these steps to download the drivers you need:
    for the Starter Kit Pro/M3 Board:
 
    ```bash
-   $ export MACHINE=m3ulcb
+   export MACHINE=m3ulcb
    ```
 
 2. **Run the `aglsetup.sh` Script:**
@@ -195,8 +199,8 @@ Follow these steps to download the drivers you need:
    Use the following commands to run the AGL Setup script:
 
    ```bash
-   $ cd $AGL_TOP
-   $ source meta-agl/scripts/aglsetup.sh -m $MACHINE -b build agl-devel agl-demo agl-netboot agl-appfw-smack agl-localdev
+   cd $AGL_TOP
+   source meta-agl/scripts/aglsetup.sh -m $MACHINE -b build agl-devel agl-demo agl-netboot agl-appfw-smack agl-localdev
    ```
 
    **NOTE:**
@@ -308,11 +312,15 @@ as follows:
 ```bash
   MACHINE = "h3ulcb"
 ```
+
 or
+
 ```bash
   MACHINE = "m3ulcb"
 ```
+
 or
+
 ```bash
   MACHINE = "h3-salvator-x"
 ```
@@ -345,7 +353,7 @@ You can find these pre-built images on the
 
 For supported Renesas boards, the filenames have the following form:
 
-```
+```bash
 <release-name>/<release-number>/m3ulcb-nogfx/deploy/images/m3ulcb/Image-m3ulcb.bin
 ```
 
@@ -363,7 +371,7 @@ For this example, the target is "agl-demo-platform":
 
 The build process puts the resulting image in the Build Directory:
 
-```
+```bash
 <build_directory>/tmp/deploy/images/$MACHINE
 ```
 
@@ -556,21 +564,20 @@ To use the link, you need to launch the client.
 Here are three commands, which vary based on the serial client, that show
 how to launch the client:
 
-
 ```bash
-$ picocom -b 115200 /dev/ttyUSB0
+picocom -b 115200 /dev/ttyUSB0
 ```
 
 or
 
 ```bash
-$ minicom -b 115200 -D /dev/ttyUSB0
+minicom -b 115200 -D /dev/ttyUSB0
 ```
 
 or
 
 ```bash
-$ screen /dev/ttyUSB0 115200
+screen /dev/ttyUSB0 115200
 ```
 
 ### Powering on the Board to Get a Shell at the Console
@@ -625,7 +632,7 @@ Hit any key to stop autoboot:  0
 
 **m3ulcb:**
 
-```
+```bash
 NOTICE:  BL2: R-Car Gen3 Initial Program Loader(CA57) Rev.1.0.14
 NOTICE:  BL2: PRR is R-Car M3 Ver1.0
 NOTICE:  BL2: Board is Starter Kit Rev1.0
@@ -663,6 +670,7 @@ Net:   ravb
 Hit any key to stop autoboot:  0
 =>
 ```
+
 ## 9. Setting-up U-boot
 
 ### Configuring U-Boot Parameters
@@ -678,7 +686,7 @@ boot device and also to set the screen resolution:
    enter **printenv** to check if you have correct parameters for booting your board:
    Here is an example using the **h3ulcb** board:
 
-   ```
+   ```bash
    => printenv
    baudrate=115200
    bootargs=console=ttySC0,115200 root=/dev/mmcblk1p1 rootwait ro rootfstype=ext4
@@ -698,7 +706,7 @@ boot device and also to set the screen resolution:
 
    Here is a second example using the **m3ulcb** board:
 
-   ```
+   ```bash
    => printenv
    baudrate=115200
    bootargs=console=ttySC0,115200 root=/dev/mmcblk1p1 rootwait ro rootfstype=ext4
@@ -720,7 +728,7 @@ boot device and also to set the screen resolution:
 3. To boot your board using the MicroSD card, be sure your environment is set up
    as follows:
 
-    ```
+    ```bash
     setenv bootargs console=ttySC0,115200 ignore_loglevel vmalloc=384M video=HDMI-A-1:1920x1080-32@60 root=/dev/mmcblk1p1 rw rootfstype=ext4 rootwait rootdelay=2
     setenv bootcmd run load_ker\; run load_dtb\; booti 0x48080000 - 0x48000000
     setenv load_ker ext4load mmc 0:1 0x48080000 /boot/Image
@@ -731,13 +739,13 @@ boot device and also to set the screen resolution:
 
    **h3ulcb with BSP version greater than or equal to 2.19**:
 
-    ```
+    ```bash
     setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/r8a7795-es1-h3ulcb.dtb
     ```
 
     **h3ulcb with BSP version less than 2.19**:
 
-    ```
+    ```bash
     setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/r8a7795-h3ulcb.dtb
     ```
 
@@ -767,9 +775,10 @@ boot device and also to set the screen resolution:
 
 6. Boot the board:
 
-```
+```bash
 run bootcmd
 ```
+
 ## 10. Troubleshooting
 
 ### Logging Into the Console
