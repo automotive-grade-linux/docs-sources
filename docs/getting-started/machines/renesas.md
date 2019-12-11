@@ -136,9 +136,10 @@ Follow these steps to download the drivers you need:
      | AGL halibut 8.0.2 8.0.3 | 3.21.0 |
      | AGL halibut 8.0.1 | 3.19.0 |
      | AGL halibut 8.0.0 | 3.15.0 |
+     | AGL guppy 7.0.4  | 3.21.0 |
      | AGL guppy 7.0.3  | 3.19.0 |
-     | AGL guppy 7.0.0 7.0.1 7.0.2  | 3.15.0 |
-     | AGL flounder 6.0.3, 6.0.4  | 3.9.0 |
+     | AGL guppy 7.0.0 7.0.1 7.0.2  | 3.9.0 |
+     | AGL flounder 6.0.3, 6.0.4 6.0.5 | 3.9.0 |
      | AGL flounder 6.0.0, 6.0.1, 6.0.2 | 3.7.0 |
      | AGL eel 5.0.x, 5.1.0| 2.23.1 |
      | AGL dab 4.0.x |2.19.0 |
