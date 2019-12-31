@@ -119,7 +119,7 @@ qemu-system-x86_64 -enable-kvm -m 2048 \
     -device virtio-rng-pci \
     -serial mon:stdio -serial null \
     -soundhw hda \
-    -net nic,vlan=0 \
+    -net nic \
     -net user,hostfwd=tcp::2222-:22
 ```
 
