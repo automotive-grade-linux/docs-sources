@@ -52,11 +52,9 @@ Follow these steps to download the drivers you need:
 
      ```bash
      grep -rn ZIP_.= $AGL_TOP/meta-agl/meta-agl-bsp/meta-rcar-gen3/scripts/setup_mm_packages.sh
-     3:ZIP_1="R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston5-20190802.zip"
-     4:ZIP_2="R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-weston5-20190802.zip"
      ```
 
-     The script's output identifies the files you need to download from the page and the example above correspond to the Happy Hallibut AGL revision (v8.0.2).
+     The script's output identifies the files you need to download from the page.
 
 2. **Find the Download Links:**
 
@@ -65,7 +63,6 @@ Follow these steps to download the drivers you need:
    site.
    The file pairs are grouped according to the Yocto Project version you are
    using with the AGL software.
-   The Flounder release of AGL uses the 2.4 version of the Yocto Project (i.e. "Rocko").
 
 3. **Download the Files:**
 
@@ -133,7 +130,7 @@ Follow these steps to download the drivers you need:
      | AGL Version| Renesas version |
      |:-:|:-:|
      | AGL master  | 3.21.0 |
-     | AGL halibut 8.0.2 8.0.3 | 3.21.0 |
+     | AGL halibut 8.0.2 8.0.3 8.0.4 | 3.21.0 |
      | AGL halibut 8.0.1 | 3.19.0 |
      | AGL halibut 8.0.0 | 3.15.0 |
      | AGL guppy 7.0.4  | 3.21.0 |
@@ -228,57 +225,63 @@ Supported Starter
    You can examine this log to see the results of the script.
    For example, suppose the graphics drivers were missing or could not be extracted
    when you ran the script.
-   In case of missing graphics drivers, you could notice an error message
-   similar to the following:
 
-   ```bash
-   [snip]
-   --- fragment /home/working/workspace_agl_master/meta-agl/templates/machine/h3ulcb/50_setup.sh
-   /home/working/workspace_agl_master /home/working/workspace_agl_master/build_gen3
-   The graphics and multimedia acceleration packages for
-   the R-Car Gen3 board can be downloaded from:
-    https://www.renesas.com/en-us/solutions/automotive/rcar-demoboard-2.html
+<details>
+  <summary> In case of missing graphics drivers, you could notice an error message
+   similar to the following:</summary>
+  <pre>
+    <code>
+[snip]
+--- fragment /home/working/workspace_agl_master/meta-agl/templates/machine/h3ulcb/50_setup.sh
+/home/working/workspace_agl_master /home/working/workspace_agl_master/build_gen3
+The graphics and multimedia acceleration packages for
+the R-Car Gen3 board can be downloaded from:
+https://www.renesas.com/en-us/solutions/automotive/rcar-demoboard-2.html
 
-   These 2 files from there should be store in your'/home/devel/Downloads' directory.
-     R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston5-20190802.zip
-     R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-weston5-20190802.zip
-   /home/working/workspace_agl_master/build_gen3
-   --- fragment /home/working/workspace_agl_master/meta-agl/templates/base/99_setup_EULAconf.sh
-   --- end of setup script
-   OK
-   Generating setup file: /home/working/workspace_agl_master/build_gen3/agl-init-build-env ... OK
-   ------------ aglsetup.sh: Done
-   [snip]
-   ```
+These 2 files from there should be store in your'/home/devel/Downloads' directory.
+  R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston5-20190802.zip
+  R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-weston5-20190802.zip
+/home/working/workspace_agl_master/build_gen3
+--- fragment /home/working/workspace_agl_master/meta-agl/templates/base/99_setup_EULAconf.sh
+--- end of setup script
+OK
+Generating setup file: /home/working/workspace_agl_master/build_gen3/agl-init-build-env ... OK
+------------ aglsetup.sh: Done
+[snip]
+    </code>
+  </pre>
+</details>
 
    If you encounter this issue, or any other unwanted behavior, you can fix the error
    mentioned, remove the `$AGL_TOP/build` directory, and then re-launch the
    `aglsetup.sh` again.
 
-   Here is another example that indicates the driver files could not be extracted from
-   the downloads directory:
+<details>
+  <summary>Here is another example that indicates the driver files could not be extracted from the downloads directory:</summary>
+  <pre>
+    <code>
+[snip]
 
-   ```bash
-   [snip]
+~/workspace_agl/build/conf $ cat setup.log
+--- beginning of setup script
+--- fragment /home/iotbzh/workspace_agl/meta-agl/templates/base/01_setup_EULAfunc.sh
+--- fragment /home/iotbzh/workspace_agl/meta-agl/templates/machine/m3ulcb/50_setup.sh
+~/workspace_agl ~/workspace_agl/build
+ERROR: FILES "+/home/iotbzh/Downloads/R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston5-20190802.zip+" NOT EXTRACTING CORRECTLY
+ERROR: FILES "+/home/iotbzh/Downloads/R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-weston5-20190802.zip+" NOT EXTRACTING CORRECTLY
+The graphics and multimedia acceleration packages for
+the R-Car Gen3 board BSP can be downloaded from:
+<https://www.renesas.com/us/en/solutions/automotive/rcar-download/rcar-demoboard-2.html>
 
-   ~/workspace_agl/build/conf $ cat setup.log
-   --- beginning of setup script
-   --- fragment /home/iotbzh/workspace_agl/meta-agl/templates/base/01_setup_EULAfunc.sh
-   --- fragment /home/iotbzh/workspace_agl/meta-agl/templates/machine/m3ulcb/50_setup.sh
-   ~/workspace_agl ~/workspace_agl/build
-   ERROR: FILES "+/home/iotbzh/Downloads/R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston5-20190802.zip+" NOT EXTRACTING CORRECTLY
-   ERROR: FILES "+/home/iotbzh/Downloads/R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-weston5-20190802.zip+" NOT EXTRACTING CORRECTLY
-   The graphics and multimedia acceleration packages for
-   the R-Car Gen3 board BSP can be downloaded from:
-   <https://www.renesas.com/us/en/solutions/automotive/rcar-download/rcar-demoboard-2.html>
-
-   These 2 files from there should be stored in your
-   '/home/iotbzh/Downloads' directory.
-     R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston5-20190802.zip
-     R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-weston5-20190802.zip
-   ERROR: Script /home/iotbzh/workspace_agl/build/conf/setup.sh failed
-   [snip]
-   ```
+These 2 files from there should be stored in your
+'/home/iotbzh/Downloads' directory.
+  R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-weston5-20190802.zip
+  R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-weston5-20190802.zip
+ERROR: Script /home/iotbzh/workspace_agl/build/conf/setup.sh failed
+[snip]
+    </code>
+  </pre>
+</details>
 
 ## 5. Checking Your Configuration
 
@@ -423,24 +426,32 @@ Follow these steps to update the firmware:
 
 ### Preparing the MicroSD Card
 
-Plug the MicroSD card into your Build Host.
-After plugging in the device, use the `dmesg` command as follows to
-discover the device name:
-
-```bash
+<details>
+  <summary>
+    Plug the MicroSD card into your Build Host.
+    After plugging in the device, use the `dmesg` command as follows to
+    discover the device name:
+  </summary>
+  <pre>
+    <code>
 $ dmesg | tail -4
 [ 1971.462160] sd 6:0:0:0: [sdc] Mode Sense: 03 00 00 00
 [ 1971.462277] sd 6:0:0:0: [sdc] No Caching mode page found
 [ 1971.462278] sd 6:0:0:0: [sdc] Assuming drive cache: write through
 [ 1971.463870]  sdc: sdc1 sdc2
-```
+    </code>
+  </pre>
+</details>
 
 In the previous example, the MicroSD card is attached to the device `/dev/sdc`.
 
-You can also use the `lsblk` command to show all your devices.
-Here is an example that shows the MicroSD card as `/dev/sdc`:
-
-```bash
+<details>
+  <summary>
+    You can also use the `lsblk` command to show all your devices.
+    Here is an example that shows the MicroSD card as `/dev/sdc`:
+  </summary>
+  <pre>
+    <code>
 $ lsblk
   NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
   sda      8:0    0 167,7G  0 disk
@@ -452,7 +463,9 @@ $ lsblk
   sdc      8:32   1  14,9G  0 disk
   ├─sdc1   8:33   1    40M  0 part
   └─sdc2   8:34   1   788M  0 part
-```
+    </code>
+  </pre>
+</details>
 
 **IMPORTANT NOTE:** Before re-writing any device on your Build Host, you need to
 be sure you are actually writing to the removable MicroSD card and not some other
@@ -541,11 +554,14 @@ You need to physically connect your build host to the Renesas board using
 a USB cable from the host to the serial CP2102 USP port (i.e. Micro USB-A port)
 on the Renesas board.
 
-Once you connect the board, determine the device created for the serial link.
-Use the ``dmesg`` command on your build host.
-Here is an example:
-
-```bash
+<details>
+  <summary>
+    Once you connect the board, determine the device created for the serial link.
+    Use the ``dmesg`` command on your build host.
+    Here is an example:
+  </summary>
+  <pre>
+    <code>
 dmesg | tail 9
 [2097783.287091] usb 2-1.5.3: new full-speed USB device number 24 using ehci-pci
 [2097783.385857] usb 2-1.5.3: New USB device found, idVendor=0403, idProduct=6001
@@ -556,7 +572,9 @@ dmesg | tail 9
 [2097783.388288] ftdi_sio 2-1.5.3:1.0: FTDI USB Serial Device converter detected
 [2097783.388330] usb 2-1.5.3: Detected FT232RL
 [2097783.388658] usb 2-1.5.3: FTDI USB Serial Device converter now attached to ttyUSB0
-```
+    </code>
+  </pre>
+</details>
 
 The device created is usually "/dev/ttyUSB0".
 However, the number might vary depending on other USB serial ports connected to the host.
@@ -591,9 +609,13 @@ To power on the board, "short-press" SW8, which is the power switch.
 
 Following, is console output for the power on process for each kit:
 
-**h3ulcb:**
+<details>
+  <summary>
+    h3ulcb:
+  </summary>
+  <pre>
+    <code>
 
-```bash
 NOTICE:  BL2: R-Car Gen3 Initial Program Loader(CA57) Rev.1.0.7
 NOTICE:  BL2: PRR is R-Car H3 ES1.1
 NOTICE:  BL2: LCM state is CM
@@ -629,11 +651,16 @@ Net:   Board Net Initialization Failed
 No ethernet found.
 Hit any key to stop autoboot:  0
 =>
-```
+    </code>
+  </pre>
+</details>
 
-**m3ulcb:**
-
-```bash
+<details>
+  <summary>
+    m3ulcb:
+  </summary>
+  <pre>
+    <code>
 NOTICE:  BL2: R-Car Gen3 Initial Program Loader(CA57) Rev.1.0.14
 NOTICE:  BL2: PRR is R-Car M3 Ver1.0
 NOTICE:  BL2: Board is Starter Kit Rev1.0
@@ -670,7 +697,9 @@ Err:   serial
 Net:   ravb
 Hit any key to stop autoboot:  0
 =>
-```
+    </code>
+  </pre>
+</details>
 
 ## 9. Setting-up U-boot
 
@@ -685,46 +714,57 @@ boot device and also to set the screen resolution:
 
 2. Once the autoboot process is interrupted, use the board's serial console to
    enter **printenv** to check if you have correct parameters for booting your board:
-   Here is an example using the **h3ulcb** board:
 
-   ```bash
-   => printenv
-   baudrate=115200
-   bootargs=console=ttySC0,115200 root=/dev/mmcblk1p1 rootwait ro rootfstype=ext4
-   bootcmd=run load_ker; run load_dtb; booti 0x48080000 - 0x48000000
-   bootdelay=3
-   fdt_high=0xffffffffffffffff
-   initrd_high=0xffffffffffffffff
-   load_dtb=ext4load mmc 0:1 0x48000000 /boot/r8a7795-h3ulcb.dtb
-   load_ker=ext4load mmc 0:1 0x48080000 /boot/Image
-   stderr=serial
-   stdin=serial
-   stdout=serial
-   ver=U-Boot 2015.04 (Jun 09 2016 - 19:21:52)
+  <details>
+    <summary>
+      Here is an example using the **h3ulcb** board:
+    </summary>
+    <pre>
+      <code>
 
-   Environment size: 648/131068 bytes
-   ```
+=> printenv
+baudrate=115200
+bootargs=console=ttySC0,115200 root=/dev/mmcblk1p1 rootwait ro rootfstype=ext4
+bootcmd=run load_ker; run load_dtb; booti 0x48080000 - 0x48000000
+bootdelay=3
+fdt_high=0xffffffffffffffff
+initrd_high=0xffffffffffffffff
+load_dtb=ext4load mmc 0:1 0x48000000 /boot/r8a7795-h3ulcb.dtb
+load_ker=ext4load mmc 0:1 0x48080000 /boot/Image
+stderr=serial
+stdin=serial
+stdout=serial
+ver=U-Boot 2015.04 (Jun 09 2016 - 19:21:52)
 
-   Here is a second example using the **m3ulcb** board:
+Environment size: 648/131068 bytes
+      </code>
+    </pre>
+  </details>
+  <details>
+    <summary>
+      Here is a second example using the **m3ulcb** board:
+    </summary>
+    <pre>
+      <code>
+=> printenv
+baudrate=115200
+bootargs=console=ttySC0,115200 root=/dev/mmcblk1p1 rootwait ro rootfstype=ext4
+bootcmd=run load_ker; run load_dtb; booti 0x48080000 - 0x48000000
+bootdelay=3
+fdt_high=0xffffffffffffffff
+filesize=cdeb
+initrd_high=0xffffffffffffffff
+load_dtb=ext4load mmc 0:1 0x48000000 /boot/r8a7796-m3ulcb.dtb
+load_ker=ext4load mmc 0:1 0x48080000 /boot/Image
+stderr=serial
+stdin=serial
+stdout=serial
+ver=U-Boot 2015.04 (Nov 30 2016 - 18:25:18)
 
-   ```bash
-   => printenv
-   baudrate=115200
-   bootargs=console=ttySC0,115200 root=/dev/mmcblk1p1 rootwait ro rootfstype=ext4
-   bootcmd=run load_ker; run load_dtb; booti 0x48080000 - 0x48000000
-   bootdelay=3
-   fdt_high=0xffffffffffffffff
-   filesize=cdeb
-   initrd_high=0xffffffffffffffff
-   load_dtb=ext4load mmc 0:1 0x48000000 /boot/r8a7796-m3ulcb.dtb
-   load_ker=ext4load mmc 0:1 0x48080000 /boot/Image
-   stderr=serial
-   stdin=serial
-   stdout=serial
-   ver=U-Boot 2015.04 (Nov 30 2016 - 18:25:18)
-
-   Environment size: 557/131068 bytes
-   ```
+Environment size: 557/131068 bytes
+      </code>
+    </pre>
+  </details>
 
 3. To boot your board using the MicroSD card, be sure your environment is set up
    as follows:
@@ -814,35 +854,45 @@ If your board is connected to a local network using Ethernet and
 if a DHCP server is able to distribute IP addresses,
 you can determine the board's IP address and log in using `ssh`.
 
-Here is an example for the **m3ulcb** board:
+<details>
+  <summary>
+    Here is an example for the m3ulcb board:
+  </summary>
+  <pre>
+    <code>
+  m3ulcb login: root
+  Last login: Tue Dec  6 09:55:15 UTC 2016 on tty2
+  root@m3ulcb:~# ip -4 a
+  1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default
+      inet 127.0.0.1/8 scope host lo
+        valid_lft forever preferred_lft forever
+  3: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+      inet 10.0.0.27/24 brd 10.0.0.255 scope global eth0
+        valid_lft forever preferred_lft forever
+  root@m3ulcb:~#
+    </code>
+  </pre>
+</details>
 
-```bash
-m3ulcb login: root
-Last login: Tue Dec  6 09:55:15 UTC 2016 on tty2
-root@m3ulcb:~# ip -4 a
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-3: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
-    inet 10.0.0.27/24 brd 10.0.0.255 scope global eth0
-       valid_lft forever preferred_lft forever
-root@m3ulcb:~#
-```
-
-In the previous example, IP address is 10.0.0.27.
-Once you know the address, you can use `ssh` to login.
-Following is an example that shows logging into SSH and then
-displaying the contents of the `/etc/os-release` file:
-
-```bash
-$ ssh root@10.0.0.27
-Last login: Tue Dec  6 10:01:11 2016 from 10.0.0.13
-root@m3ulcb:~# cat /etc/os-release
-ID="poky-agl"
-NAME="Automotive Grade Linux"
-VERSION="3.0.0+snapshot-20161202 (chinook)"
-VERSION_ID="3.0.0-snapshot-20161202"
-PRETTY_NAME="Automotive Grade Linux 3.0.0+snapshot-20161202 (chinook)"
-```
+<details>
+  <summary>
+    In the previous example, IP address is 10.0.0.27.
+    Once you know the address, you can use `ssh` to login.
+    Following is an example that shows logging into SSH and then
+    displaying the contents of the `/etc/os-release` file:
+  </summary>
+  <pre>
+    <code>
+  $ ssh root@10.0.0.27
+  Last login: Tue Dec  6 10:01:11 2016 from 10.0.0.13
+  root@m3ulcb:~# cat /etc/os-release
+  ID="poky-agl"
+  NAME="Automotive Grade Linux"
+  VERSION="3.0.0+snapshot-20161202 (chinook)"
+  VERSION_ID="3.0.0-snapshot-20161202"
+  PRETTY_NAME="Automotive Grade Linux 3.0.0+snapshot-20161202 (chinook)"
+    </code>
+  </pre>
+</details>
 
 **NOTE:** More generics troubleshooting can be found here : [Generic issues](../troubleshooting.html)
