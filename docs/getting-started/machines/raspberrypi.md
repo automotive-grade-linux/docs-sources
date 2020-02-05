@@ -1,17 +1,17 @@
-# Building for Raspberry PI 3 or 4
+# Building for Raspberry Pi 3 or 4
 
 The
-[Raspberry PI](https://www.raspberrypi.org/help/what-%20is-a-raspberry-pi/) is a small
+[Raspberry Pi](https://www.raspberrypi.org/help/what-%20is-a-raspberry-pi/) is a small
 computer that is ideal for learning computing and computer languages.
 The AGL Project supports building images for the
-[Raspberry PI 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-a-plus/) and the
-[Raspberry PI 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/) boards.
+[Raspberry Pi 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-a-plus/) and the
+[Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/) boards.
 Each of these boards comes in a variety of models.
 See the
-[Raspberry PI Product Page](https://www.raspberrypi.org/products/) for more information.
+[Raspberry Pi Product Page](https://www.raspberrypi.org/products/) for more information.
 
 This section describes the steps you need to take to build the
-AGL demo image for both the Raspberry PI 3 and 4 boards.
+AGL demo image for both the Raspberry Pi 3 and 4 boards.
 
 ## 1. Making Sure Your Build Environment is Correct
 
@@ -19,21 +19,21 @@ The
 "[Initializing Your Build Environment](../image-workflow-initialize-build-environment.html)"
 section presented generic information for setting up your build environment
 using the `aglsetup.sh` script.
-If you are building the AGL demo image for a Raspberry PI board, you need to specify some
+If you are building the AGL demo image for a Raspberry Pi board, you need to specify some
 specific options when you run the script.
 
 Use the following commands to initialize your build environment.
 In each case, the "-m" option specifies the machine and the
 list of AGL features used with script are appropriate for development of
-the AGL demo image suited for either Raspberry PI 3 or 4:
+the AGL demo image suited for either Raspberry Pi 3 or 4:
 
-**Raspberry PI 3**:
+**Raspberry Pi 3**:
 
 ```bash
 $ source meta-agl/scripts/aglsetup.sh -m raspberrypi3 agl-demo agl-netboot agl-appfw-smack
 ```
 
-**Raspberry PI 4**:
+**Raspberry Pi 4**:
 
 ```bash
 $ source meta-agl/scripts/aglsetup.sh -m raspberrypi4 agl-demo agl-netboot agl-appfw-smack
@@ -48,7 +48,7 @@ The
 section highlights some common configurations that are useful when
 building any AGL image.
 
-For the Raspberry PI platforms, you need to take an additional
+For the Raspberry Pi platforms, you need to take an additional
 configuration step if you want to include any packages under a
 commercial license.
 
@@ -70,7 +70,7 @@ IMAGE_INSTALL_append = " libomxil"
 This section shows the `bitbake` command used to build the AGL image.
 
 Before running BitBake to start your build, it is good to be reminded that AGL
-does provide a pre-built image for developers that want to use the Raspberry PI 3
+does provide a pre-built image for developers that want to use the Raspberry Pi 3
 board.
 You can find this pre-built image on the
 [AGL Download web site](https://download.automotivelinux.org/AGL/release).
@@ -95,21 +95,21 @@ $ bitbake agl-demo-platform
 ```
 
 By default, the build process puts the resulting image in the Build Directory.
-Here is example for the Raspberry PI 4 board:
+Here is example for the Raspberry Pi 4 board:
 
 ```
 <build_directory>/tmp/deploy/images/raspberrypi4/agl-demo-platform-raspberrypi4.wic.xz
 ```
 
-If you build for the Raspberry PI 3 board, the location uses "raspberrypi3" in the path.
+If you build for the Raspberry Pi 3 board, the location uses "raspberrypi3" in the path.
 
 ## 4. Deploying the AGL Demo Image
 
 Deploying the AGL demo image consists of copying the image on a MicroSD card,
-plugging the card into the Raspberry PI board, and then booting the board.
+plugging the card into the Raspberry Pi board, and then booting the board.
 
 Follow these steps to copy the image to a MicroSD card and boot
-the image on the Raspberry PI 3 or 4 board:
+the image on the Raspberry Pi 3 or 4 board:
 
 1. Plug your MicroSD card into your Build Host (i.e. the system that has your build output).
 
@@ -162,8 +162,8 @@ the image on the Raspberry PI 3 or 4 board:
 3. Now that you know the device name, unmount the device and use the
    `xzcat` command to copy the image to the MicroSD card.
 
-   **NOTE:** For Raspberry PI 3, the image is at `build/tmp/deploy/images/raspberrypi3/agl-demo-platform-raspberrypi3.wic.xz`.
-   For Raspberry PI 4, the image is at `build/tmp/deploy/images/raspberrypi4/agl-demo-platform-raspberrypi4.wic.xz`.
+   **NOTE:** For Raspberry Pi 3, the image is at `build/tmp/deploy/images/raspberrypi3/agl-demo-platform-raspberrypi3.wic.xz`.
+   For Raspberry Pi 4, the image is at `build/tmp/deploy/images/raspberrypi4/agl-demo-platform-raspberrypi4.wic.xz`.
 
    Be sure you are root, provide the actual device name for *sdcard_device_name*, and the actual
    image name for *image_name*:
@@ -174,12 +174,12 @@ the image on the Raspberry PI 3 or 4 board:
    $ sync
    ```
 
-4. Plug your MicroSD card into the Raspberry PI board and boot the device.
+4. Plug your MicroSD card into the Raspberry Pi board and boot the device.
 
-## 5. Using the Raspberry PI Touch Display
+## 5. Using the Raspberry Pi Touch Display
 
 If you have connected the official
-[Raspberry PI Touch Display](https://www.raspberrypi.org/products/raspberry-pi-touch-display/),
+[Raspberry Pi Touch Display](https://www.raspberrypi.org/products/raspberry-pi-touch-display/),
 you can configure the display by editing the `weston.ini` file.
 
 Plenty of information exists on how to configure and use this touchscreen.
@@ -224,9 +224,9 @@ transform=270
 
 ## 6. Debugging
 
-When things go wrong, you can take steps to debug your Raspberry PI.
+When things go wrong, you can take steps to debug your Raspberry Pi.
 For debugging, you need a 3.3 Volt USB Serial cable to fascilitate
-communication between your Raspberry PI board and your build host.
+communication between your Raspberry Pi board and your build host.
 A good cable to use is the 3.3V USB-to-Serial cable
 [Olimex USB-Serial-Cable-F](https://www.olimex.com/Products/Components/Cables/USB-Serial-Cable/USB-Serial-Cable-F/).
 
@@ -243,7 +243,7 @@ You can reference the following diagram for information on the following steps:
 </p>
 
 1. Connect the Olimex cable to the Universal Asynchronous Receiver-Transmitter
-   (UART) connection on your Raspberry PI board.
+   (UART) connection on your Raspberry Pi board.
    Do not connect the USB side of the cable to your build host at this time.
 
    **CAUTION:** No warranty is provided using the following procedure.
@@ -261,7 +261,7 @@ You can reference the following diagram for information on the following steps:
 5. Plug the USB connector of the cable into your build host's USB port.
 
 6. Use your favorite tool for serial communication between your build host
-   and your Raspberry PI.
+   and your Raspberry Pi.
    For example, if your build host is a native Linux machine (e.g. Ubuntu)
    you could use `screen` as follows from a terminal on the build host:
 
