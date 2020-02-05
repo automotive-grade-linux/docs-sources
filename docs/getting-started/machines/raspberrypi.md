@@ -268,3 +268,17 @@ You can reference the following diagram for information on the following steps:
    ```bash
    $ sudo screen /dev/ttyUSB0 115200
    ```
+
+## 7. SOTA
+
+Follow the step below to build AGL for Raspberry Pi with enabled software over
+the air (SOTA) updates:
+
+1. Include **agl-sota** feature.
+
+2. In **bblayers.conf** replace meta-updater-qemux86-64 with
+   **meta-updater-raspberrypi**.
+
+3. In **local.conf** set `SOTA_PACKED_CREDENTIALS` and `OSTREE_BRANCHNAME`.
+
+More details are available [here](https://docs.ota.here.com/getstarted/dev/raspberry-pi.html).
