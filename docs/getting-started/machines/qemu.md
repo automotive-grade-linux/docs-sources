@@ -94,26 +94,30 @@ If your build host is running
 [Arch Linux](https://www.archlinux.org/), use the following commands:
 
 ```bash
-sudo pacman -S qemu
+sudo pacman -S qemu ovmf
+export OVMF_PATH=/usr/share/ovmf/x64/OVMF_CODE.fd
 ```
 
 If your build host is running Debian or Ubuntu, use the following commands:
 
 ```bash
-sudo apt-get install qemu-system-x86
+sudo apt-get install qemu-system-x86 ovmf
+export OVMF_PATH=/usr/share/ovmf/OVMF.fd
 ```
 
 If you build host is running Fedora, use the following commands:
 
 ```bash
-sudo yum install qemu-kvm
+sudo yum install qemu qemu-kvm edk2-ovmf
+export OVMF_PATH=/usr/share/edk2/ovmf/OVMF_CODE.fd
 ```
 
 Once QEMU is installed, boot the image with KVM support:
 
 ```bash
 qemu-system-x86_64 -enable-kvm -m 2048 \
-    -hda agl-demo-platform-qemux86-64.vmdk \
+    -bios ${OVMF_PATH} \
+    -hda agl-demo-platform-qemux86-64.wic.vmdk \
     -cpu kvm64 -cpu qemu64,+ssse3,+sse4.1,+sse4.2,+popcnt \
     -vga virtio -show-cursor \
     -device virtio-rng-pci \
@@ -122,6 +126,14 @@ qemu-system-x86_64 -enable-kvm -m 2048 \
     -net nic \
     -net user,hostfwd=tcp::2222-:22
 ```
+
+**NOTE:** KVM may not be supported within a virtualized environment such as
+VirtualBox. This is indicated by the qemu command above giving the error
+message `Could not access KVM kernel module: No such file or directory` or
+the kernel log output contains the error message `kvm: no hardware support`.
+The image can be booted in such an environment by removing `-enable-kvm` from
+the qemu command line, however this will result in lower perfromance within
+the AGL demo.
 
 #### VirtualBox
 
@@ -137,5 +149,6 @@ Once VirtualBox is installed, follow these steps to boot the image:
 6. Set *Memory size* to **2 GB**
 7. Click **Use an existing virtual hard disk file** under *Hard disk*
 8. Navigate to and select the **agl-demo-platform-qemux86-64.vmdk** image
-9. Ensure that the newly created **AGL QEMU** machine is highlighted.
-10. Click **Start**
+9. Select the newly created **AGL QEMU** machine and click **Settings**
+10. Go to the **System** tab and ensure **Enable EFI (special OSes only)** is enabled then click **OK**
+11. With the **AGL QEMU** machine still selected, click **Start** to boot the virtual machine
