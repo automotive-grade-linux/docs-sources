@@ -708,6 +708,7 @@ boot device and also to set the screen resolution:
    You need to press a key quickly as you have just a few seconds in which to
    press a key.
 
+<<<<<<< HEAD
 2. Once the autoboot process is interrupted, use the board's serial console to
    enter **printenv** to check if you have correct parameters for booting your board:
 
@@ -717,6 +718,23 @@ boot device and also to set the screen resolution:
     </summary>
     <pre>
       <code>
+=======
+  <li>Once the autoboot process is interrupted, use the board's serial console to
+<<<<<<< HEAD
+   enter **printenv** to check if you have correct parameters for booting your board:
+<details>
+  <summary>
+    Here is an example using the **h3ulcb** board:
+=======
+   enter <b>printenv</b> to check if you have correct parameters for booting your board:
+<details>
+  <summary>
+    Here is an example using the <b>h3ulcb</b> board:
+>>>>>>> fe7e536... Update Renesas documentation
+  </summary>
+  <pre>
+    <code>
+>>>>>>> 9447a8c... Update Renesas documentation
 
 => printenv
 baudrate=115200
@@ -733,6 +751,7 @@ stdout=serial
 ver=U-Boot 2015.04 (Jun 09 2016 - 19:21:52)
 
 Environment size: 648/131068 bytes
+<<<<<<< HEAD
       </code>
     </pre>
   </details>
@@ -742,6 +761,21 @@ Environment size: 648/131068 bytes
     </summary>
     <pre>
       <code>
+=======
+    </code>
+  </pre>
+</details>
+<details>
+  <summary>
+<<<<<<< HEAD
+    Here is a second example using the **m3ulcb** board:
+=======
+    Here is a second example using the <b>m3ulcb</b> board:
+>>>>>>> fe7e536... Update Renesas documentation
+  </summary>
+  <pre>
+    <code>
+>>>>>>> 9447a8c... Update Renesas documentation
 => printenv
 baudrate=115200
 bootargs=console=ttySC0,115200 root=/dev/mmcblk1p1 rootwait ro rootfstype=ext4
@@ -771,21 +805,33 @@ Environment size: 557/131068 bytes
     setenv load_ker ext4load mmc 0:1 0x48080000 /boot/Image
     ```
 
+<<<<<<< HEAD
 4. Depending on the board type, the BSP version, and the existence of
    a Kingfisher board, make sure your ``load_dtb`` is set as follows:
 
    **h3ulcb with BSP version greater than or equal to 2.19**:
+=======
+  <li>Depending on the board type, the BSP version, and the existence of
+   a Kingfisher board, make sure your ``load_dtb`` is set as follows:<br>
+
+  <b>h3ulcb with BSP version greater than or equal to 2.19</b>:
+>>>>>>> 9447a8c... Update Renesas documentation
 
     ```
     setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/Image-r8a7795-es1-h3ulcb.dtb
     ```
 
+<<<<<<< HEAD
     **h3ulcb with BSP version less than 2.19**:
+=======
+  <b>h3ulcb with BSP version less than 2.19</b>:
+>>>>>>> 9447a8c... Update Renesas documentation
 
     ```
     setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/Image-r8a7795-h3ulcb.dtb
     ```
 
+<<<<<<< HEAD
     **m3ulcb**:
 
     ```bash
@@ -811,6 +857,42 @@ Environment size: 557/131068 bytes
     ```
 
 6. Boot the board:
+=======
+  <b>m3ulcb</b>:
+  <pre>
+    <code>
+    setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/r8a7796-m3ulcb.dtb
+    </code>
+  </pre>
+
+  <b>m3ulcb with a Kingfisher board</b>:
+  <pre>
+    <code>
+    setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/r8a7796-m3ulcb-kf.dtb
+    </code>
+  </pre>
+
+  <b>h3ulcb with a Kingfisher board</b>:
+  <pre>
+    <code>
+    setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/r8a7795-es1-h3ulcb-kf.dtb
+    </code>
+  </pre>
+  </li>
+
+  <li>Save the boot environment:<br>
+    <code>
+      saveenv
+    </code>
+  </li>
+
+  <li>Boot the board:<br>
+  <code>
+    run bootcmd
+  </code>
+  </li>
+</ol>
+>>>>>>> 9447a8c... Update Renesas documentation
 
 ```
 run bootcmd
@@ -890,3 +972,4 @@ you can determine the board's IP address and log in using `ssh`.
 </details>
 
 **NOTE:** More generics troubleshooting can be found here : [Generic issues](../troubleshooting.html)
+    git push --set-upstream origin guppy
