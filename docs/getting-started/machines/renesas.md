@@ -131,7 +131,8 @@ Follow these steps to download the drivers you need:
      | AGL Version| Renesas version |
      |:-:|:-:|
      | AGL master  | 3.21.0 |
-     | AGL halibut 8.0.2 8.0.3 8.0.4 | 3.21.0 |
+     | AGL icefish 9.0.0 | 3.21.0 |
+     | AGL halibut 8.0.2 8.0.3 8.0.4 8.0.5 | 3.21.0 |
      | AGL halibut 8.0.1 | 3.19.0 |
      | AGL halibut 8.0.0 | 3.15.0 |
      | AGL guppy 7.0.4  | 3.21.0 |
@@ -705,19 +706,20 @@ Hit any key to stop autoboot:  0
 Follow these steps to configure the board to use the MicroSD card as the
 boot device and also to set the screen resolution:
 
-1. As the board is powering up, press any key to stop the autoboot process.
+<ol>
+  <li>As the board is powering up, press any key to stop the autoboot process.
    You need to press a key quickly as you have just a few seconds in which to
    press a key.
+  </li>
 
-2. Once the autoboot process is interrupted, use the board's serial console to
-   enter **printenv** to check if you have correct parameters for booting your board:
-
-  <details>
-    <summary>
-      Here is an example using the **h3ulcb** board:
-    </summary>
-    <pre>
-      <code>
+  <li>Once the autoboot process is interrupted, use the board's serial console to
+   enter <b>printenv</b> to check if you have correct parameters for booting your board:
+<details>
+  <summary>
+    Here is an example using the <b>h3ulcb</b> board:
+  </summary>
+  <pre>
+    <code>
 
 => printenv
 baudrate=115200
@@ -734,15 +736,15 @@ stdout=serial
 ver=U-Boot 2015.04 (Jun 09 2016 - 19:21:52)
 
 Environment size: 648/131068 bytes
-      </code>
-    </pre>
-  </details>
-  <details>
-    <summary>
-      Here is a second example using the **m3ulcb** board:
-    </summary>
-    <pre>
-      <code>
+    </code>
+  </pre>
+</details>
+<details>
+  <summary>
+    Here is a second example using the <b>m3ulcb</b> board:
+  </summary>
+  <pre>
+    <code>
 => printenv
 baudrate=115200
 bootargs=console=ttySC0,115200 root=/dev/mmcblk1p1 rootwait ro rootfstype=ext4
@@ -759,63 +761,77 @@ stdout=serial
 ver=U-Boot 2015.04 (Nov 30 2016 - 18:25:18)
 
 Environment size: 557/131068 bytes
-      </code>
-    </pre>
-  </details>
+    </code>
+  </pre>
+</details>
+  </li>
 
-3. To boot your board using the MicroSD card, be sure your environment is set up
+  <li>To boot your board using the MicroSD card, be sure your environment is set up
    as follows:
 
-    ```
+  <pre>
+    <code>
     setenv bootargs console=ttySC0,115200 ignore_loglevel vmalloc=384M video=HDMI-A-1:1920x1080-32@60 root=/dev/mmcblk1p1 rw rootfstype=ext4 rootwait rootdelay=2
     setenv bootcmd run load_ker\; run load_dtb\; booti 0x48080000 - 0x48000000
     setenv load_ker ext4load mmc 0:1 0x48080000 /boot/Image
-    ```
+    </code>
+  </pre>
+  </li>
 
-4. Depending on the board type, the BSP version, and the existence of
-   a Kingfisher board, make sure your ``load_dtb`` is set as follows:
+  <li>Depending on the board type, the BSP version, and the existence of
+   a Kingfisher board, make sure your ``load_dtb`` is set as follows:<br>
 
-   **h3ulcb with BSP version greater than or equal to 2.19**:
+  <b>h3ulcb with BSP version greater than or equal to 2.19</b>:
 
-    ```
+  <pre>
+    <code>
     setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/r8a7795-es1-h3ulcb.dtb
-    ```
+    </code>
+  </pre>
 
-    **h3ulcb with BSP version less than 2.19**:
+  <b>h3ulcb with BSP version less than 2.19</b>:
 
-    ```
+  <pre>
+    <code>
     setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/r8a7795-h3ulcb.dtb
-    ```
+    </code>
+  </pre>
 
-    **m3ulcb**:
-
-    ```bash
+  <b>m3ulcb</b>:
+  <pre>
+    <code>
     setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/r8a7796-m3ulcb.dtb
-    ```
+    </code>
+  </pre>
 
-    **m3ulcb with a Kingfisher board**:
-
-    ```bash
+  <b>m3ulcb with a Kingfisher board</b>:
+  <pre>
+    <code>
     setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/r8a7796-m3ulcb-kf.dtb
-    ```
+    </code>
+  </pre>
 
-    **h3ulcb with a Kingfisher board**:
-
-    ```bash
+  <b>h3ulcb with a Kingfisher board</b>:
+  <pre>
+    <code>
     setenv load_dtb ext4load mmc 0:1 0x48000000 /boot/r8a7795-es1-h3ulcb-kf.dtb
-    ```
+    </code>
+  </pre>
+  </li>
 
-5. Save the boot environment:
+  <li>Save the boot environment:<br>
+    <code>
+      saveenv
+    </code>
+  </li>
 
-    ```bash
-    saveenv
-    ```
+  <li>Boot the board:<br>
+  <code>
+    run bootcmd
+  </code>
+  </li>
+</ol>
 
-6. Boot the board:
-
-```
-run bootcmd
-```
 ## 10. Troubleshooting
 
 ### Logging Into the Console
@@ -892,3 +908,4 @@ you can determine the board's IP address and log in using `ssh`.
 </details>
 
 **NOTE:** More generics troubleshooting can be found here : [Generic issues](../troubleshooting.html)
+    git push --set-upstream origin guppy
