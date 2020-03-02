@@ -1,0 +1,11 @@
+{
+    "title": "CanDevStudio Quickstart",
+    "subtitle": "Developer Documentation",
+    "description": "Candevstudio quickstart to launch it and use it",
+    "keywords": "AGL, Quickstart, candevstudio, can",
+    "author": "IoT.Bzh Team",
+    "website": "http://iot.bzh",
+    "published": "May 2018",
+    "version": "0.1",
+    "pdf_filename": "CanDevStudio"
+}

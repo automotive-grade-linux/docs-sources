@@ -1,0 +1,22 @@
+type: books
+books:
+-
+    id: host-configuration
+    title: Building Microservices Natively
+    description: Host Configuration documentation
+    keywords:
+    author: "IotBzh"
+    version: master
+    chapters:
+        - url: 0-build-microservice-overview.md
+          name: Overview
+        - url: 1-verify-build-host.md
+          name: Verify Your Build Host
+        - url: 2-download-packages.md
+          name: Download Packages
+        - url: 3-installing-binder-daemon.md
+          name: Installing the Binder Daemon
+        - url: 4-getting-source-files.md
+          name: Getting Your Source Files
+        - url: 5-building-and-running-service-natively.md
+          name: Building and Running Your Service Natively

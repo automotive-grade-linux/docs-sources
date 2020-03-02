@@ -1,0 +1,11 @@
+site_name: AGL Application Framework Binder
+theme: readthedocs
+docs_dir: docs
+pages:
+- 'Document revisions' : '0-Doc-Revisions.md'
+- '0. Abstract': '0_Abstract.md'
+- '1. Prequisites': '1_Prerequisites.md'
+- '2. AGL Application Framework Installation': '2_AGL_Application_Framework.md'
+- '3. Binding Build Example': '3_Binding_Build_Example.md'
+- '4. AGL XDS Installation.md': '4_AGL_XDS.md'
+- '5. CanDevStudio Installation': '5_Candevstudio.md'

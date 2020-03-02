@@ -1,0 +1,11 @@
+{
+    "title": "AGL Development Kit",
+    "subtitle": "Developer Documentation",
+    "description": "Build from scratch an image and your first AGL application",
+    "keywords": "AGL, Development, SDK, Build, scratch, Porter, docker, container, application",
+    "author": "IoT.Bzh Team",
+    "website": "http://iot.bzh",
+    "published": "March 2017",
+    "version": "3.1",
+    "pdf_filename": "AGL-Development-Kit"
+}

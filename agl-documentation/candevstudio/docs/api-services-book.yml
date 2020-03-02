@@ -1,0 +1,20 @@
+type: books
+books:
+-
+    id: candevstudio
+    title: CanDevStudio Quickstart
+    description: CanDevStudio Quickstart documentation
+    keywords:
+    author: "IotBzh"
+    version: master
+    chapters:
+    - url: 1_Usage.md
+      name: Usage Guide
+    - url: 2_can_device_socketcan_backend.md
+      name: Bringing up a CAN device using socketcan backend
+    - url: 3_Add_CAN_Device.md
+      name: Add a CAN device in CANdevStudio
+    - url: 4_Configure_CanRawSender_Node.md
+      name: Configure a CanRawSender node
+    - url: 5_Using_CanRawView.md
+      name: Using CanRawView
