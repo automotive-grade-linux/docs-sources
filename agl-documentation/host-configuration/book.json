@@ -1,0 +1,11 @@
+{
+    "title": "AGL Host Configuration",
+    "subtitle": "Developer Documentation",
+    "description": "Install AGL tools from OBS repo",
+    "keywords": "AGL, OBS, Install, repo, host",
+    "author": "IoT.Bzh Team",
+    "website": "http://iot.bzh",
+    "published": "May 2018",
+    "version": "0.1",
+    "pdf_filename": "AGL-Host-Configuration"
+}

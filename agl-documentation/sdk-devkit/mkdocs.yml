@@ -1,0 +1,20 @@
+site_name: AGL Application Framework Binder
+theme: readthedocs
+docs_dir: docs
+pages:
+- 'Document revisions' : '0-Doc-Revisions.md'
+- 'Part 1 - Build AGL image from scratch':
+    - 'Abstract' : 'part-1/1_0_Abstract.md'
+    - '1. Deploy an image using containers' : 'part-1/1_1-Deploy_image.md'
+    - '2. Setting up your operating system' : 'part-1/1_2-Setting-up-your_os.md'
+    - '3. Install AGL Yocto image for Porter board using Docker container' : 'part-1/1_3-Install-agl-for-porter.md'
+    - '4. Inside the container' : 'part-1/1_4-Inside-the-container.md'
+    - '5. Build an image for Porter board' : 'part-1/1_5-Build-image-Porter.md'
+    - '6. Porter image deployment on target' : 'part-1/1_6-Porter-image-deployment.md'
+    - '7. AGL SDK compilation and installation' : 'part-1/1_7-SDK-compilation-installation.md'
+- 'Part 2 - Build your 1st application' :
+    - 'Abstract' : 'part-2/2_0_Abstract.md'
+    - '1. Initializing SDK environment and templates' : 'part-2/2_1-Init-sdk-env.md'
+    - '2. Trying out the templates' : 'part-2/2_2-Trying-out-templates.md'
+    - '3. Developing smoothly with the container' : 'part-2/2_3-Dev-with-container.md'
+    - '4. Creating your own hybrid application' : 'part-2/2_4-Creating-hybrid-app.md'
