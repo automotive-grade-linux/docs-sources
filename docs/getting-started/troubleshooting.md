@@ -16,7 +16,7 @@ Simplified Mandatory Access Control kernel.
   [https://www.kernel.org/doc/Documentation/security/Smack.txt](https://www.kernel.org/doc/Documentation/security/Smack.txt).
   for detailed information on Smack.
 
-**NOTE:** This is a required feature.
+**NOTE:** SMACK is a required feature for the AGL Application Framework.
 
 Many methods exist that allow you to create bootable media (e.g. `dd`, `bmaptools`,
 `tar`).
@@ -100,4 +100,3 @@ and
 * `/etc/wireplumber/`
 
 Please see https://git.automotivelinux.org/AGL/meta-agl-devel/tree/meta-pipewire/recipes-multimedia/wireplumber/wireplumber-board-config-agl .
-
