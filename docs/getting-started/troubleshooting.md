@@ -16,8 +16,10 @@ Simplified Mandatory Access Control kernel.
   [https://www.kernel.org/doc/Documentation/security/Smack.txt](https://www.kernel.org/doc/Documentation/security/Smack.txt).
   for detailed information on Smack.
 
+**NOTE:** This is a required feature.
+
 Many methods exist that allow you to create bootable media (e.g. `dd`, `bmaptools`,
-`tar`, and AGL-provided scripts such as `mkabl-agl.sh` and `mkefi-agl.sh`).
+`tar`).
 It is recommended that you do not use `tar` to create bootable media.
 However, if you do, you must take these steps to copy `xattrs` to the media:
 
@@ -69,151 +71,33 @@ File: /etc/xdg/weston/weston.ini
 Line: transform=90
 ```
 
-## Disabling Homescreen in AGL 4.0.x DD release
-
-**Problem**: new installed applications are not available on Homescreen and even if started manually through afm-util, the application starts but no surface appears.
-
-**Answer**: this is due to IVI-Shell integration with Qt and Homescreen.
-
-To disable IVI-Shell and revert to the "plain old" weston desktop, you can follow the 4 steps below:
-
-* Modify */etc/xdg/weston/weston.ini* and comment the line mentioning IVI-shell. For example on Porter board:
-
-```bash
-           [core]
-           backend=drm-backend.so
-           #shell=ivi-shell.so
-           ...
-```
-
-* modify */etc/afm/unit.env.d/qt-for-ivi-shell* and comment the line specifying QT Wayland backend:
-
-```bash
-           ...
-           #Environment=QT_WAYLAND_SHELL_INTEGRATION=ivi-shell
-           ...
-```
-
-(If you use vi, remove backup files by `rm /etc/afm/unit.env.d/*~`)
-
-* disable Homescreen services:
-
-```bash
-           # systemctl --user mask HomeScreen.service
-```
-
-* Reboot your target and you should then be able to start apps on the standard weston screen using afm-util
-
 ## Adding media files to play with MediaPlayer
 
 AGL include the default MediaPlayer sample app which can be used to play music. The `lightmediascanner.service` by default will search for media under the `/media` folder. So if you plug in any USB stick containing music, they would be recognized and showed in the playlist of the MediaPlayer app menu.
 
 The current supported format is OGG. Please convert your files to ogg to play with MediaPlayer.
 
+**NOTE**: mp3 is not found by default. For this you need to enable the flags for mp3 support.
+
 In case you want to store music in another place, modify the `/usr/lib/systemd/user/lightmediascanner.service` file and change the `--directory` parameter to the path of that folder.
 
-If you don’t want to touch the ligthmediascanner service, you can also add a folder named "Music" under `/home/root` and put your music files there.
+If you don’t want to touch the ligthmediascanner service, you can also add a folder named "Music" under `/home/1001/Music` and put your music files there.
 
 ## Configuring the Audio hardware
 
 AGL uses alsa as Audio configuration master. If the correct HW is not setup, the Audio system will fail to start what will also fails the demo Home Screen launch.
-You need to configure Audio in 2 places
+You need to configure Audio in
 
-* alsa
-* 4A HAL
+* pipewire
 
-### alsa
+### pipewire
 
- The file /etc/asound.conf (at the beginning) tells which hardware will be used.
- For example on an Intel Minnow or UP board your need to enter the following configuration.
+AGL does use the new pipewire infrastructure for sound.
+The configuration is in:
 
-```bash
-   pcm.Speakers {
-      type dmix
-      slave {pcm "hw:PCH,3"}
-      ipc_key 1001          # ipc_key should be unique to each dmix
-  }
-```
+* `/etc/pipewire/`
+and
+* `/etc/wireplumber/`
 
-The correct value (here hw:PCH,3) can be obtained with the command:
+Please see https://git.automotivelinux.org/AGL/meta-agl-devel/tree/meta-pipewire/recipes-multimedia/wireplumber/wireplumber-board-config-agl .
 
-```bash
-  aplay -l
-  **** List of PLAYBACK Hardware Devices ****
-  card 0: PCH [HDA Intel PCH], device 3: HDMI 0 [HDMI 0]
-    Subdevices: 1/1
-    Subdevice #0: subdevice #0
-  card 0: PCH [HDA Intel PCH], device 7: HDMI 1 [HDMI 1]
-    Subdevices: 1/1
-    Subdevice #0: subdevice #0
-```
-
-Using hw:PCH rather than hw:0 will avoid you many trouble.\
-NOTE that the device number is not always 0. If you give no device number, alsa will assume device 0 (and the not the first available device), what can fail your configuration.\
-As the default is hw:0 (card 0 device 0), it will always fail on a Minnow or UP board.
-
-For info HW device for common configuration are:
-
-* for USB Audio -> hw:AUDIO,0
-* for Intel Analog output -> hw:PCH,0 (not available on Minnow, Joule, Up boards, ...)
-* for Intel via -> HDMI hw:PCH,3
-* for MOST Unicens -> hw:ep016ch,0
-
-### 4A HAL configuration
-
-AGL 4A needs to know which HAL shall be used. This is configured in the file:
-
-```bash
-/usr/agl-service-audio-4a/ahl-agl-service-audio-4a-config.json
-```
-
-At the beginning of that file you will find the slected HAL (note the there is no correct default value).
-
-```bash
-{
-    "version": "0.2.0",
-    "policy_module": "AudioPolicy_v1",
-    "description": "High-level binding configuration file",
-    "note": "Devices and routings are always listed in order of priority (for device selection rules)",
-    "hal_list": ["intel-minnow"],
-    "audio_roles": [
-```
-
-Here you see "intel-minnow" but common values are:
-
-* Intel laptop -> intel-pc
-* Intel via HDMI -> intel-minnow
-* Renesas -> Rcar-M3
-* USB Audio Speaker -> usb-audio
-* MOSTS Unicens -> hal-most-unicens
-
-More HAL can be found on Gerrit (search projects named as 4a-hal*)
-
-## Installing the Map for the Navigation Application
-
-While the Navigation App is installed with all other demo Apps at first boot, the Maps required to be installed manually.
-
-### a) Method 1 on target download
-
- 1. Install the new image on the target
- 2. boot a first time to install the demo Apps
- 3. via ssh or serial connection, execute the script
-    * /usr/AGL/apps/download_mapdata_uk.sh\
-    or
-    * /usr/AGL/apps/download_mapdata_jp.sh
-
-### b) At image creation
-
-Download on your build machine the desired maps and uncompress them on your target image before 1st boot.
-This method is quicker and does not require to have the network enabled on the target device.
-Map can be found here.
-
-* <http://agl.wismobi.com/data/japan_TR9/navi_data.tar.gz>
-* <http://agl.wismobi.com/data/UnitedKingdom_TR9/navi_data_UK.tar.gz>
-
-Once that you have built your image on the SD card, uncompress the desired map in on the SD card at the position /YourMountPoint/var/mapdata\
-(YourMountPoint will vary with your build system).
-
-You can also use the script from the image to install the Mapdata on your SD card but there is little adavange in using that method. e.g.
-
-* download_mapdata_jp.sh /YourMountPoint
