@@ -152,7 +152,7 @@ configuration in your bootloader, which is located in the EFI partition.
 ### Serial Debug Cable
 
 Most development boards use a standard serial debug cable (e.g. 3.3V FTDI serial cable).
-Up Boards use the same FDDI 3.3V adapter.
+Up Boards use the same FTDI 3.3V adapter.
 However, the pin out is not adjacent and requires split pins.
 
 ### Port Names and Connected Displays
