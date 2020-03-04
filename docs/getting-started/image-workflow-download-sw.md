@@ -50,7 +50,7 @@ The remainder of this section provides steps on how to download the AGL source f
 
      ```bash
      $ cd $AGL_TOP
-     $ repo init -b halibut -u https://gerrit.automotivelinux.org/gerrit/AGL/AGL-repo
+     $ repo init -b icefish -u https://gerrit.automotivelinux.org/gerrit/AGL/AGL-repo
      $ repo sync
      ```
 
@@ -77,32 +77,113 @@ The remainder of this section provides steps on how to download the AGL source f
    Listing out the resulting directory structure appears as follows:
 
    ```
-   $ tree -L 1
-   .
-   ├── build
-   ├── meta-agl
-   ├── meta-agl-demo
-   ├── meta-agl-devel
-   ├── meta-agl-extra
-   ├── meta-altera
-   ├── meta-boundary
-   ├── meta-freescale
-   ├── meta-freescale-3rdparty
-   ├── meta-freescale-distro
-   ├── meta-intel
-   ├── meta-intel-iot-security
-   ├── meta-oic
-   ├── meta-openembedded
-   ├── meta-qcom
-   ├── meta-qt5
-   ├── meta-raspberrypi
-   ├── meta-renesas
-   ├── meta-renesas-rcar-gen3
-   ├── meta-rust
-   ├── meta-sdl
-   ├── meta-security-isafw
-   ├── meta-ti
-   ├── meta-updater
-   ├── meta-virtualization
-   └── poky
+   $ tree -L 2
+.
+|-- bsp
+|   |-- meta-altera
+|   |-- meta-boundary
+|   |-- meta-freescale
+|   |-- meta-freescale-3rdparty
+|   |-- meta-intel
+|   |-- meta-qcom
+|   |-- meta-raspberrypi
+|   |-- meta-rcar
+|   |-- meta-renesas-rcar-gen3
+|   |-- meta-rtlwifi
+|   |-- meta-sancloud
+|   |-- meta-synopsys
+|   `-- meta-ti
+|-- external
+|   |-- alexa-auto-sdk
+|   |-- meta-clang
+|   |-- meta-gplv2
+|   |-- meta-openembedded
+|   |-- meta-qt5
+|   |-- meta-sdl
+|   |-- meta-security
+|   |-- meta-spdxscanner
+|   |-- meta-updater
+|   |-- meta-updater-qemux86-64
+|   |-- meta-updater-raspberrypi
+|   |-- meta-virtualization
+|   `-- poky
+|-- meta-agl
+|   |-- README-AGL.md
+|   |-- README.md
+|   |-- agl-layers-overview.md
+|   |-- docs
+|   |-- meta-agl
+|   |-- meta-agl-bsp
+|   |-- meta-agl-distro
+|   |-- meta-agl-profile-cluster
+|   |-- meta-agl-profile-cluster-qt5
+|   |-- meta-agl-profile-core
+|   |-- meta-agl-profile-graphical
+|   |-- meta-agl-profile-graphical-qt5
+|   |-- meta-agl-profile-hud
+|   |-- meta-agl-profile-telematics
+|   |-- meta-agl.md
+|   |-- meta-app-framework
+|   |-- meta-netboot
+|   |-- meta-security
+|   |-- scripts
+|   `-- templates
+|-- meta-agl-cluster-demo
+|   |-- README.md
+|   |-- conf
+|   |-- recipes-config
+|   |-- recipes-connectivity
+|   |-- recipes-demo-hmi
+|   |-- recipes-graphics
+|   |-- recipes-platform
+|   `-- templates
+|-- meta-agl-demo
+|   |-- README.md
+|   |-- classes
+|   |-- conf
+|   |-- docs
+|   |-- meta-agl-demo.md
+|   |-- recipes-apis
+|   |-- recipes-config
+|   |-- recipes-connectivity
+|   |-- recipes-core
+|   |-- recipes-demo-hmi
+|   |-- recipes-devtools
+|   |-- recipes-graphics
+|   |-- recipes-kernel
+|   |-- recipes-multimedia
+|   |-- recipes-navigation
+|   |-- recipes-platform
+|   |-- recipes-qt
+|   |-- recipes-sdl
+|   |-- recipes-support
+|   `-- templates
+|-- meta-agl-devel
+|   |-- ATTIC
+|   |-- README.md
+|   |-- docs
+|   |-- meta-agl-devel.md
+|   |-- meta-agl-profile-graphical-html5
+|   |-- meta-audio-soundmanager-framework
+|   |-- meta-gstrecorder-rcar-gen3
+|   |-- meta-oem-extra-libs
+|   |-- meta-pipewire
+|   |-- meta-speech-framework
+|   `-- templates
+|-- meta-agl-extra
+|   |-- meta-blsched
+|   `-- templates
+`-- meta-agl-telematics-demo
+    |-- README.md
+    |-- conf
+    |-- recipes-config
+    |-- recipes-connectivity
+    |-- recipes-core
+    |-- recipes-demo
+    |-- recipes-navigation
+    |-- recipes-platform
+    `-- templates
+
+94 directories, 10 files
+
    ```
