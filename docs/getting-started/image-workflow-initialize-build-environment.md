@@ -21,6 +21,42 @@ $ cd $AGL_TOP
 $ source meta-agl/scripts/aglsetup.sh -h
 ```
 
+## AGL Machines (= board support)
+
+Your target platform will be selected with the `-m` flag.
+The MACHINE can be selected from the templates in `meta-agl/templates/machine/*`.
+Note: This is also the place where you can add new boards.
+
+Following is a list of the available machines (level of support varies!):
+
+```
+Available machines:
+   [meta-agl]
+       bbe                        # BeagleBoneEnhanced
+       beaglebone                 # BeagleBone
+       cubox-i                    # multiple i.MX6 boards
+       cyclone5                   # CycloneV
+       dra7xx-evm                 # TI DRA7xx-EVM 'vayu'
+       dragonboard-410c           # Qualcomm Dragonboard 410c
+       dragonboard-820c           # Qualcomm Dragonboard 820c
+       ebisu                      # Renesas RCar Ebisu
+       h3-salvator-x              # Renesas RCar Salvator/H3
+       h3ulcb                     # Renesas RCar H3
+       h3ulcb-nogfx               # Renesas RCar H3 w/o gfx blobs
+       hsdk                       # ARC HS
+       imx6qdlsabreauto           # i.MX6 sabreauto
+       intel-corei7-64            # x86-64 (Intel flavour)
+       m3ulcb                     # Renesas RCar M3
+       m3ulcb-nogfx               # Renesas RCAR M3 w/o gfx blobs
+       nitrogen6x                 # i.MX6 nitrogen board
+       qemuarm                    # Qemu ARM
+       qemuarm64                  # Qemu AArch 64 (ARM 64bit)
+     * qemux86-64                 # Qemu x86-64
+       raspberrypi3               # Raspberry Pi 3
+       raspberrypi4               # Raspberry Pi 4
+
+```
+
 ## AGL Features
 
 Before running the `aglsetup.sh`, you should understand what AGL features you
@@ -33,36 +69,58 @@ Following is a list of the available features:
 ```
 Available features:
    [meta-agl]
-       agl-all-features :( agl-demo  agl-appfw-smack  agl-devel  agl-hmi-framework  agl-netboot  agl-sota  agl-sdl )
+       agl-all-features :( agl-demo  agl-appfw-smack  agl-hmi-framework  agl-profile-graphical-qt5  agl-profile-graphical  agl-pipewire  agl-speech-framework  agl-netboot )
        agl-appfw-smack
        agl-archiver
+       agl-buildstats
        agl-ci
-       agl-ci-change-features :( agl-demo  agl-appfw-smack  agl-devel  agl-hmi-framework  agl-devel  agl-netboot  agl-appfw-smack  agl-sdl )
-       agl-ci-change-features-nogfx :( agl-devel  agl-netboot  agl-appfw-smack )
-       agl-ci-snapshot-features :( agl-demo  agl-appfw-smack  agl-devel  agl-hmi-framework  agl-devel  agl-netboot  agl-appfw-smack  agl-archiver  agl-sdl  agl-ptest )
-       agl-ci-snapshot-features-nogfx :( agl-devel  agl-netboot  agl-appfw-smack  agl-isafw  agl-archiver  agl-ptest )
+       agl-ci-change-features :( agl-demo  agl-appfw-smack  agl-hmi-framework  agl-profile-graphical-qt5  agl-profile-graphical  agl-pipewire  agl-speech-framework  agl-devel  agl-netboot  agl-pipewire  agl-buildstats  agl-ptest )
+       agl-ci-change-features-nogfx :( agl-demo  agl-appfw-smack  agl-hmi-framework  agl-profile-graphical-qt5  agl-profile-graphical  agl-pipewire  agl-speech-framework  agl-devel  agl-netboot  agl-pipewire  agl-buildstats  agl-ptest )
+       agl-ci-snapshot-features :( agl-demo  agl-appfw-smack  agl-hmi-framework  agl-profile-graphical-qt5  agl-profile-graphical  agl-pipewire  agl-speech-framework  agl-devel  agl-netboot  agl-archiver  agl-pipewire  agl-buildstats  agl-ptest )
+       agl-ci-snapshot-features-nogfx :( agl-demo  agl-appfw-smack  agl-hmi-framework  agl-profile-graphical-qt5  agl-profile-graphical  agl-pipewire  agl-speech-framework  agl-devel  agl-netboot  agl-archiver  agl-pipewire  agl-buildstats  agl-ptest )
+       agl-compositor
        agl-devel
-       agl-isafw
+       agl-egvirt
+       agl-fossdriver
+       agl-gplv2
+       agl-hmi-framework
        agl-netboot
+       agl-profile-cluster :( agl-profile-graphical )
+       agl-profile-cluster-qt5 :( agl-profile-graphical-qt5  agl-profile-graphical )
+       agl-profile-graphical
+       agl-profile-graphical-qt5 :( agl-profile-graphical )
+       agl-profile-hud
+       agl-profile-telematics
        agl-ptest
        agl-sota
+       agl-virt
+       agl-virt-xen :( agl-virt )
+   [meta-agl-cluster-demo]
+       agl-cluster-demo :( agl-profile-cluster-qt5  agl-profile-graphical-qt5  agl-profile-graphical  agl-hmi-framework )
+       agl-cluster-demo-preload
    [meta-agl-demo]
-       agl-demo :( agl-appfw-smack  agl-devel  agl-hmi-framework )
-       agl-iotivity
+       agl-cluster-demo-support :( agl-gstrecorder )
+       agl-demo :( agl-appfw-smack  agl-hmi-framework  agl-profile-graphical-qt5  agl-profile-graphical  agl-pipewire  agl-speech-framework )
+       agl-demo-preload
+       agl-demo-soundmanager :( agl-appfw-smack  agl-hmi-framework  agl-profile-graphical-qt5  agl-profile-graphical  agl-audio-soundmanager-framework )
        agl-sdl
    [meta-agl-devel]
-       agl-audio-4a-framework
        agl-audio-soundmanager-framework
-       agl-egvirt
-       agl-hmi-framework
+       agl-gstrecorder
        agl-oem-extra-libs
-       agl-renesas-kernel
+       agl-pipewire
+       agl-profile-graphical-html5 :( agl-profile-graphical )
+       agl-speech-framework
+       agl-voiceagent-alexa :( agl-speech-framework )
+       agl-voiceagent-alexa-wakeword :( agl-voiceagent-alexa  agl-speech-framework )
    [meta-agl-extra]
        agl-localdev
-       eas
+       blsched
+   [meta-agl-telematics-demo]
+       agl-telematics-demo :( agl-profile-telematics )
 ```
 
-To find out exactly what a feature provides, **WE NEED SOME GUIDANCE HERE.  MAYBE SOME INDIVIDUAL README FILES LOCATED IN THE TEMPLATE AREAS FOR THE FEATURES**.
+To find out exactly what a feature provides, check out the respective layer and its README.
 
 An AGL feature is a configuration that accounts for specific settings
 and dependencies needed for a particular build.
@@ -98,9 +156,6 @@ Following are brief descriptions of the AGL features you can specify on the
 
 * **agl-devel**: Activates development options such as an empty root password,
   debuggers, strace, valgrind, and so forth.
-
-* **agl-isafw**: Enables an image security analysis framework.
-  **NOTE:** This feature is deprecated.
 
 * **agl-netboot**: Enables network boot support through Trivial File Transfer Protocol (TFTP) and Network Block Device (NBD) protocol.
   Netboot is needed for CI and useful for development to avoid writing
@@ -139,28 +194,11 @@ Following are brief descriptions of the AGL features you can specify on the
 * **agl-demo**: Enables the layers meta-agl-demo and meta-qt5.
   You need agl-demo if you are going to build the agl-demo-platform.
 
-* **agl-iotivity**: Enables iotivity such as status unclear, needs check, and needs removal.
-
 * **agl-sdl**: Enables or adds SDL to the build.
 
-* **agl-audio-4a-framework**: Enables AGL advanced audio architecture, which is an exclusive switch for audio framework.
+* **agl-pipewire**: Enables AGLs pipewire support.
 
 * **agl-audio-soundmanager-framework**: Enables Soundmanager framework, which is an exclusive switch for audio framework.
-
-* **agl-egvirt**: Enables virtualization support for the R-Car.
-
-* **agl-hmi-framework**: Enables HMI framework.
-  HMI framework is enabled by default.
-
-* **agl-oem-extra-libs**: Pulls in additional libraries.
-  **NOTE:** This feature is under construction.
-  It needs further work and testing.
-
-* **agl-renesas-kernel**: Enables renesas-specific kernel options.
-
-* **agl-telemetry**: Enables the telemetry demo.  To use this feature,
-  you must convert it into agl-profile-telematics.
-  **NOTE:** agl-telemetry is not in the layer.
 
 * **agl-localdev**: Adds a local layer named "meta-localdev" in the
   meta directory and a local.dev.inc configuration file when that file
@@ -169,8 +207,6 @@ Following are brief descriptions of the AGL features you can specify on the
   This feature provides a shortcut for using the layer meta-localdev
   in the top-level folder for easy modifications to your own recipes.
 
-* **eas**: I don't know what this does.
-
 ## Example
 
 Following is an example that initializes the build environment, selects "beaglebone"
@@ -178,12 +214,12 @@ for the machine, and chooses the "agl-demo" feature, which also includes the
 "agl-appfw-smack", "agl-devel", and "agl-hmi-framework" features:
 
 ```
-$ source meta-agl/scripts/aglsetup.sh -m beaglebone agl-demo
+$ source meta-agl/scripts/aglsetup.sh -m qemux86-64 agl-demo agl-devel
 aglsetup.sh: Starting
 Generating configuration files:
    Build dir: /home/scottrif/workspace_agl/build
-   Machine: beaglebone
-   Features: agl-appfw-smack agl-demo agl-devel agl-hmi-framework
+   Machine: qemux86-64
+   Features: agl-appfw-smack agl-demo agl-devel
    Running /home/scottrif/workspace_agl/poky/oe-init-build-env
    Templates dir: /home/scottrif/workspace_agl/meta-agl/templates/base
    Config: /home/scottrif/workspace_agl/build/conf/bblayers.conf
