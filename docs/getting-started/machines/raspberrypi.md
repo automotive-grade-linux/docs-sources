@@ -11,7 +11,7 @@ See the
 [Raspberry Pi Product Page](https://www.raspberrypi.org/products/) for more information.
 
 This section describes the steps you need to take to build the
-AGL demo image for both the Raspberry Pi 3 and 4 boards.
+AGL demo image for both the Raspberry Pi 4 and 3 boards. Raspberry Pi 4 is recommended.
 
 ## 1. Making Sure Your Build Environment is Correct
 
@@ -25,18 +25,18 @@ specific options when you run the script.
 Use the following commands to initialize your build environment.
 In each case, the "-m" option specifies the machine and the
 list of AGL features used with script are appropriate for development of
-the AGL demo image suited for either Raspberry Pi 3 or 4:
-
-**Raspberry Pi 3**:
-
-```bash
-$ source meta-agl/scripts/aglsetup.sh -m raspberrypi3 agl-demo agl-netboot agl-appfw-smack
-```
+the AGL demo image suited for either Raspberry Pi 4 (recommended) or 3:
 
 **Raspberry Pi 4**:
 
 ```bash
 $ source meta-agl/scripts/aglsetup.sh -m raspberrypi4 agl-demo agl-netboot agl-appfw-smack
+```
+
+**Raspberry Pi 3**:
+
+```bash
+$ source meta-agl/scripts/aglsetup.sh -m raspberrypi3 agl-demo agl-netboot agl-appfw-smack
 ```
 
 ## 2. Configuring the Build to Include Packages Under a Commercial License
