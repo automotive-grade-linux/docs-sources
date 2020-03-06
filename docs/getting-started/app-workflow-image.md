@@ -17,8 +17,23 @@ The following list summarizes the pre-built image support:
 QEMU is a generic, open source machine emulator and virtualizer.
 You can use QEMU as your "hardware" when you run an image built for
 the emulator.
-AGL supports QEMU images for 32 and 64-bit architectures for ARM and Intel
+AGL supports QEMU images for ARM 32/64bit and Intel 64bit
 devices.
+
+* **[R-Car Gen3 Ultra Low-Cost Board](https://www.elinux.org/R-Car/Boards/M3SK , https://www.elinux.org/R-Car/Boards/H3SK):**
+The M3ULCB/H3ULCB is a Renesas R-Car Gen3 SOC development board.
+Depending on the SOC specialization, Renesas provides several classes
+of these boards.
+The "M" classification is for the "middle-end" version as compared to the
+"H" classification, which is a "high-end" version.
+
+* **[Raspberry Pi 4](https://www.raspberrypi.org/products/):**
+The Raspberry Pi 4 uses a 64-bit quad-core processor.
+The board features dual-band wireless LAN, Bluetooth 4.2/BLE,
+faster Ethernet, and Power-over-Ethernet support with separate PoE HAT.
+
+* **[x86-64]:**
+Any x86-64 hardware is supported. We recommend e.g. the Up² board.
 
 * **[DRA7xx Evaluation Module Platform](http://www.ti.com/tool/J6EVM5777):**
 Texas Instruments Jacinto™ DRA7xx evaluation module platform helps speed up
@@ -26,31 +41,7 @@ development efforts and reduces time-to-market for applications
 such as infotainment, reconfigurable digital cluster, or integrated digital
 cockpit.
 
-* **[DragonBoard 410C Development Board](https://developer.qualcomm.com/hardware/dragonboard-410c):**
-QualComm's DragonBoard™ 410c is its first development board based
-on a Qualcomm® Snapdragon™ 400 series processor.
-The credit-card sized board has advanced processing power, Wi-Fi, Bluetooth
-connectivity, and GPS.
-The board is based on the 64-bit Snapdragon 410E processor,
 
-* **[Intel Core i7 Boards](https://www.intel.com/content/www/us/en/nuc/nuc-kit-nuc7i7bnh-brief.html?wapkw=core+i7+boards):**
-Intel offers a wide array of devices and boards.
-One such device that uses the Intel Core i7 board supported by AGL
-is the Intel® NUC Kit NUC7i7BNH.
-The board in this device uses a dual-core 7th Generation Intel Core i7
-processor and Intel Turbo Boost Technology 2.0.
-
-* **[M3 Ultra Low-Cost Board](https://www.elinux.org/R-Car/Boards/M3SK):**
-The MC3ULC is a Renesas R-Car Gen3 SOC development board.
-Depending on the SOC specialization, Renesas provides several classes
-of these boards.
-The "M" classification is for the "middle-end" version as compared to the
-"H" classification, which is a "high-end" version.
-
-* **[Raspberry Pi 3](https://www.raspberrypi.org/products/):**
-The Raspberry Pi 3 uses a 1.4GHz 64-bit quad-core processor.
-The board features dual-band wireless LAN, Bluetooth 4.2/BLE,
-faster Ethernet, and Power-over-Ethernet support with separate PoE HAT.
 
 If you want to use QEMU or you are developing an application for one the
 supported hardware board types, you might consider skipping the build
@@ -58,15 +49,16 @@ step, which is described below, and just download your image.
 
 As an example, suppose you want to download the 64-bit ARM-based image
 that you can emulate using QEMU.
-Furthermore, you are using the "Flounder" 6.0.0 AGL release.
 Go to the [AGL Download Website](https://download.automotivelinux.org/AGL/release/)
 site and follow these links:
 
 ```
-halibut -> 8.0.0 -> qemuarm64 -> deploy -> images -> qemuarm64
+icefish -> 9.0.0 -> qemuarm64 -> deploy -> images -> qemuarm64
 ```
 
-From the list, you could download the ``Image-qemuarm64.bin`` image file.
+From the list, you could download the ``Image-qemuarm64.bin`` Kernel and the 
+``agl-demo-platform-crosssdk-qemuarm64.ext4.xz``Image file.
+
 
 ## Building an image ##
 
@@ -101,7 +93,7 @@ The following procedure describes how to build your image:
      distribution.
 
      **NOTE:** The definitive package requirements are documented in the
-     "[Required Packages for the Host Development System](https://yoctoproject.org/docs/2.4.4/ref-manual/ref-manual.html#required-packages-for-the-host-development-system)"
+     "[Required Packages for the Host Development System](https://yoctoproject.org/docs/latest/ref-manual/ref-manual.html#required-packages-for-the-host-development-system)"
      section of the Yocto Project Reference Manual.
 
 2. **Download the AGL source code:** Getting the AGL source code involves creating an
@@ -167,5 +159,5 @@ The following procedure describes how to build your image:
    For example, Assuming your top-level AGL directory is ``~/workspace_agl``, you find the image here:
 
    ```
-   ~/workspace_agl/build/tmp/deploy/images/qemux86-64/agl-demo-platform-qemux86-64.vmdk.xz
+   ~/workspace_agl/build/tmp/deploy/images/qemux86-64/
    ```
