@@ -5,8 +5,10 @@ books:
     title: Audio Framework
     description: Audio Docs Sources documentation
     keywords:
-    author: "IotBzh"
+    author: "AGL"
     version: master
     chapters:
     - url: audio/bluez-alsa.md
       name: bluez-alsa
+    - url: audio/pipewire.md
+      name: pipewire
