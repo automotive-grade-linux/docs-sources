@@ -56,8 +56,21 @@ For this example, the target is "agl-demo-platform":
 By default, the build process puts the resulting image in the Build Directory:
 
 ```
+<build_directory>/tmp/deploy/images/qemux86-64/
+
+e.g.
+
 <build_directory>/tmp/deploy/images/qemux86-64/agl-demo-platform-qemux86-64.vmdk.xz
 ```
+
+**Note:**
+
+If you built your image with bitbake, you can now just use the ``runqemu`` wrapper.
+
+**Note:**
+If you need to run it outside of the bitbake environment or need special settings for
+hardware pass-through or the like, read on:
+
 
 ## 3. Deploying the AGL Demo Image
 
@@ -88,7 +101,11 @@ Depending on your Linux distribution, use these commands to install QEMU:
 **NOTE:** if you have created an AGL crosssdk, it will contain a
 QEMU binary for the build host.
 This SDK QEMU binary does not support graphics.
-Consequently,  you cannot use it to boot the AGL image.
+Consequently,  you cannot use it to boot the AGL image and
+need to call your host's qemu binary instead.
+
+**NOTE:** the VM images need UEFI in the emulator to boot. Thus you need
+to install the necessary files with below commands (ovmf).
 
 If your build host is running
 [Arch Linux](https://www.archlinux.org/), use the following commands:
