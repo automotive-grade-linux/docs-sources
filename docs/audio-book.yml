@@ -5,8 +5,12 @@ books:
     title: Audio Framework
     description: Audio Docs Sources documentation
     keywords:
-    author: "IotBzh"
+    author: "AGL"
     version: master
     chapters:
+    - url: audio/pipewire.md
+      name: Overview
+    - url: audio/wireplumber_configuration.md
+      name: Session Manager Configuration
     - url: audio/bluez-alsa.md
-      name: bluez-alsa
+      name: Bluetooth
