@@ -1,4 +1,4 @@
-# Audio System
+# PipeWire Audio System Overview
 
 ## Overview
 
@@ -12,67 +12,44 @@ using the *libpipewire* library as a front-end to that socket.
 
 ## Configuration
 
-Currently in AGL Happy Halibut (8.0.0) there are limited configuration options
-for the PipeWire audio stack. In a future release it is expected that a new
-configuration mechanism will be available, with more flexibility,
-comprehensibility and options.
+The Audio System's configuration is mainly done in the session manager.
+The session manager is the service that dictates policy, therefore this is
+the place to configure options such as device properties, device priorities
+and application linking policy.
 
-### wireplumber.conf
+An extensive listing of configuration options for the session manager,
+WirePlumber, is available in the next chapter,
+[Session Manager Configuration](./wireplumber_configuration.md)
 
-The most useful configuration options for the audio stack can be found
-in **/etc/wireplumber/wireplumber.conf**.
+### wireplumber-cli
 
-Through this file it is possible to configure:
+WirePlumber supports runtime configuration of devices, through the
+`wireplumber-cli` tool. This tool supports the following sub-commands:
 
-* The default playback and capture devices:
+* `wireplumber-cli ls-endpoints`:
+   This lists all the known audio endpoints, including devices and applications
+   that are streaming. In front of the devices, there is a `*` (star) character
+   on the "default" device, i.e. the device that is chosen by default to link
+   applications to. The volume and mute status of the devices is also shown.
+* `wireplumber-cli set-default [id]`:
+   Changes the default endpoint of a specific category (capture or playback,
+   determined automatically by the endpoint's type)
+   and sets it to be the endpoint with the specified `[id]`. The id is the
+   number shown in front of each endpoint's name in `ls-endpoints`.
+* `wireplumber-cli set-volume [id] [vol]`:
+   Sets the volume of `[id]` to `[vol]`. `[vol]` must be a floating point
+   number between 0.0 (0%) and 1.0 (100%).
+* `wireplumber-cli device-node-props`:
+   Lists all the properties of the device nodes, useful for writing `.endpoint`
+   configuration files, as discussed in the _Session Management Configuration_
+   chapter.
+
+Due to a system limitation, before running this tool on the command line,
+you need to export the `XDG_RUNTIME_DIR` environment variable, like this:
+
 ```
-  "default-playback-device": <"hw:0,0">,
-  "default-capture-device": <"hw:0,0">,
+export XDG_RUNTIME_DIR=/run/user/1001
 ```
-
-You may change these lines to reflect the configuration of your board. The ALSA
-device strings that you use there **must** start with *hw:* and **must** use
-exactly 2 integer numbers, one for the device and one for the subdevice. Other
-strings are not understood as of the time of writing of this document.
-
-* The streams that are available for applications to use:
-```
-load-module C libwireplumber-module-mixer {
-  "streams": <["Master", "Multimedia", "Navigation", "Communication", "Emergency"]>
-}
-...
-load-module C libwireplumber-module-pw-alsa-udev {
-  "streams": <["Multimedia", "Navigation", "Communication", "Emergency"]>
-}
-```
-
-You may modify these arrays to include the streams that you would like to be
-available on your system. These strings are matched against the strings that
-the applications declare as their *role*.
-
-*Note*: the *Master* stream on the mixer is a special stream that enables the
-master volume control. Removing it will remove the ability to have a master
-volume and may break applications that expect it to be available. This stream
-should not be listed in the configuration for *libwireplumber-module-pw-alsa-udev*
-
-*Note*: the stream names should be aligned everywhere they appear in this
-configuration file. Listing different streams in different places may result in
-undefined behaviour.
-
-* The priorities of the roles:
-```
-  "role-priorities": <{
-    "Multimedia": 1,
-    "Communication": 5,
-    "Navigation": 8,
-    "Emergency": 10
-  }>
-```
-
-A stream with a higher priority will always take over the audio output, pausing
-any other lower priority streams in the meantime.
-
-Currently there is no way of configuring other policy options.
 
 ### pipewire.conf
 
@@ -91,7 +68,7 @@ and it is beyond the scope of this document to describe it all.
 
 For playback and capture, applications should use *struct pw_stream* and its
 associated methods. There are usage examples for it in the PipeWire
-[source code](https://github.com/PipeWire/pipewire).
+[source code](https://gitlab.freedesktop.org/pipewire/pipewire).
 
 ### Native API - GStreamer (Recommended)
 
@@ -138,7 +115,9 @@ the ALSA API will likely block.
 
 ### Audiomixer service
 
-See the separate audiomixer service documentation.
+See the separate
+[agl-service-audiomixer](https://git.automotivelinux.org/apps/agl-service-audiomixer/about/)
+documentation.
 
 ## Runtime mechanics
 
@@ -162,11 +141,14 @@ it...
 The PipeWire and WirePlumber daemons can be configured to be more verbose
 by editing **/etc/pipewire/environment**
 
-* Set G_MESSAGES_DEBUG=all to enable WirePlumber's debug output.
-* Set PIPEWIRE_DEBUG=n (n=1-5) to enable PipeWire's debug output.
+* Set `G_MESSAGES_DEBUG=all` to enable WirePlumber's debug output.
+* Set `PIPEWIRE_DEBUG=n` (n=1-5) to enable PipeWire's debug output.
 
 All messages will be available in the systemd journal, inspectable with
 journalctl.
+
+`PIPEWIRE_DEBUG` can be set to a value between 1 and 5, with 5 being the
+most verbose and 1 the least verbose.
 
 ### AGL applications & services (AppFW)
 
