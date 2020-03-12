@@ -6,8 +6,7 @@ Introduction of Available APIs with categorization. If multiple categories apply
 
 | API | Description | Profile |
 | --- | --- | --- |
-| [agl-service-audio-4a](https://git.automotivelinux.org/apps/agl-service-audio-4a/) | High Level Alsa Binding for the AGL Advanced Audio Agent (4a) | Infotainment <br /> Instrument Cluster |
-| [agl-service-audio-mpcd](https://git.automotivelinux.org/apps/agl-service-audio-mpcd/) | MPCd binding (empty) |  |
+| [agl-service-audiomixer](https://git.automotivelinux.org/apps/agl-service-audiomixer/about/) | Audio Mixer API | |
 | [agl-service-bluetooth](https://git.automotivelinux.org/apps/agl-service-bluetooth/about/)        | bluetooth binding | Infotainment |
 | [agl-service-bluetooth-avrcp](https://git.automotivelinux.org/apps/agl-service-bluetooth-avrcp/) | AGL service that allow multimedia control over Bluetooth AVRCP profile | Infotainment |
 | [agl-service-bluetooth-pbap](https://git.automotivelinux.org/apps/agl-service-bluetooth-pbap/about/) | Bluetooth Phone Book Access Protocoll service | Infotainment |
