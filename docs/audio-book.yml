@@ -8,7 +8,9 @@ books:
     author: "AGL"
     version: master
     chapters:
-    - url: audio/bluez-alsa.md
-      name: bluez-alsa
     - url: audio/pipewire.md
-      name: pipewire
+      name: Overview
+    - url: audio/wireplumber_configuration.md
+      name: Session Manager Configuration
+    - url: audio/bluez-alsa.md
+      name: Bluetooth
