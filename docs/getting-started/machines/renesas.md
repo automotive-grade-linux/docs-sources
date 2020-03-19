@@ -27,11 +27,6 @@ You can find more information on building images from these resources:
  Generic guide on how to add a new service in the BSP.
  Goes back to 2015 and uses Yocto 2.x.
  Includes stuff on building an image but looks like the focus is really the service.
-* [AGL-Kickstart-on-Renesas-Porter-Board.pdf](https://iot.bzh/download/public/2016/sdk/AGL-Kickstart-on-Renesas-Porter-board.pdf)
- Guide on how to build an image for the Porter Board using AGL 2.0.
-* [AGL-Devkit-Image-and-SDK-for-Porter.pdf](https://iot.bzh/download/public/2016/sdk/AGL-Devkit-Image-and-SDK-for-porter.pdf)
- Guide on building an AGL image and SDK for the Porter board.
- Uses Yocto 2.x.
 
 
 ## 1. Downloading Proprietary Drivers
@@ -57,8 +52,28 @@ Follow these steps to download the drivers you need:
 
      The script's output identifies the files you need to download from the page.
 
-2. **Find the Download Links:**
+2. **Get Your Board Support Package (BSP) Version:**
 
+   Be sure to have the correct BSP version of the R-Car Starter Kit
+   based on the version of the AGL software you are using.
+   Use the following table to map the Renesas version to your AGL software:
+
+     | AGL Version| Renesas version |
+     |:-:|:-:|
+     | AGL master  | 3.21.0 |
+     | AGL icefish 9.0.0 | 3.21.0 |
+     | AGL halibut 8.0.2 8.0.3 8.0.4 8.0.5 | 3.21.0 |
+     | AGL halibut 8.0.1 | 3.19.0 |
+     | AGL halibut 8.0.0 | 3.15.0 |
+     | AGL guppy 7.0.4  | 3.21.0 |
+     | AGL guppy 7.0.3  | 3.19.0 |
+     | AGL guppy 7.0.0 7.0.1 7.0.2  | 3.9.0 |
+     | AGL flounder 6.0.3, 6.0.4 6.0.5 | 3.9.0 |
+     | AGL flounder 6.0.0, 6.0.1, 6.0.2 | 3.7.0 |
+     | AGL eel 5.0.x, 5.1.0| 2.23.1 |
+     | AGL dab 4.0.x |2.19.0 |
+
+   **NOTE:**
    Find the appropriate download links on the
    [R-Car H3/M3 Software library and Technical document](https://www.renesas.com/us/en/solutions/automotive/rcar-download/rcar-demoboard-2.html)
    site.
@@ -121,31 +136,6 @@ Follow these steps to download the drivers you need:
    repository.
    The site has pre-built packages (DEB or RPM) for the supported host
    operating systems.
-
-2. **Get Your Board Support Package (BSP) Version:**
-
-   Be sure to have the correct BSP version of the R-Car Starter Kit
-   based on the version of the AGL software you are using.
-   Use the following table to map the Renesas version to your AGL software:
-
-     | AGL Version| Renesas version |
-     |:-:|:-:|
-     | AGL master  | 3.21.0 |
-     | AGL icefish 9.0.0 | 3.21.0 |
-     | AGL halibut 8.0.2 8.0.3 8.0.4 8.0.5 | 3.21.0 |
-     | AGL halibut 8.0.1 | 3.19.0 |
-     | AGL halibut 8.0.0 | 3.15.0 |
-     | AGL guppy 7.0.4  | 3.21.0 |
-     | AGL guppy 7.0.3  | 3.19.0 |
-     | AGL guppy 7.0.0 7.0.1 7.0.2  | 3.9.0 |
-     | AGL flounder 6.0.3, 6.0.4 6.0.5 | 3.9.0 |
-     | AGL flounder 6.0.0, 6.0.1, 6.0.2 | 3.7.0 |
-     | AGL eel 5.0.x, 5.1.0| 2.23.1 |
-     | AGL dab 4.0.x |2.19.0 |
-
-   **NOTE:**
-   I don't know how the user uses this information.
-   I need more information.
 
 ## 3. Getting Your Hardware Together
 
@@ -908,4 +898,3 @@ you can determine the board's IP address and log in using `ssh`.
 </details>
 
 **NOTE:** More generics troubleshooting can be found here : [Generic issues](../troubleshooting.html)
-    git push --set-upstream origin guppy
