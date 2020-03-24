@@ -56,6 +56,25 @@ The following list describes several:
      section in the Yocto Project Application Development and Extensible
      Software Development Kit (eSDK) Manual.
 
+   * Using Qt Creator / qmake and want to use the same .pro / .pri file to build for desktop or AGL? Put AGL-specific definitions inside a `linux-oe-*` block in your .pro and .pri files, e.g.:
+     ```
+     linux-oe-* {
+         PKGCONFIG += qlibwindowmanager qtappfw
+         DEFINES += AGL
+         QMAKE_LFLAGS += "-Wl,--hash-style=gnu -Wl,--as-needed"
+         load(configure)
+         qtCompileTest(libhomescreen)
+
+         config_libhomescreen {
+             CONFIG += link_pkgconfig
+             PKGCONFIG += homescreen
+             DEFINES += HAVE_LIBHOMESCREEN
+         }
+
+         DESTDIR = $${OUT_PWD}/../package/root/bin
+     }
+     ```
+
 * **Build the Application Using Your Own Methodology:**
   Use any method you are familiar with to create your application.
   Many development tools and workflows exist that allow you to
