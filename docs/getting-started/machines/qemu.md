@@ -72,7 +72,10 @@ If you need to run it outside of the bitbake environment or need special setting
 hardware pass-through or the like, read on:
 
 
-## 3. Deploying the AGL Demo Image
+# Deploying the AGL Demo Image
+
+
+## QEMU
 
 Deploying the image consists of decompressing the image and then
 booting it using either QEMU or VirtualBox.
@@ -94,7 +97,6 @@ the image and prepare it for boot.
 
 The following steps show you how to boot the image with QEMU or VirtualBox.
 
-#### QEMU
 
 Depending on your Linux distribution, use these commands to install QEMU:
 
@@ -169,3 +171,39 @@ Once VirtualBox is installed, follow these steps to boot the image:
 9. Select the newly created **AGL QEMU** machine and click **Settings**
 10. Go to the **System** tab and ensure **Enable EFI (special OSes only)** is enabled then click **OK**
 11. With the **AGL QEMU** machine still selected, click **Start** to boot the virtual machine
+
+## Building for Most Intel 64-Bit Hardware Platforms 
+
+Although the reference hardware used by the AGL Project is the 64-bit Open Source MinnowBoard,
+you can use the information found on the "[MinnowBoard wiki](https://minnowboard.org/)"
+to enable most 64-bit Intel Architecture (IA) platforms that use the 64-bit
+UEFI as the boot loader.
+In addition to the MinnowBoard, support for the
+[upCore & UpSquared boards](http://up-board.org/upsquared/specifications/) exists.
+MinnowBoard Max and Turbot are both 64-bit capable.
+
+If you are interested in creating ***applications*** to run on hardware booted
+using an image built with the AGL Project, see the following:
+
+* [Application Development Workflow](../app-workflow-intro.html)
+* [Developing Apps for AGL](https://wiki.automotivelinux.org/agl-distro/developer_resources_intel_apps)
+
+UEFI has significantly evolved and you should check that your hardware's
+firmware is up-to-date.
+You must make this check for MinnowBoard-Max platforms.
+You do not need to make this check for the MinnowBoard-Turbo, upCore, and UpSquared
+platforms:
+
+* [`https://firmware.intel.com/projects/minnowboard-max`](https://firmware.intel.com/projects/minnowboard-max)
+* Intel automotive Module Reference Board (MRB)
+
+  **NOTES:** By default, these MRBs ship with an Automotive
+  Fast Boot loader (ABL), which requires encrypted images.
+  You can ask Intel's "Engineering Sales support" for a special version
+  of the MRB that does not require an encrypted image.
+  You need this type of MRB in order to test AGL on the development board.
+  Contact your Intel technical support representative to get the non-signed
+  ABL firmware.
+
+
+
