@@ -1,4 +1,4 @@
-# Building for Emulation
+# Building for Emulation and Intel x64
 
 Building an image for emulation allows you to simulate your
 image without actual target hardware.
