@@ -176,13 +176,9 @@ Once VirtualBox is installed, follow these steps to boot the image:
 
 ## Building for Most Intel 64-Bit Hardware Platforms 
 
-Although the reference hardware used by the AGL Project is the 64-bit Open Source MinnowBoard,
-you can use the information found on the "[MinnowBoard wiki](https://minnowboard.org/)"
-to enable most 64-bit Intel Architecture (IA) platforms that use the 64-bit
-UEFI as the boot loader.
-In addition to the MinnowBoard, support for the
-[upCore & UpSquared boards](http://up-board.org/upsquared/specifications/) exists.
-MinnowBoard Max and Turbot are both 64-bit capable.
+Although the reference hardware used by the AGL Project are the 64-bit 
+[upCore & UpSquared boards](http://up-board.org/upsquared/specifications/).
+
 
 If you are interested in creating ***applications*** to run on hardware booted
 using an image built with the AGL Project, see the following:
@@ -192,11 +188,10 @@ using an image built with the AGL Project, see the following:
 
 UEFI has significantly evolved and you should check that your hardware's
 firmware is up-to-date.
-You must make this check for MinnowBoard-Max platforms.
-You do not need to make this check for the MinnowBoard-Turbo, upCore, and UpSquared
+
+You do not need to make this check for the  upCore, and UpSquared
 platforms:
 
-* [`https://firmware.intel.com/projects/minnowboard-max`](https://firmware.intel.com/projects/minnowboard-max)
 * Intel automotive Module Reference Board (MRB)
 
   **NOTES:** By default, these MRBs ship with an Automotive
