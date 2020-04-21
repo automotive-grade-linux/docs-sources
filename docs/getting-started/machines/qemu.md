@@ -59,9 +59,10 @@ By default, the build process puts the resulting image in the Build Directory:
 <build_directory>/tmp/deploy/images/qemux86-64/
 
 e.g.
-
-<build_directory>/tmp/deploy/images/qemux86-64/agl-demo-platform-qemux86-64.vmdk.xz (QEMU) 
-<build_directory>/tmp/deploy/images/qemux86-64/agl-demo-platform-crosssdk-qemux86-64-20200408171012.rootfs.wic.xz (Intel)
+QEMU:
+<build_directory>/tmp/deploy/images/qemux86-64/agl-demo-platform-qemux86-64.vmdk.xz 
+Intel:
+<build_directory>/tmp/deploy/images/qemux86-64/agl-demo-platform-crosssdk-qemux86-64-20200408171012.rootfs.wic.xz 
 ```
 
 **Note:**
