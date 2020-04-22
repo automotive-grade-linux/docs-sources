@@ -5,7 +5,7 @@ image without actual target hardware.
 
 This section describes the steps you need to take to build the
 AGL demo image for emulation using either Quick EMUlator (QEMU) or
-VirtualBox.
+VirtualBox and with Intel architectures.
 
 ## 1. Making Sure Your Build Environment is Correct
 
@@ -156,7 +156,7 @@ The image can be booted in such an environment by removing `-enable-kvm` from
 the qemu command line, however this will result in lower perfromance within
 the AGL demo.
 
-#### VirtualBox
+### VirtualBox
 
 Start by downloading and installing [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 5.2.0 or later.
 
@@ -202,7 +202,7 @@ platforms:
   Contact your Intel technical support representative to get the non-signed
   ABL firmware.
 
-## 3. Creating Bootable Media
+### 3. Creating Bootable Media
 
 Typically, you use a USB stick, SD card, or HDD/SDD to create bootable media.
 It is possible, however, to install the AGL image onto Embedded MultiMediaCard
@@ -324,7 +324,7 @@ To do so, requires the following steps:
    the build directory to your home directory:
 
    ```bash
-   $ cp build/tmp/deploy/images/intel-corei7-64/agl-demo-platform-intel-corei7-64.wic.xz ~/
+   $ cp build/tmp/deploy/images/qemux86-64/agl-demo-platform-intel-corei7-64.wic.xz ~/
    ```
 
 5. **Boot the AGL Image from the Removable Device**
@@ -359,7 +359,7 @@ To do so, requires the following steps:
     Cycle through a reboot process and the device will boot from the
     eMMC.
 
-## 4. Booting the Image on the Target Device
+### 4. Booting the Image on the Target Device
 
 Be aware of the following when booting your device:
 
