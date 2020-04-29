@@ -239,7 +239,7 @@ Olimex cable.
 You can reference the following diagram for information on the following steps:
 
 <p align="center">
-  <img src="./images/RaspberryPi2-ModelB-debug-serial-cable.png">
+  <img src="images/RaspberryPi2-ModelB-debug-serial-cable.png">
 </p>
 
 1. Connect the Olimex cable to the Universal Asynchronous Receiver-Transmitter
