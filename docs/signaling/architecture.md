@@ -81,7 +81,7 @@ AGL services which have two distincts roles:
 - high level should handle more complex tasks (signals compositions, complex
  algorythms like Kalman filter, business logic...)
 
-![image](./images/signal-service-arch.svg "Signal Agent Architecture")
+![image](images/signal-service-arch.svg "Signal Agent Architecture")
 
 To do so, the choice has been to use a similar architecture than [[OpenXC]], a
 Ford project. Principle is simple, from a JSON file that describes all CAN
@@ -92,7 +92,7 @@ reads, decodes and serves this CAN signals to a high level CAN service that
 holds business logic and high level features like described is the above
 chapter.
 
-![image](./images/can-generator.svg "AGL CAN generator")
+![image](images/can-generator.svg "AGL CAN generator")
 
 While in some cases it may be chosen to implement a single service responsible
 for everything, other scenarii may chose to split responsibility between
@@ -113,7 +113,7 @@ implemented. Low level CAN service isn't fully functional nor tested to assume
 this feature but its architecture let the possibility open and will be
 implemented later.
 
-![image](./images/distributed-arch.png "Distributed Architecture")
+![image](images/distributed-arch.png "Distributed Architecture")
 
 Performance matters. There is a trade-off between modularity and efficiency.
 This is specially critical for signals where propagation time from one module to
@@ -437,7 +437,7 @@ so, Signal modules should enable composition within one or more [[APbinder]]
 inside the same ECU. Furthermore they should also support chaining with the
 outside world.
 
-![image](./images/cloud-arch.svg "Cloud & Multi-ECU Architecture")
+![image](images/cloud-arch.svg "Cloud & Multi-ECU Architecture")
 
 1. Application requests Virtual Signal exactly like if it was a low level signal
 1. Agent Signal has direct relation to low level signal
