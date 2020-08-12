@@ -60,6 +60,7 @@ Follow these steps to download the drivers you need:
      | AGL Version| Renesas version |
      |:-:|:-:|
      | AGL master  | 3.21.0 |
+     | AGL jeelyfish rc2 9.99.2 | 3.21.0 |
      | AGL icefish 9.0.0 9.0.1 9.0.2 | 3.21.0 |
      | AGL halibut 8.0.2 8.0.3 8.0.4 8.0.5 8.0.6 | 3.21.0 |
      | AGL halibut 8.0.1 | 3.19.0 |
@@ -173,7 +174,11 @@ Supported Starter
    | Board| `MACHINE` Setting |
    |:-:|:-:|
    | Starter Kit Pro/M3  | `MACHINE`=m3ulcb |
+   | Starter Kit Pro/M3 + kingfisher support | `MACHINE`=m3ulcb-kf |
+   | Starter Kit Pro/M3 whithout graphic  | `MACHINE`=m3ulcb-nogfx |
    | Starter Kit Premier/H3  | `MACHINE`=h3ulcb |
+   | Starter Kit Premier/H3  + kingfisher support  | `MACHINE`=h3ulcb-kf |
+   | Starter Kit Premier/H3  whithout graphic   | `MACHINE`=h3ulcb-nogfx |
    | Salvator-X  | `MACHINE`=h3-salvator-x |
 
    For example, the following command defines and exports the `MACHINE` variable
