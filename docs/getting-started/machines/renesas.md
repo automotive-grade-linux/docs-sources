@@ -60,7 +60,8 @@ Follow these steps to download the drivers you need:
 
      | AGL Version| Renesas version |
      |:-:|:-:|
-     | AGL master | 3.21.0 |
+     | AGL master | 4.1.0 |
+     | AGL jellyfish 10.0.0 | 3.21.0 |
      | AGL icefish 9.0.0 9.0.1 9.0.2 9.0.3 | 3.21.0 |
      | AGL halibut 8.0.2 8.0.3 8.0.4 8.0.5 8.0.6 | 3.21.0 |
      | AGL halibut 8.0.1 | 3.19.0 |
