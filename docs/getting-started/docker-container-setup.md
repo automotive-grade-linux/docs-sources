@@ -134,7 +134,7 @@ volumes with the build host:
   which is specific to the container's instance ID.
 
 * **/home/devel/share:**
-  A development share at **~/devel/docker/share**, which is shared
+  A development share at **~/ssd/share**, which is shared
   by all containers.
 
 These shared volumes need the proper permissions in order form them
