@@ -39,9 +39,9 @@ books:
     - url: "getting-started/machines/qemu.md"
       name: Building for Emulation
     - url: "getting-started/machines/renesas.md"
-      name: Build for R Car Starter Kit gen3 board
+      name: Building for R-Car Starter Kit gen3 board
     - url: "getting-started/machines/raspberrypi.md"
-      name: Build for Raspberry PI 3/4
+      name: Building for Raspberry Pi 3/4
 -
     id: troubleshooting
     order: 51
