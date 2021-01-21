@@ -144,6 +144,12 @@ qemu-system-x86_64 -enable-kvm -m 2048 \
     -net user,hostfwd=tcp::2222-:22
 ```
 
+After successfully starting the virtual machine, use this command to connect the machine remotely:
+
+```bash
+ssh –p 2222 root@localhost
+```
+
 **NOTE:** KVM may not be supported within a virtualized environment such as
 VirtualBox. This is indicated by the qemu command above giving the error
 message `Could not access KVM kernel module: No such file or directory` or
